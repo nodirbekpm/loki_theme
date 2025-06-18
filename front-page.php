@@ -4,8 +4,11 @@
  * */
 
 get_header();
+
+$home = get_field('home');
 ?>
 
+<?php if ($home['banner_hidden'] !== "Да"): ?>
     <div class="banner">
 
 
@@ -15,26 +18,26 @@ get_header();
             <div class="banner-text">
 
                 <div class="banner-text-cont">
-                    <h1 class="banner-title">Доставка по всей России</h1>
+                    <h1 class="banner-title"><?= $home['banner_title'] ?></h1>
                     <div class="banner-subtitle">
-                        Отправим завтра
+                        <?= $home['banner_description'] ?>
                     </div>
 
                 </div>
                 <div class="banner-button">
-                    <a href="#">Условия доставки</a>
+                    <a href="<?php echo $home['banner_link']['url'] ?>"><?= $home['banner_link']['title'] ?></a>
                 </div>
 
 
             </div>
 
             <div class="banner-img">
-                <img src="img/baner1.svg" alt="">
+                <img src="<?php echo $home['banner_image']['url'] ?>" alt="">
             </div>
 
         </div>
     </div>
-
+<?php endif; ?>
     <div class="catalog-new">
         <div class="catalog-wrap">
             <div class="catalog__blocks">
@@ -48,10 +51,10 @@ get_header();
                         </div>
                     </div>
                     <div class="catalog__block-imgmini">
-                        <img src="img/catmini3.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/catmini3.svg" alt="">
                     </div>
                     <div class="catalog__block-img">
-                        <img src="img/cat3.png" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/cat3.png" alt="">
                     </div>
 
                     <a href="shop.html" class="catalog__block-href">
@@ -69,10 +72,10 @@ get_header();
                         </div>
                     </div>
                     <div class="catalog__block-imgmini">
-                        <img src="img/catmini2.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/catmini2.svg" alt="">
                     </div>
                     <div class="catalog__block-img">
-                        <img src="img/cat2.png" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/cat2.png" alt="">
                     </div>
 
                     <a href="shop.html" class="catalog__block-href">
@@ -90,10 +93,10 @@ get_header();
                         </div>
                     </div>
                     <div class="catalog__block-imgmini">
-                        <img src="img/catmini1.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/catmini1.svg" alt="">
                     </div>
                     <div class="catalog__block-img">
-                        <img src="img/cat1.png" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/cat1.png" alt="">
                     </div>
 
                     <a href="shop.html" class="catalog__block-href">
@@ -135,7 +138,7 @@ get_header();
                             </div>
                         </div>
                         <div class="bandw__block-img">
-                            <img src="img/camin1.png" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/camin1.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -156,7 +159,7 @@ get_header();
                             </div>
                         </div>
                         <div class="bandw__block-img">
-                            <img src="img/camin2.png" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/camin2.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -168,25 +171,25 @@ get_header();
         <div class="brands-wrap">
             <div class="brands__blocks">
                 <div class="brands__block">
-                    <img src="img/brand1.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/brand1.svg" alt="">
                 </div>
                 <div class="brands__block">
-                    <img src="img/brand2.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/brand2.svg" alt="">
                 </div>
                 <div class="brands__block">
-                    <img src="img/brand3.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/brand3.svg" alt="">
                 </div>
                 <div class="brands__block">
-                    <img src="img/brand4.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/brand4.svg" alt="">
                 </div>
                 <div class="brands__block">
-                    <img src="img/brand5.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/brand5.svg" alt="">
                 </div>
                 <div class="brands__block">
-                    <img src="img/brand6.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/brand6.svg" alt="">
                 </div>
                 <div class="brands__block">
-                    <img src="img/brand7.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/brand7.svg" alt="">
                 </div>
 
             </div>
@@ -245,7 +248,7 @@ get_header();
                     </div>
                 </div>
                 <div class="about-right">
-                    <img src="img/about.jpg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/about.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -260,11 +263,11 @@ get_header();
                 <div class="product-card">
 
                     <div class="product-image">
-                        <img src="img/item.png" alt="Название товара" class="product-img">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/item.png" alt="Название товара" class="product-img">
                     </div>
                     <div class="product-card__top">
-                        <img src="img/checking.svg" alt="">
-                        <img src="img/addlikes.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
 
                     </div>
                     <div class="product-details">
@@ -296,14 +299,14 @@ get_header();
                             </button>
                         </div>
                         <div class="product-yandex">
-                            <img src="img/plus.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/plus.svg" alt="">
                             1 199 баллов Плюса кэшбэк в
-                            <img src="img/ya-pay.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-pay.svg" alt="">
                         </div>
                         <div class="product-split">
-                            <img src="img/cask.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/cask.svg" alt="">
                             х4 платежа в
-                            <img src="img/ya-split.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
                         </div>
 
 
@@ -312,11 +315,11 @@ get_header();
                 <div class="product-card">
 
                     <div class="product-image">
-                        <img src="img/item.png" alt="Название товара" class="product-img">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/item.png" alt="Название товара" class="product-img">
                     </div>
                     <div class="product-card__top">
-                        <img src="img/checking.svg" alt="">
-                        <img src="img/addlikes.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
 
                     </div>
                     <div class="product-details">
@@ -348,14 +351,14 @@ get_header();
                             </button>
                         </div>
                         <div class="product-yandex">
-                            <img src="img/plus.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/plus.svg" alt="">
                             1 199 баллов Плюса кэшбэк в
-                            <img src="img/ya-pay.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-pay.svg" alt="">
                         </div>
                         <div class="product-split">
-                            <img src="img/cask.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/cask.svg" alt="">
                             х4 платежа в
-                            <img src="img/ya-split.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
                         </div>
 
 
@@ -365,11 +368,11 @@ get_header();
                 <div class="product-card">
 
                     <div class="product-image">
-                        <img src="img/item.png" alt="Название товара" class="product-img">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/item.png" alt="Название товара" class="product-img">
                     </div>
                     <div class="product-card__top">
-                        <img src="img/checking.svg" alt="">
-                        <img src="img/addlikes.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
 
                     </div>
                     <div class="product-details">
@@ -401,14 +404,14 @@ get_header();
                             </button>
                         </div>
                         <div class="product-yandex">
-                            <img src="img/plus.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/plus.svg" alt="">
                             1 199 баллов Плюса кэшбэк в
-                            <img src="img/ya-pay.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-pay.svg" alt="">
                         </div>
                         <div class="product-split">
-                            <img src="img/cask.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/cask.svg" alt="">
                             х4 платежа в
-                            <img src="img/ya-split.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
                         </div>
 
 
@@ -417,11 +420,11 @@ get_header();
                 <div class="product-card">
 
                     <div class="product-image">
-                        <img src="img/item.png" alt="Название товара" class="product-img">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/item.png" alt="Название товара" class="product-img">
                     </div>
                     <div class="product-card__top">
-                        <img src="img/checking.svg" alt="">
-                        <img src="img/addlikes.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
 
                     </div>
                     <div class="product-details">
@@ -453,14 +456,14 @@ get_header();
                             </button>
                         </div>
                         <div class="product-yandex">
-                            <img src="img/plus.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/plus.svg" alt="">
                             1 199 баллов Плюса кэшбэк в
-                            <img src="img/ya-pay.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-pay.svg" alt="">
                         </div>
                         <div class="product-split">
-                            <img src="img/cask.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/cask.svg" alt="">
                             х4 платежа в
-                            <img src="img/ya-split.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
                         </div>
 
 
@@ -469,11 +472,11 @@ get_header();
                 <div class="product-card">
 
                     <div class="product-image">
-                        <img src="img/item.png" alt="Название товара" class="product-img">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/item.png" alt="Название товара" class="product-img">
                     </div>
                     <div class="product-card__top">
-                        <img src="img/checking.svg" alt="">
-                        <img src="img/addlikes.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
 
                     </div>
                     <div class="product-details">
@@ -505,14 +508,14 @@ get_header();
                             </button>
                         </div>
                         <div class="product-yandex">
-                            <img src="img/plus.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/plus.svg" alt="">
                             1 199 баллов Плюса кэшбэк в
-                            <img src="img/ya-pay.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-pay.svg" alt="">
                         </div>
                         <div class="product-split">
-                            <img src="img/cask.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/cask.svg" alt="">
                             х4 платежа в
-                            <img src="img/ya-split.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
                         </div>
 
 
@@ -521,11 +524,11 @@ get_header();
                 <div class="product-card">
 
                     <div class="product-image">
-                        <img src="img/item.png" alt="Название товара" class="product-img">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/item.png" alt="Название товара" class="product-img">
                     </div>
                     <div class="product-card__top">
-                        <img src="img/checking.svg" alt="">
-                        <img src="img/addlikes.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
 
                     </div>
                     <div class="product-details">
@@ -557,14 +560,14 @@ get_header();
                             </button>
                         </div>
                         <div class="product-yandex">
-                            <img src="img/plus.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/plus.svg" alt="">
                             1 199 баллов Плюса кэшбэк в
-                            <img src="img/ya-pay.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-pay.svg" alt="">
                         </div>
                         <div class="product-split">
-                            <img src="img/cask.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/cask.svg" alt="">
                             х4 платежа в
-                            <img src="img/ya-split.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
                         </div>
 
 
@@ -573,11 +576,11 @@ get_header();
                 <div class="product-card">
 
                     <div class="product-image">
-                        <img src="img/item.png" alt="Название товара" class="product-img">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/item.png" alt="Название товара" class="product-img">
                     </div>
                     <div class="product-card__top">
-                        <img src="img/checking.svg" alt="">
-                        <img src="img/addlikes.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
 
                     </div>
                     <div class="product-details">
@@ -609,14 +612,14 @@ get_header();
                             </button>
                         </div>
                         <div class="product-yandex">
-                            <img src="img/plus.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/plus.svg" alt="">
                             1 199 баллов Плюса кэшбэк в
-                            <img src="img/ya-pay.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-pay.svg" alt="">
                         </div>
                         <div class="product-split">
-                            <img src="img/cask.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/cask.svg" alt="">
                             х4 платежа в
-                            <img src="img/ya-split.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
                         </div>
 
 
@@ -625,11 +628,11 @@ get_header();
                 <div class="product-card">
 
                     <div class="product-image">
-                        <img src="img/item.png" alt="Название товара" class="product-img">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/item.png" alt="Название товара" class="product-img">
                     </div>
                     <div class="product-card__top">
-                        <img src="img/checking.svg" alt="">
-                        <img src="img/addlikes.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
 
                     </div>
                     <div class="product-details">
@@ -661,14 +664,14 @@ get_header();
                             </button>
                         </div>
                         <div class="product-yandex">
-                            <img src="img/plus.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/plus.svg" alt="">
                             1 199 баллов Плюса кэшбэк в
-                            <img src="img/ya-pay.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-pay.svg" alt="">
                         </div>
                         <div class="product-split">
-                            <img src="img/cask.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/cask.svg" alt="">
                             х4 платежа в
-                            <img src="img/ya-split.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
                         </div>
 
 
@@ -711,7 +714,7 @@ get_header();
             </form>
         </div>
         <div class="form-image">
-            <img src="img/formimg2.png" alt="Форма обратной связи" class="form-img">
+            <img src="<?php echo get_template_directory_uri() ?>/assets/img/formimg2.png" alt="Форма обратной связи" class="form-img">
         </div>
     </div>
 

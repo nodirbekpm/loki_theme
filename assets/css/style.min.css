@@ -1,0 +1,8824 @@
+@charset "UTF-8";
+
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0
+}
+
+ul li a {
+    color: #000
+}
+
+button,
+hr,
+input {
+    overflow: visible
+}
+
+audio,
+canvas,
+progress,
+video {
+    display: inline-block
+}
+
+progress,
+sub,
+sup {
+    vertical-align: baseline
+}
+
+[type=checkbox],
+[type=radio],
+legend {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0
+}
+
+html {
+    line-height: 1.15;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+body {
+    margin: 0
+}
+
+/* bread crumbs */
+.bread_crumbs{
+    display: flex;
+    align-items: center;
+    gap:0 6px;
+    margin-bottom: 27px;
+}
+
+.bread_crumbs a{
+    color: #9EA3AF;
+    font-family: "GT Eesti Pro Display";
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 16.5px; /* 150% */
+    padding-right: 15px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.bread_crumbs a:last-child::after{
+    display: none;
+}
+
+.bread_crumbs a::after{
+    content: '/';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    color: #9EA3AF;
+    font-family: "GT Eesti Pro Display";
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 16.5px; /* 150% */
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section {
+    display: block
+}
+
+h1 {
+    margin: .67em 0
+}
+
+figure {
+    margin: 1em 40px
+}
+
+hr {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+    -webkit-text-decoration-skip: objects
+}
+
+abbr[title] {
+    border-bottom: none;
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted
+}
+
+b,
+strong {
+    font-weight: bolder
+}
+
+dfn {
+    font-style: italic
+}
+
+mark {
+    background-color: #ff0;
+    color: #000
+}
+
+small {
+    font-size: 80%
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative
+}
+
+sub {
+    bottom: -.25em
+}
+
+sup {
+    top: -.5em
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+img {
+    border-style: none
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0
+}
+
+button,
+select {
+    text-transform: none
+}
+
+[type=reset],
+[type=submit],
+button,
+html [type=button] {
+    -webkit-appearance: button
+}
+
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner,
+button::-moz-focus-inner {
+    border-style: none;
+    padding: 0
+}
+
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring,
+button:-moz-focusring {
+    outline: ButtonText dotted 1px
+}
+
+fieldset {
+    padding: .35em .75em .625em
+}
+
+legend {
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    white-space: normal
+}
+
+textarea {
+    overflow: auto
+}
+
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+    height: auto
+}
+
+[type=search] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px
+}
+
+[type=search]::-webkit-search-cancel-button,
+[type=search]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit
+}
+
+summary {
+    display: list-item
+}
+
+[hidden],
+template {
+    display: none
+}
+
+input[type=number] {
+    -moz-appearance: textfield
+}
+
+textarea {
+    resize: none
+}
+
+.border-under-dis {
+    border-bottom: 1px solid #BDABDA
+}
+
+.border-around {
+    padding: 20px 30px;
+    border: 1px solid #BDABDA
+}
+
+.btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 1px solid #A97BFF
+}
+
+.btn span {
+    font-size: 16px
+}
+
+.padding-vertical-120 {
+    padding-top: 120px;
+    padding-bottom: 120px
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.slick-slider {
+    position: relative;
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent
+}
+
+.slick-list {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 0;
+    padding: 0
+}
+
+.slick-list:focus {
+    outline: 0
+}
+
+.slick-list.dragging {
+    cursor: pointer;
+    cursor: hand
+}
+
+.slick-slider .slick-list,
+.slick-slider .slick-track {
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0)
+}
+
+.slick-track {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.slick-track:after,
+.slick-track:before {
+    content: "";
+    display: table
+}
+
+.slick-track:after {
+    clear: both
+}
+
+.slick-loading .slick-track {
+    visibility: hidden
+}
+
+.slick-slide {
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    display: none
+}
+
+[dir=rtl] .slick-slide {
+    float: right
+}
+
+.slick-slide img {
+    display: block
+}
+
+.slick-slide.slick-loading img {
+    display: none
+}
+
+.slick-slide.dragging img {
+    pointer-events: none
+}
+
+.slick-initialized .slick-slide {
+    display: block
+}
+
+.slick-loading .slick-slide {
+    visibility: hidden
+}
+
+.slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent
+}
+
+.slick-arrow.slick-hidden {
+    display: none
+}
+
+.slick-loading .slick-list {
+    background: url(./ajax-loader.gif) center center no-repeat #fff
+}
+
+@font-face {
+    font-family: slick;
+    src: url(./fonts/slick.eot);
+    src: url(./fonts/slick.eot?#iefix) format("embedded-opentype"), url(./fonts/slick.woff) format("woff"), url(./fonts/slick.ttf) format("truetype"), url(./fonts/slick.svg#slick) format("svg");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+  font-family: 'GT Eesti Pro Display';
+  src: url('../fonts/gteestiprodisplay_light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GT Eesti Pro Display';
+  src: url('../fonts/gteestiprodisplay_regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GT Eesti Pro Display';
+  src: url('../fonts/gteestiprodisplay_bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Tondo corp regular */
+@font-face {
+  font-family: 'Tondo Corp';
+  src: url('../fonts/TondoCorp-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.slick-next,
+.slick-prev {
+    position: absolute;
+    display: block;
+    height: 20px;
+    width: 20px;
+    line-height: 0;
+    font-size: 0;
+    cursor: pointer;
+    background: 0 0;
+    color: transparent;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    padding: 0;
+    border: none;
+    outline: 0
+}
+
+.slick-next:focus,
+.slick-next:hover,
+.slick-prev:focus,
+.slick-prev:hover {
+    outline: 0;
+    background: 0 0;
+    color: transparent
+}
+
+.slick-next:focus:before,
+.slick-next:hover:before,
+.slick-prev:focus:before,
+.slick-prev:hover:before {
+    opacity: 1
+}
+
+.slick-next.slick-disabled:before,
+.slick-prev.slick-disabled:before {
+    opacity: .25
+}
+
+.slick-next:before,
+.slick-prev:before {
+    font-family: slick;
+    font-size: 20px;
+    line-height: 1;
+    color: #fff;
+    opacity: .75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+[dir=rtl] .slick-prev {
+    left: auto;
+    right: -25px
+}
+
+.slick-prev:before {
+    content: "←"
+}
+
+[dir=rtl] .slick-prev:before {
+    content: "→"
+}
+
+.slick-next {
+    right: -25px
+}
+
+[dir=rtl] .slick-next {
+    left: -25px;
+    right: auto
+}
+
+.slick-next:before {
+    content: "→"
+}
+
+[dir=rtl] .slick-next:before {
+    content: "←"
+}
+
+.slick-dotted.slick-slider {
+    margin-bottom: 30px
+}
+
+.slick-dots {
+    position: absolute;
+    bottom: -25px;
+    list-style: none;
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    width: 100%
+}
+
+.slick-dots li {
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer
+}
+
+.slick-dots li button {
+    border: 0;
+    background: 0 0;
+    display: block;
+    height: 20px;
+    width: 20px;
+    outline: 0;
+    line-height: 0;
+    font-size: 0;
+    color: transparent;
+    padding: 5px;
+    cursor: pointer
+}
+
+.slick-dots li button:focus,
+.slick-dots li button:hover {
+    outline: 0
+}
+
+.slick-dots li button:focus:before,
+.slick-dots li button:hover:before {
+    opacity: 1
+}
+
+.slick-dots li button:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "•";
+    width: 20px;
+    height: 20px;
+    font-family: slick;
+    font-size: 6px;
+    line-height: 20px;
+    text-align: center;
+    color: #000;
+    opacity: .25;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.slick-dots li.slick-active button:before {
+    color: #000;
+    opacity: .75
+}
+
+@font-face {
+    font-family: Gilroy;
+    src: local("Gilroy-Regular"), url(../fonts/Gilroy-Regular.woff2) format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap
+}
+
+@font-face {
+    font-family: Gilroy;
+    src: local("gilroy-bold"), url(../fonts/gilroy-bold.ttf) format("truetype");
+    font-style: bold;
+    font-weight: 700;
+    font-display: swap
+}
+
+.grid-example-container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .grid-example-container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .grid-example-container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .grid-example-container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .grid-example-container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .grid-example-container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .grid-example-container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .grid-example-container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.grid-example-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    overflow: hidden
+}
+
+.col-1-12 {
+    -ms-flex-preferred-size: 8.33333%;
+    flex-basis: 8.33333%;
+    max-width: 8.33333%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-2-12 {
+    -ms-flex-preferred-size: 16.66667%;
+    flex-basis: 16.66667%;
+    max-width: 16.66667%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-3-12 {
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    max-width: 25%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-4-12 {
+    -ms-flex-preferred-size: 33.33333%;
+    flex-basis: 33.33333%;
+    max-width: 33.33333%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-5-12 {
+    -ms-flex-preferred-size: 41.66667%;
+    flex-basis: 41.66667%;
+    max-width: 41.66667%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-6-12 {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    max-width: 50%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-11-12 {
+    -ms-flex-preferred-size: 91.66667%;
+    flex-basis: 91.66667%;
+    max-width: 91.66667%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-5-11 {
+    -ms-flex-preferred-size: 45.45455%;
+    flex-basis: 45.45455%;
+    max-width: 45.45455%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-6-11 {
+    -ms-flex-preferred-size: 54.54545%;
+    flex-basis: 54.54545%;
+    max-width: 54.54545%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-3-11 {
+    -ms-flex-preferred-size: 27.27273%;
+    flex-basis: 27.27273%;
+    max-width: 27.27273%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.col-1-2 {
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    max-width: 50%;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.push-col-2 {
+    margin-left: 16.66667%
+}
+
+.post-col-2 {
+    margin-right: 16.66667%;
+    margin-left: 16.66667%
+}
+
+.grid-example-inner {
+    font-size: 1.4rem;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    min-height: 50px;
+    padding: 8px;
+    font-weight: 700;
+    color: #555
+}
+
+.grid-example-inner:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    border: 1px solid #8F8F8F
+}
+
+body {
+    font-family: Montserat, sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    background-color: #FFF;
+    color: #000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.banner-simple-btn {
+    height: 44px;
+    width: 287px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #E4E7EA;
+    border-radius: 10px
+}
+
+.banner-simple-btn a {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 12.9px;
+    line-height: 44px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    color: #000
+}
+
+@media screen and (max-width:767px) {
+    .banner-simple-btn {
+        background-color: transparent;
+        height: 48px;
+        width: 220px
+    }
+
+    .banner-simple-btn a {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0;
+        color: #fff
+    }
+}
+
+.title-camins {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 51.59px;
+    line-height: 62.4px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    padding-top: 30px;
+    padding-bottom: 50px
+}
+
+@media screen and (min-width:1280px) and (max-width:1439px) {
+    .title-camins {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    .title-camins {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (max-width:767px) {
+    .title-camins {
+        padding-top: 20px;
+        padding-bottom: 20px
+    }
+}
+
+@media screen and (max-width:767px) {
+    .title-camins {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 52px;
+        letter-spacing: 0;
+        text-align: center;
+        vertical-align: middle
+    }
+}
+
+.banner-button {
+    border: 1px solid #FFF;
+    width: 174px;
+    height: 48px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 12px
+}
+
+.banner-button a {
+    color: #fff
+}
+
+@media screen and (max-width:767px) {
+    .banner-button a {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0
+    }
+}
+
+.hits-btn-go {
+    width: 227px;
+    height: 40px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 12px;
+    border: 2px solid #888;
+    margin: 20px auto;
+    cursor: pointer;
+    display: none
+}
+
+.hits-btn-go a {
+    color: #000
+}
+
+@media screen and (max-width:767px) {
+    .hits-btn-go {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 227px;
+        height: 40px
+    }
+
+    .hits-btn-go a {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0
+    }
+}
+
+.banner-mini-button {
+    height: 35px;
+    width: 139px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px solid #fff
+}
+
+.banner-mini-button a {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #fff
+}
+
+@media screen and (max-width:767px) {
+    .banner-mini-button {
+        height: 24px;
+        width: 110px
+    }
+
+    .banner-mini-button a {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 100%;
+        letter-spacing: 0
+    }
+}
+
+.btn-clear {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 1px solid #E4E7EA;
+    height: 40px;
+    border-radius: 10px
+}
+
+.btn-clear a {
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.submit-btn {
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: 400;
+    cursor: pointer;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+    white-space: nowrap;
+    margin-left: 30px;
+    height: 48px;
+    width: 178px
+}
+
+@media screen and (max-width:767px) {
+    .submit-btn {
+        width: 100%;
+        margin-top: 10px
+    }
+}
+
+p {
+    line-height: 14px;
+    font-size: 1em
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    p {
+        font-size: 1.2em;
+        line-height: 16px
+    }
+}
+
+@media screen and (min-width:1280px) and (max-width:1919px) {
+    p {
+        font-size: 1.2em;
+        line-height: 18px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    p {
+        font-size: 2em;
+        line-height: 30px
+    }
+}
+
+h1 {
+    font-family: GT Eesti Pro Display;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #fff
+}
+
+@media screen and (max-width:767px) {
+    h1 {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 100%;
+        letter-spacing: 0
+    }
+}
+
+h2 {
+    margin: 1rem 0;
+    font-size: 1.4rem;
+    line-height: 1.3em;
+    color: #1C1230;
+    font-weight: 700
+}
+
+@media screen and (min-width:768px) {
+    h2 {
+        font-size: 2rem
+    }
+}
+
+@media screen and (min-width:1024px) {
+    h2 {
+        font-size: 2rem
+    }
+}
+
+@media screen and (min-width:1280px) {
+    h2 {
+        font-size: 2rem
+    }
+}
+
+@media screen and (min-width:1440px) {
+    h2 {
+        font-size: 2rem
+    }
+}
+
+@media screen and (min-width:1920px) {
+    h2 {
+        font-size: 2rem
+    }
+}
+
+@media screen and (min-width:2560px) {
+    h2 {
+        font-size: 2rem
+    }
+}
+
+h3 {
+    font-size: 1.6rem;
+    color: #1C1230;
+    line-height: 1.25em;
+    width: 100% !important
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    h3 {
+        font-size: 1.8rem
+    }
+}
+
+@media screen and (min-width:1280px) and (max-width:1919px) {
+    h3 {
+        font-size: 1.8rem
+    }
+}
+
+@media screen and (min-width:1920px) {
+    h3 {
+        font-size: 1.8rem
+    }
+}
+
+h4,
+h5 {
+    font-size: 1.2rem;
+    line-height: 1.25em;
+    font-weight: 700;
+    width: 100% !important
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    h4 {
+        font-size: 22px
+    }
+}
+
+@media screen and (min-width:1280px) and (max-width:1919px) {
+    h4 {
+        font-size: 24px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    h4 {
+        font-size: 36px;
+        line-height: 39px
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    h5 {
+        font-size: 26px
+    }
+}
+
+@media screen and (min-width:1280px) and (max-width:1919px) {
+    h5 {
+        font-size: 28px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    h5 {
+        font-size: 32px;
+        line-height: 30px
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    h5 {
+        font-size: 18px
+    }
+}
+
+@media screen and (min-width:1280px) and (max-width:1919px) {
+    h5 {
+        font-size: 22px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    h5 {
+        font-size: 24px;
+        line-height: 30px
+    }
+}
+
+.btn-blue {
+    padding: 15px 28px;
+    color: #fff;
+    background: -webkit-gradient(linear, left top, right top, from(#0FD4FF), to(#052996));
+    background: -o-linear-gradient(left, #0FD4FF, #052996);
+    background: linear-gradient(to right, #0FD4FF, #052996);
+    border-radius: 50px;
+    border: none
+}
+
+.btn-pink {
+    color: #fff;
+    border: none
+}
+
+.cross {
+    position: relative
+}
+
+.cross:before {
+    content: url(../img/cross.svg);
+    position: relative;
+    top: 18px;
+    width: 63px;
+    margin-right: 8px;
+    padding-left: 0
+}
+
+.cross2 {
+    position: relative
+}
+
+.cross2:before {
+    content: '';
+    background-image: url(../img/cross.svg);
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    background-size: 24px 24px;
+    margin-right: 5px
+}
+
+.btn-transparen {
+    padding: 15px 28px;
+    color: #052996;
+    border: 2px solid #052996;
+    background-color: transparent;
+    border-radius: 50px
+}
+
+.gradien-nano {
+    background-color: #2AA5A0;
+    background-image: -webkit-gradient(linear, left top, right top, from(#0FD4FF), to(#052996));
+    background-image: -o-linear-gradient(left, #0FD4FF, #052996);
+    background-image: linear-gradient(90deg, #0FD4FF, #052996);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+}
+
+.btn-pink {
+    width: 242px;
+    height: 56px;
+    top: 1895px;
+    left: 1234px;
+    padding: 13px 16px;
+    gap: 10px;
+    border-radius: 50px;
+    background: #ae295c
+}
+
+.sub-title {
+    font-family: Montserrat;
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 72.8px;
+    text-align: left;
+    color: #5179de;
+    padding: 10px 0
+}
+
+@media screen and (max-width:767px) {
+    .sub-title {
+        font-family: Montserrat;
+        font-size: 28px;
+        font-weight: 800;
+        line-height: 36.4px;
+        text-align: center
+    }
+}
+
+@media screen and (max-width:567px) {
+    .mobile-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (max-width:567px) {
+    .mobile-up-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+    .tablet-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:768px) {
+    .tablet-up-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:1024px) and (max-width:1279px) {
+    .tablet-landscape-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .tablet-landscape-up-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:1280px) and (max-width:1439px) {
+    .desktop-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .desktop-up-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:1440px) and (max-width:1439px) {
+    .desktop-wide-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .desktop-wide-up-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:1920px) and (max-width:2559px) {
+    .fullhd-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .fullhd-up-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .ultra-hidden {
+        display: none !important
+    }
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.is-hidden {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    pointer-events: none
+}
+
+.is-visible {
+    position: static;
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    width: auto;
+    pointer-events: auto
+}
+
+.margin-vertical-20 {
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+.margin-horizontal-20 {
+    margin-left: 20px;
+    margin-right: 20px
+}
+
+.margin-full-20 {
+    margin: 20px
+}
+
+.margin-vertical-40 {
+    margin-top: 40px;
+    margin-bottom: 40px
+}
+
+.margin-horizontal-40 {
+    margin-left: 40px;
+    margin-right: 40px
+}
+
+.margin-full-40 {
+    margin: 40px
+}
+
+.padding-vertical-20 {
+    padding-top: 20px;
+    padding-bottom: 20px
+}
+
+.padding-horizontal-20 {
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.padding-full-20 {
+    padding: 20px
+}
+
+.padding-vertical-40 {
+    padding-top: 40px;
+    padding-bottom: 40px
+}
+
+.padding-horizontal-40 {
+    padding-left: 40px;
+    padding-right: 40px
+}
+
+.padding-full-40 {
+    padding: 40px
+}
+
+:root {
+    --swiper-theme-color: #007aff
+}
+
+.swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1
+}
+
+.swiper-container-vertical>.swiper-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transition-property: -webkit-transform;
+    -o-transition-property: transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box
+}
+
+.swiper-container-android .swiper-slide,
+.swiper-wrapper {
+    -webkit-transform: translate3d(0px, 0, 0);
+    transform: translate3d(0px, 0, 0)
+}
+
+.swiper-container-multirow>.swiper-wrapper {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.swiper-container-multirow-column>.swiper-wrapper {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.swiper-container-free-mode>.swiper-wrapper {
+    -webkit-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    margin: 0 auto
+}
+
+.swiper-slide {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+    -webkit-transition-property: -webkit-transform;
+    -o-transition-property: transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform
+}
+
+.swiper-slide-invisible-blank {
+    visibility: hidden
+}
+
+.swiper-container-autoheight,
+.swiper-container-autoheight .swiper-slide {
+    height: auto
+}
+
+.swiper-container-autoheight .swiper-wrapper {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-transition-property: height, -webkit-transform;
+    -o-transition-property: transform, height;
+    transition-property: transform, height;
+    transition-property: transform, height, -webkit-transform
+}
+
+.swiper-container-3d {
+    -webkit-perspective: 1200px;
+    perspective: 1200px
+}
+
+.swiper-container-3d .swiper-cube-shadow,
+.swiper-container-3d .swiper-slide,
+.swiper-container-3d .swiper-slide-shadow-bottom,
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right,
+.swiper-container-3d .swiper-slide-shadow-top,
+.swiper-container-3d .swiper-wrapper {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d
+}
+
+.swiper-container-3d .swiper-slide-shadow-bottom,
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right,
+.swiper-container-3d .swiper-slide-shadow-top {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10
+}
+
+.swiper-container-3d .swiper-slide-shadow-left {
+    background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, 0)));
+    background-image: -o-linear-gradient(right, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0))
+}
+
+.swiper-container-3d .swiper-slide-shadow-right {
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, 0)));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0))
+}
+
+.swiper-container-3d .swiper-slide-shadow-top {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, 0)));
+    background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0))
+}
+
+.swiper-container-3d .swiper-slide-shadow-bottom {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, 0)));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0))
+}
+
+.swiper-container-css-mode>.swiper-wrapper {
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none
+}
+
+.swiper-container-css-mode>.swiper-wrapper::-webkit-scrollbar {
+    display: none
+}
+
+.swiper-container-css-mode>.swiper-wrapper>.swiper-slide {
+    scroll-snap-align: start start
+}
+
+.swiper-container-horizontal.swiper-container-css-mode>.swiper-wrapper {
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory
+}
+
+.swiper-container-vertical.swiper-container-css-mode>.swiper-wrapper {
+    -ms-scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory
+}
+
+/* .header {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-bottom: 25px;
+} */
+
+.header {
+  max-width: 1400px;
+  padding: 0;
+  margin: 0 auto 25px auto;
+}
+
+.header .header-wrap {
+    height: 80px;
+    display: grid;
+    grid-auto-flow: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 20px;
+    /* -webkit-box-shadow: 0 1px 0 0 #E4E7EA;
+    box-shadow: 0 1px 0 0 #E4E7EA; */
+    border-bottom: 1px solid #E4E7EA;
+
+    
+}
+
+.header .header-wrap .return_link{
+    display: flex;
+    align-items: center;
+    gap:0 10px;
+}
+
+.header .header-wrap .return_link a{
+    display: inline-block;
+    padding-top: 3px;
+    color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 123.077% */
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.header .header-wrap .header-cont {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 2rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.header-wrap .header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .header-wrap .header-cont .header-text {
+    max-width: 140px;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 11.81px;
+    line-height: 15.6px;
+    letter-spacing: .25px;
+    border-left: 2px solid #000;
+    padding-left: 20px
+}
+
+.header .header-wrap .header-menu ul {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0 59px;
+}
+
+.header .header-wrap .header-menu ul .mobile_links{
+    display: none;
+    gap:0 8px;
+    align-items: center;
+}
+
+.header .header-wrap .header-menu ul .mobile_links img{
+    width: 16px;
+    height: 16px;
+}
+
+.header .header-wrap .header-menu ul li:last-child{
+    margin-left: 20px;
+}
+
+.header .header-wrap .header-mini {
+    display: grid;
+    grid-auto-flow: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header .header-wrap .header-mini a{
+    height: 20px;
+    width: 20px;
+}
+
+.header .header-wrap .burger{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:5px 0;
+    cursor: pointer;
+    width: 20px;
+    user-select: none;
+
+    /* height: 12px; */
+}
+
+.header .header-wrap .burger .line{
+    flex-shrink:  0;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.header .header-wrap .burger.active .line:nth-child(1){
+    transform: rotate(45deg) translate(4px ,4px);
+}
+
+.header .header-wrap .burger.active .line:nth-child(2){
+    opacity: 0;
+}
+
+.header .header-wrap .burger.active .line:nth-child(3){
+    transform: rotate(-45deg) translate(4px ,-4px);
+}
+
+.header .header-wrap .header-mini img {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.header .header-wrap .header-phone {
+    display: none
+}
+
+
+
+/* header media */
+@media (max-width: 1440px) {
+  .header {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .header {
+    max-width: 992px;
+  }
+
+  .header .header-wrap{
+    padding: 0;
+  }
+
+  .header .header-wrap .header-menu ul{
+    gap:0 18px;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    max-width: 768px;
+  }
+
+  .header .header-wrap .header-menu ul{
+    gap:0 14px;
+  }
+
+  .header .header-wrap .header-menu ul a{
+    font-size: 11px;
+  }
+
+  .header .header-wrap .header-cont{
+    gap:0 5px;
+  }
+  .header .header-wrap .header-cont .header-text{
+    padding-left: 10px;
+    font-size: 9px;
+  }
+
+  .header .header-wrap .header-cont img{
+    width: 70px;
+  }
+  .header .header-wrap .header-menu ul li:last-child{
+    margin-left: 0;
+  }
+  .header .header-wrap .header-mini{
+    gap:0 10px;
+  }
+
+  .header .header-wrap .header-mini a{
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 770px) {
+  .header {
+    max-width: 576px;
+    margin-bottom: 0;
+    border: none;
+  }
+
+  .header .header-wrap{
+    height: 58px;
+    border-bottom: none;
+    box-shadow: none;
+  }
+
+  .header .header-wrap .header-mini{
+    gap:0 16px;
+  }
+
+  .header .header-wrap .header-mini .laptop_icon{
+    display: none;
+  }
+
+  .header .header-wrap .header-mini .header-phone{
+    display: block;
+  }
+
+  .header .header-wrap .burger{
+    display: flex;
+  }
+  
+  .header .header-wrap .header-cont .header-text{
+    padding-left: 7px;
+    font-size: 10px;
+    line-height: 100%;
+    font-weight: 300;
+  }
+
+    .header .header-wrap .header-cont img{
+        width: 80px;
+        height: 50px;
+    }
+
+  .header .header-wrap .header-menu{
+    border-top: 1px solid #E5E5E5;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    display: none;
+    background: #fff;
+    z-index: 10;
+  }
+
+  
+
+  .header .header-wrap .header-menu.active{
+    display: block;
+  }
+
+  .header .header-wrap .header-menu ul{
+    height: 100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+     background: #fff;
+     width: 576px;
+    margin: 0 auto;
+  }
+
+  .header .header-wrap .header-menu ul li{
+    padding: 18px 0;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    width: auto;
+  }
+
+  .header .header-wrap .header-menu ul .mobile_links{
+    display: flex;
+  }
+
+  .header .header-wrap .header-menu ul .mobile_links a::after{
+    display: none;
+  }
+
+  .header .header-wrap .header-menu ul .mobile_links a{
+    padding-top: 2px;
+  }
+
+    .header .header-wrap .header-menu ul a{
+        font-size: 10px;
+        font-weight: 300;
+        display: inline-block;
+        width: 100%;
+        position: relative;
+        padding-left: 1px;
+        line-height: 100%;
+    }
+
+    .header .header-wrap .header-menu ul a::after{
+        content: '';
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-image: url(../img/navbar_link_icon.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 18px;
+        height: 18px;
+    }
+
+    .header .header-wrap .header-menu ul li:first-child{
+        border-top:none;
+    }
+  
+}
+
+@media (max-width: 576px) {
+  .header {
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .header .header-wrap .header-menu ul{
+    width: 100%;
+  }
+
+
+}
+
+.banner {
+    max-width: 1400px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+
+.banner .banner-wrap {
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #030509;
+    position: relative;
+    display: grid
+}
+
+.banner .banner-wrap .banner-text {
+    position: absolute;
+    height: 100%;
+    padding: 120px 60px;
+    left: 0;
+    top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.banner .banner-wrap .banner-text .banner-text-cont .banner-subtitle {
+    color: #fff;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0
+}
+
+.banner .banner-wrap .banner-img {
+    height: 100%;
+    justify-self: end
+}
+
+.banner .banner-wrap .banner-img img {
+    max-width: 100%
+}
+
+
+@media (max-width: 1440px) {
+  .banner {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .banner {
+    max-width: 992px;
+  }
+}
+
+@media (max-width: 992px) {
+  .banner {
+    max-width: 768px;
+  }
+
+  .banner .banner-wrap .banner-text{
+    padding: 70px 60px;
+  }
+}
+
+@media (max-width: 770px) {
+  .banner {
+    max-width: 576px;
+  }
+   .banner .banner-wrap {
+        overflow: hidden;
+        padding: 36px 0;
+        border-radius: 0;
+        background-color: #030509;
+        position: relative;
+        display: grid;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -ms-flex-line-pack: center;
+        align-content: center
+    }
+
+    .banner .banner-wrap .banner-text {
+        position: static;
+        height: auto;
+        padding: 0;
+        left: 0;
+        top: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+    .banner .banner-wrap .banner-text .banner-text-cont .banner-subtitle {
+        font-family: GT Eesti Pro Display;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0;
+        /* color: #FFFB2; */
+        text-align: center;
+        opacity: 0.7;
+    }
+
+    .banner .banner-wrap .banner-text .banner-button {
+        margin-top: 40px
+    }
+
+    .banner .banner-wrap .banner-text .banner-button a{
+        opacity: 0.7;
+    }
+
+    .banner .banner-wrap .banner-img {
+        height: 100%;
+        max-width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        justify-self: center
+    }
+
+    .banner .banner-wrap .banner-img img {
+        position: relative;
+        right: 20px;
+        max-width: 100%
+    }
+}
+
+@media (max-width: 576px) {
+  .banner {
+    width: 100%;
+  }
+}
+
+
+/* catalog */
+
+.catalog-new {
+    max-width: 1440px;
+    margin:0 auto;
+    padding-top: 36px;
+    padding-bottom: 36px
+}
+
+.catalog .catalog_info{
+    display: flex;
+    align-items: center;
+    gap:0 20px;
+    margin-bottom: 8px;
+    /* margin-left: 65px; */
+}
+
+.catalog .catalog_info .text{
+    color: #9EA3AF;
+    font-family: "GT Eesti Pro Display";
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16.5px; /* 150% */
+}
+
+.catalog .catalog_info .text:nth-child(2){
+    padding-left: 20px;
+    border-left: 1px solid #9EA3AF;
+}
+
+.catalog_title{
+    color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 52px; /* 130% */
+    margin-bottom: 10px;
+    /* margin-left: 65px; */
+}
+
+.catalog-new .catalog-wrap .catalog__blocks {
+    display: grid;
+    grid-template-columns: repeat(3, calc(33% - 1rem));
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 1rem
+}
+
+.catalog-new .catalog-wrap .catalog__blocks .catalog__block {
+    padding: 30px;
+    background: #F8F8F8;
+    display: grid;
+    grid-auto-flow: row;
+    gap: 1rem;
+    position: relative;
+    border-radius: 12px
+}
+
+.catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-cont .catalog__block-count {
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 31px;
+    display: inline-block;
+    text-align: start
+}
+
+.catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-cont .catalog__block-title {
+    z-index: 1;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    max-width: 50%;
+    position: relative;
+    top: 40px
+}
+
+.catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-imgmini {
+    display: none
+}
+
+.catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end
+}
+
+.catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-img img {
+    max-width: 100%
+}
+
+.catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-href {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #0D0C0F;
+    font-size: 14px;
+}
+
+@media (max-width: 1440px) {
+  .catalog-new {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .catalog-new {
+    max-width: 992px;
+  }
+}
+
+@media (max-width: 992px) {
+  .catalog-new {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 770px) {
+  .catalog-new {
+    max-width: 576px;
+  }
+   .catalog-new .catalog-wrap .catalog__blocks {
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+        grid-template-columns: repeat(3, calc(33% - 1rem));
+        gap: 1rem;
+        padding: 0 20px
+    }
+
+    .catalog-new .catalog-wrap .catalog__blocks .catalog__block {
+        border-radius: 12px;
+        border: 2px solid #F3F3F3;
+        padding:13px  10px;
+        background-color: #fff;
+    }
+
+    .catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-cont {
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2;
+        justify-items: center;
+        padding: 0
+    }
+
+    .catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-cont .catalog__block-title {
+        max-width: 100%;
+        position: relative;
+        top: auto;
+        font-family: GT Eesti Pro Display;
+        font-weight: 300;
+        font-size: 10px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center
+    }
+
+    .catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-cont .catalog__block-count {
+        display: none
+    }
+
+    .catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-imgmini {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+
+    .catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-href,
+    .catalog-new .catalog-wrap .catalog__blocks .catalog__block .catalog__block-img {
+        display: none
+    }
+}
+
+@media (max-width: 576px) {
+  .catalog-new {
+    width: 100%;
+    padding: 0 15px;
+    margin: 22px auto;
+  }
+
+  .catalog-new .catalog-wrap .catalog__blocks{
+    padding: 0;
+  }
+}
+
+/* bandw */
+.bandw .bandw-wrap {
+    max-width: 100%;
+    margin:0 auto;
+}
+
+
+.bandw .bandw-wrap .bandw__blocks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 2rem;
+
+    padding: 0 24px;
+
+}
+
+.bandw .bandw-wrap .bandw__block {
+    width: calc(50% - 1rem);
+    background-color: #F1F3F4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 12px
+}
+
+.bandw .bandw-wrap .bandw__block:last-child {
+    background-color: #000;
+    color: #fff
+}
+
+.bandw .bandw-wrap .bandw__block-cont {
+    max-width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 40px
+}
+
+.bandw .bandw-wrap .bandw__block-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 39.84px;
+    line-height: 52px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.bandw .bandw-wrap .bandw__block-discount {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: .5rem
+}
+
+.bandw .bandw-wrap .bandw__block-discount-t {
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 19.5px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: line-through;
+    color: #9EA3AF
+}
+
+.bandw .bandw-wrap .bandw__block-procent {
+    background-color: #D61E3D;
+    padding: 5px 8px;
+    border-radius: 9px;
+    color: #fff;
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 11px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.bandw .bandw-wrap .bandw__block-price {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36.4px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 6px;
+}
+
+.bandw .bandw-wrap .bandw__block-img img {
+    max-width: 100%
+}
+
+@media (max-width: 1440px) {
+  .bandw .bandw-wrap {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .bandw .bandw-wrap {
+    max-width: 992px;
+  }
+}
+
+@media (max-width: 992px) {
+  .bandw .bandw-wrap {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 770px) {
+  .bandw .bandw-wrap {
+    max-width: 576px;
+  }
+
+  .bandw .bandw-wrap .bandw__block-title {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 52px;
+        letter-spacing: 0;
+        text-align: center;
+        vertical-align: middle
+    }
+
+    .bandw .bandw-wrap .bandw__blocks {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0;
+    }
+
+    .bandw .bandw-wrap .bandw__block {
+        width: 100%
+    }
+
+    .bandw .bandw-wrap .bandw__block-cont {
+        max-width: 70%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 15px
+    }
+
+    .bandw .bandw-wrap .bandw__block-img img{
+        max-width: 66%;
+    }
+}
+
+@media (max-width: 576px) {
+  .bandw .bandw-wrap {
+    width: 100%;
+    padding: 0 15px;
+  }
+
+    .bandw .bandw-wrap .bandw__block-img img{
+        max-width: 100%;
+    }
+}
+
+
+/* brands */
+.brands .brands-wrap {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+
+.brands .brands__blocks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1rem;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.brands .brands__block {
+    border-radius: 12px;
+    width: calc((100% / 7) - calc(5rem / 7));
+    padding: 30px;
+    background-color: #F7F7F7;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.brands .brands__block img {
+    max-width: 100%
+}
+
+@media (max-width: 1440px) {
+  .brands .brands-wrap {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .brands .brands-wrap {
+    max-width: 992px;
+  }
+}
+
+@media (max-width: 992px) {
+  .brands .brands-wrap {
+    max-width: 768px;
+  }
+
+  .brands .brands__block{
+    width: calc(25% - 15px);
+  }
+
+  .brands .brands__blocks{
+    flex-wrap: wrap;
+    gap:20px;
+    justify-content: start;
+  }
+}
+
+@media (max-width: 770px) {
+  .brands .brands-wrap {
+    max-width: 576px;
+    margin: 30px auto 30px auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .brands .brands-wrap .brands__blocks {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+
+    .brands .brands-wrap .brands__block {
+        border-radius: 12px;
+        width: calc(50% - 1rem);
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+  .brands .brands-wrap {
+    width: 100%;
+    padding: 0 15px;
+    
+  }
+}
+
+
+/* about page */
+.about .about-wrap {
+    max-width: 1440px;
+    margin:0 auto;
+}
+
+
+.about .about__blocks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1rem;
+    border-radius: 12px;
+    overflow: hidden
+}
+
+.about .about-left {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 50%;
+    flex: 1 1 50%;
+    padding: 30px;
+    display: grid;
+    grid-auto-flow: row;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    gap: 2rem
+}
+
+.about .about-left-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 52px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.about .about-right {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 50%;
+    flex: 1 1 50%
+}
+
+.about .about-right img {
+    max-width: 100%
+}
+
+.about .about-left__blocks {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    gap: 1rem;
+    margin-top: 18px;
+}
+
+.about .about-left-text {
+    font-family: GT Eesti Pro Display;
+    font-weight: 300;
+    font-size: 21.83px;
+    line-height: 33px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.about .about-left__block-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: .5px;
+    vertical-align: middle
+}
+
+.about .about-left_block-subtitle{
+    font-size: 13.891px;
+    color: #000;
+    font-weight: 300;
+    line-height: 21px; /* 151.181% */
+}
+
+@media (max-width: 1440px) {
+  .about .about-wrap {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .about .about-wrap {
+    max-width: 992px;
+  }
+}
+
+@media (max-width: 992px) {
+  .about .about-wrap {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 770px) {
+  .about .about-wrap {
+    max-width: 576px;
+  }
+
+  .about .about__blocks {
+        display: grid;
+        grid-template-rows: repeat(2, 50%)
+    }
+
+    .about .about-left {
+        gap: 10px;
+        padding: 15px;
+        align-content: normal;
+    }
+
+    .about .about-left-title {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 26px;
+        letter-spacing: 0;
+        vertical-align: middle;
+
+    }
+
+    .about .about-left-text {
+        font-family: GT Eesti Pro Display;
+        font-weight: 300;
+        font-size: 12px;
+        letter-spacing: 0;
+        vertical-align: middle;
+        line-height: 20px
+    }
+
+    .about .about-left__block-title {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 30px;
+        letter-spacing: .5px;
+        vertical-align: middle
+    }
+
+    .about .about-left__block {
+        gap: 0
+    }
+
+}
+
+@media (max-width: 576px) {
+  .about .about-wrap {
+    width: 100%;
+  }
+}
+
+/* hits of products */
+.hits .hits-wrap {
+    max-width: 1440px;
+    margin:0 auto;
+    padding-top: 50px;
+    padding-bottom: 50px
+}
+
+
+.hits .hits-title {
+    margin-bottom: 60px;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 52px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+
+.hits .hits__blocks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap:48px 0;
+}
+
+.product-card {
+    width: calc(25% - 50.25px);
+    padding: 25px;
+    max-width: 300px;
+    border-top: 1px solid #E4E7EA;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #E4E7EA;
+    -webkit-transition: -webkit-transform .3s ease;
+    -o-transition: transform .3s ease;
+    transition: transform .3s ease;
+    transition: transform .3s ease, -webkit-transform .3s ease;
+}
+
+/* .product-card:hover {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .1)
+} */
+
+.product-card .product-card__top {
+    position: absolute;
+    right: 30px;
+    top: 30px
+}
+
+.product-card .product-image {
+    background-color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.product-card .product-image .product-img {
+    max-width: 100%;
+    width: 100%;
+    -webkit-transition: -webkit-transform .3s ease;
+    -o-transition: transform .3s ease;
+    transition: transform .3s ease;
+    transition: transform .3s ease, -webkit-transform .3s ease
+}
+
+.product-card .product-image .product-img:hover {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05)
+}
+
+.product-card .product-details {
+    margin-top: 4px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .7rem
+}
+
+.product-card .product-details__cont {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.product-card .product-title {
+    color: #000;
+    font-weight: 400;
+    font-size:  11px;
+}
+
+.product-card .product-article {
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 11.81px;
+    line-height: 15.6px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    color: #9EA3AF
+}
+
+.product-card .product-description {
+    font-family: GT Eesti Pro Display;
+    font-weight: 300;
+    font-size: 13.89px;
+    line-height: 21px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    margin: 0
+}
+
+.product-card .product-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 2rem
+}
+
+.product-card .product-prices .product-prices-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .5rem
+}
+
+.product-card .product-prices .product-prices-wrap .product-badge {
+    color: #D61E3D;
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.product-card .product-prices .product-prices-wrap .current-price {
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 14.3px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    text-decoration: line-through;
+    color: #9EA3AF;
+    white-space: nowrap;
+
+}
+
+.product-card .product-prices .old-price {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 19.53px;
+    line-height: 26px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    color: #000
+}
+
+.product-card .product-split,
+.product-card .product-yandex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    gap: 0 2px;
+}
+
+.product-card .add-to-cart-btn {
+    font-size: 14px;
+    width: 130px;
+    height: 40px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10.5px;
+    font-weight: 400;
+    cursor: pointer;
+    -webkit-transition: background-color .3s ease;
+    -o-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 8px;
+    border: 2px solid #888
+}
+
+@media (max-width: 1440px) {
+  .hits .hits-wrap {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .hits .hits-wrap {
+    max-width: 992px;
+  }
+
+  .hits .hits__blocks{
+    justify-content: start;
+    gap: 25px;
+  }
+
+  .product-card{
+    width: calc(33.33% - 16.666px);
+  }
+}
+
+@media (max-width: 992px) {
+  .hits .hits-wrap {
+    max-width: 768px;
+  }
+
+ 
+}
+
+@media (max-width: 770px) {
+  .hits .hits-wrap {
+    max-width: 576px;
+  }
+
+   .hits .hits-title {
+        text-align: center;
+        margin-bottom: 15px
+    }
+
+    .hits .hits__blocks {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        gap: 25px;
+        grid-template-columns: 80%
+    }
+
+    .hits .hits__blocks .product-card{
+        width: calc(50% - 12.5px);
+    }
+}
+
+@media (max-width: 576px) {
+  .hits .hits-wrap {
+    width: 100%;
+    /* padding: 0 15px; */
+  }
+
+  .hits .hits__blocks{
+    gap:0
+  }
+
+   .hits .hits__blocks .product-card{
+        max-width: 390px;
+        width: 100%;
+    }
+}
+
+
+
+/* request form */
+
+.request-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-width:1440px;
+    margin:0 auto;
+    background: #fff;
+    -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    border-radius: 12px;
+    overflow: hidden
+}
+
+
+.request-form .form-title-block {
+    display: none
+}
+
+.request-form .form-image {
+    width: 45%
+}
+
+.request-form .form-image .form-img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    font-family: "object-fit:cover";
+    object-fit: cover;
+    display: block
+}
+
+.request-form .form-content {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    width: 55%
+}
+
+.request-form .form-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 52px;
+    letter-spacing: 0
+}
+
+.request-form .form-subtitle {
+    font-family: GT Eesti Pro Display;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0
+}
+
+.request-form .form-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 2rem;
+    max-width: 80%
+}
+
+.request-form .form-group {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.request-form .form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--black, #131313);
+    font-family: "GT Eesti Pro Display";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 28px; /* 233.333% */
+}
+
+.request-form .form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #989898;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.request-form .form-input:focus {
+    outline: 0;
+    border-color: green;
+    background: #fff
+}
+
+
+@media (max-width: 1440px) {
+  .request-form {
+    max-width: 1200px;
+  }
+  .request-form .form-row{
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1220px) {
+  .request-form {
+    max-width: 992px;
+  }
+
+  .request-form .form-row{
+    flex-direction: column;
+    gap:20px 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .request-form {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 770px) {
+
+  .request-form {
+        max-width: 576px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .request-form .form-image {
+        width: 100%;
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1;
+        margin-top: 30px
+    }
+
+    .request-form .form-title-block {
+        display: block;
+        padding: 15px 20px
+    }
+
+    .request-form .form-title-none {
+        display: none
+    }
+
+    .request-form .form-row {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 20px
+    }
+
+    .request-form .form-content {
+        width: 100%;
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2;
+        gap: 1rem;
+        padding: 30px 20px;
+        border-radius: unset
+    }
+
+    .request-form .form-row {
+        max-width: 100%
+    }
+}
+
+@media (max-width: 576px) {
+  .request-form {
+    width: 100%;
+    padding: 0 15px;
+    border: none;
+    box-shadow: none;
+  }
+
+  .request-form .form-title{
+    font-size: 26px;
+  }
+}
+
+/* footer */
+.footer {
+    background-color: #000;
+    color: #fff;
+    margin-top: 48px;   
+    font-size: 13px;
+    border-radius: 12px 12px 0 0;
+}
+
+
+.footer__container {
+    padding: 50px 30px 50px 40px;
+    position: relative;
+     margin-left: auto;
+    margin-right: auto;
+    max-width: 1440px;
+}
+
+.footer__container .up_link{
+    position: absolute;
+    right: 30px;
+    bottom: 50px;
+    
+}
+
+.footer__brand-mobile-top {
+    display: none;
+    margin-bottom: 40px
+}
+
+.footer__columns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 4rem;
+    margin-bottom: 0
+}
+
+.footer__column {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 200px
+}
+
+.footer__brand {
+    margin-bottom: 80px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 2rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.footer__logo {
+    height: 40px;
+    margin-bottom: 15px
+}
+
+.footer__slogan {
+    color: rgba(255, 255, 255, .7);
+    font-size: 10px;
+    line-height: 1.4;
+    max-width: 100px
+}
+
+.footer__subscribe {
+    margin-bottom: 0;
+    position: relative
+}
+
+.footer__privacy {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 40px
+}
+
+.footer__input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .2);
+    color: #fff;
+    border-radius: 4px
+}
+
+.footer__input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, .5)
+}
+
+.footer__input::-moz-placeholder {
+    color: rgba(255, 255, 255, .5)
+}
+
+.footer__input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, .5)
+}
+
+.footer__input::-ms-input-placeholder {
+    color: rgba(255, 255, 255, .5)
+}
+
+.footer__input::placeholder {
+    color: rgba(255, 255, 255, .5)
+}
+
+.footer__submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 41px;
+    height: 41px;
+    padding: 12px;
+    background: rgba(255, 255, 255, .1);
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s
+}
+
+.footer__submit:hover {
+    background: #e0e0e0
+}
+
+.footer__privacy-link {
+    color: rgba(255, 255, 255, .7);
+    font-size: 12px;
+    margin-bottom: 30px;
+    cursor: pointer
+}
+
+.footer__privacy-link:hover {
+    color: #fff
+}
+
+.footer__social {
+    margin-bottom: 30px;
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 1.2px;
+    vertical-align: middle;
+    text-transform: uppercase
+}
+
+.footer__social-title {
+    color: rgba(255, 255, 255, .7);
+    font-size: 12px;
+    margin-bottom: 15px
+}
+
+.footer__social-icons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 15px
+}
+
+.footer__social-link {
+    display: inline-block
+}
+
+.footer__social-link img {
+    height: 24px;
+    opacity: .7;
+    -webkit-transition: opacity .3s;
+    -o-transition: opacity .3s;
+    transition: opacity .3s
+}
+
+.footer__social-link:hover img {
+    opacity: 1
+}
+
+.footer__menu-title {
+    display: block;
+    margin-bottom: 16px;
+    color: #fff;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 12.7px;
+    line-height: 16px;
+    letter-spacing: 1.2px;
+    vertical-align: middle;
+    text-transform: uppercase
+}
+
+.footer__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px
+}
+
+.footer__link {
+    color: #fff;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 30px;
+    letter-spacing: 1.2px;
+    vertical-align: middle;
+    -webkit-transition: color .3s;
+    -o-transition: color .3s;
+    transition: color .3s
+}
+
+.footer__link:hover {
+    color: #fff
+}
+
+.footer__column-contacts {
+    text-align: end
+}
+
+.footer__contacts {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.footer__contact-item-tel {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23.4px;
+    letter-spacing: 0;
+    text-align: right;
+    vertical-align: middle
+}
+
+.footer__contact-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 5px;
+    font-size: 14px
+}
+
+.footer__contact-item img {
+    width: 24px;
+}
+
+.footer__contact-item a,
+.footer__contact-item span {
+    color: rgba(255, 255, 255);
+    text-decoration: none;
+    -webkit-transition: color .3s;
+    -o-transition: color .3s;
+    transition: color .3s
+}
+
+.footer__contact-item.tel div{
+    color: #9EA3AF;
+    font-size: 12.898px;
+    font-weight: 400;
+}
+
+.footer__contact-item a:hover {
+    color: #fff
+}
+
+.footer .footer__column-three {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 4rem
+}
+
+.footer__bottom {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    gap:0 301px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 30px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, .5);
+}
+
+.cart-footer-bottom{
+    padding: 0;
+    justify-content: center;
+}
+
+.cart-footer-bottom .footer__copyright{
+    color: rgba(255, 255, 255, 0.50);
+    text-align: center;
+    font-family: "Tondo Corp";
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16.3px; /* 130% */
+}
+
+.footer__bottom .footer__copyright a{
+    color: rgba(255, 255, 255, 0.50);
+    text-align: center;
+    font-family: "Tondo Corp";
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16.3px; /* 130% */
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.footer__bottom-link {
+    color: rgba(255, 255, 255, .7);
+    text-decoration: none;
+    -webkit-transition: color .3s;
+    -o-transition: color .3s;
+    transition: color .3s
+}
+
+
+.footer__bottom-link:hover {
+    color: #fff
+}
+
+@media (max-width: 1440px) {
+  .footer__container {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .footer__container {
+    max-width: 992px;
+  }
+   .footer__bottom{
+        gap:0 100px
+    }
+}
+
+@media (max-width: 992px) {
+  .footer__container {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 770px) {
+  .footer__container {
+    max-width: 576px;
+    padding: 0 20px
+  }
+
+   .footer {
+        padding: 20px 0;
+        position: relative
+    }
+
+    .footer__column-hide-mobile {
+        display: none
+    }
+
+    .footer__columns {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        gap: 2px;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between
+    }
+
+    .footer__column-four {
+        display: none
+    }
+
+    .footer__menu-title {
+        font-size: 11px;
+    }
+
+    .footer__link{
+        font-size: 10px;
+    }
+
+
+    .footer__contact-item img {
+        width: 19px;
+    }
+
+    .footer__contact-item{
+        width: 100%;
+        justify-content: space-between;
+        gap:0;
+    }
+
+    .footer__brand-mobile-top {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 1rem
+    }
+
+    .footer__column {
+        max-width: calc(50% - 1rem);
+        width: calc(50% - 1rem);
+        min-width: auto
+    }
+
+    .footer__brand {
+        position: absolute;
+        top: 30px;
+        left: 30px
+    }
+
+    .footer__contact-item a,
+    .footer__contact-item span {
+        font-size: 12px;
+    }
+
+    .footer__privacy,
+    .footer__social,
+    .footer__subscribe {
+        display: none
+    }
+
+    .footer__bottom {
+        display: none;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center
+    }
+
+    .footer__column-contacts {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    .footer__contact-item div{
+        font-size: 11px;
+        color: #9EA3AF;
+    }
+
+    .footer__column-contacts .footer__menu-title{
+        display: none;
+    }
+
+    .footer__column-contacts .footer__contacts{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    .footer__column-contacts .footer__contacts .small_block{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-between;
+        
+    }
+
+    .footer__column-contacts .footer__contacts .small_block:first-child{
+        gap: 0;
+        justify-content: end;
+    }
+
+    .footer__contact-item-tel a{
+        font-size: 18px;
+    }
+
+    .footer__contact-item-tel{
+        justify-content: end;
+    }
+
+    
+
+    .footer__column-contacts .footer__contacts .small_block:nth-child(2){
+        width: 130px;
+    }
+
+    .footer .up_link{
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+  .footer__container {
+    width: 100%;
+    padding: 0 15px;
+  }
+  
+}
+
+
+
+.simple {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+.simple .simple-big-text{
+    color: #798897;
+    font-family: "GT Eesti Pro Display";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.simple .simple-big-text ul{
+    list-style-type: disc;
+    padding-left: 15px;
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .simple {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .simple {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .simple {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .simple {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .simple {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .simple {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .simple {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1280px) and (max-width:1439px) {
+    .simple {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    .simple {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (max-width:767px) {
+    .simple {
+        padding-top: 20px;
+        padding-bottom: 20px
+    }
+}
+
+@media screen and (max-width:767px) {
+    .simple {
+        display: none
+    }
+}
+
+.catalog {
+    padding: 20px 0;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .catalog {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .catalog {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .catalog {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .catalog {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .catalog {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .catalog {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .catalog {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.catalog-top-controls {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-top: 1rem;
+    border-top: 1px solid #E4E7EA
+}
+
+.catalog-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 30px
+}
+
+.catalog-filters {
+    width: 280px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.catalog .filter-section-categorys .filter-section-category {
+    font-family: GT Eesti Pro Display;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    margin-bottom: 7px;
+
+}
+
+.catalog .filter-section-categorys .filter-section-category_active {
+    font-weight: 500
+}
+
+.catalog-products {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /* gap: 20px */
+}
+
+.catalog-products-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%
+}
+
+.catalog-bottom-controls {
+    margin-top: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 20px
+}
+
+.catalog .sorting {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 10px
+}
+
+.catalog .sorting-label {
+    color: #9EA3AF;
+    font-family: "GT Eesti Pro Display";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18.2px; /* 130% */
+    height: 100%;
+}
+
+.catalog .sorting-select {
+    padding: 8px 12px;
+    background-color: #fff;
+    cursor: pointer;
+    border: none;
+    margin-right: 13px;
+    outline: none;       /* Removes the blue outline in most browsers */
+    box-shadow: none;    /* Removes the shadow on focus in some browsers */
+    font-size: 14px;
+}
+
+.catalog .sorting-selec:focus{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.catalog .filter-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    user-select: none;
+}
+
+.catalog .filter-title {
+    font-family: "GT Eesti Pro Display";
+    font-size: 16px;
+    margin-bottom: 9px;
+    font-weight: 400;
+    line-height: 24px; /* 151.181% */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.catalog .filter-title:after {
+    content: '';
+    background-image: url(../img/filteropen.svg);
+    width: 10px;
+    height: 10px;
+    display: inline-block
+}
+
+.catalog .filter-content_close {
+    display: none
+}
+
+.catalog .filter-title_close {
+    font-family: "GT Eesti Pro Display";
+    font-size: 16px;
+    margin-bottom: 9px;
+    font-weight: 400;
+    line-height: 24px; /* 151.181% */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.catalog .filter-title_close:after {
+    content: '';
+    background-image: url(../img/filterclose.svg);
+    width: 10px;
+    height: 10px;
+    display: inline-block
+}
+
+.catalog .price-range-slider .range-slider {
+    position: relative;
+    height: 5px;
+    background: #ddd;
+    border-radius: 5px;
+    margin: 20px 0
+}
+
+.catalog .price-range-slider .range-slider input[type=range] {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: 0 0;
+    pointer-events: none;
+    -webkit-appearance: none
+}
+
+.catalog .price-range-slider .range-slider input[type=range]::-webkit-slider-thumb {
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background: #2c3e50;
+    pointer-events: auto;
+    -webkit-appearance: none
+}
+
+.catalog .price-range-slider .price-inputs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 10px
+}
+
+.catalog .price-range-slider .price-inputs input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px
+}
+
+.catalog .price-range-slider .price-inputs .price-separator {
+    font-weight: 500
+}
+
+.catalog .filter-checkbox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer
+}
+
+.catalog .filter-checkbox input {
+    display: none
+}
+
+.catalog .filter-checkbox input:checked+.checkmark {
+    background-color: #2c3e50;
+    border-color: #2c3e50
+}
+
+.catalog .filter-checkbox input:checked+.checkmark::after {
+    display: block
+}
+
+.catalog .filter-checkbox .checkmark {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-right: 10px
+}
+
+.catalog .filter-checkbox .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg)
+}
+
+.catalog .filter-checkbox .filter-name {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    color: #000;
+    font-family: "Tondo Corp";
+    font-size: 13.891px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; /* 151.181% */
+}
+
+.catalog .filter-checkbox .filter-count {
+    color: #000;
+    font-family: "Tondo Corp";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; /* 150% */
+}
+
+.catalog .popular-categories .category-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px
+}
+
+.catalog .popular-categories .category-btn {
+    padding: 8px 12px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 12px; /* 100% */
+    -webkit-transition: background .2s;
+    -o-transition: background .2s;
+    transition: background .2s
+}
+
+.catalog .popular-categories .category-btn:hover {
+    background: #e0e0e0
+}
+
+.catalog .product-card {
+    width: 100%;
+    border: 1px solid #eee;
+    overflow: hidden;
+    box-shadow: none;
+    -webkit-transition: -webkit-transform .2s, -webkit-box-shadow .2s;
+    -o-transition: transform .2s, box-shadow .2s;
+    transition: transform .2s, box-shadow .2s;
+    transition: transform .2s, box-shadow .2s, -webkit-transform .2s, -webkit-box-shadow .2s
+}
+
+/* .catalog .product-card:hover {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .1)
+} */
+
+.catalog .product-card-image {
+    position: relative;
+    padding-top: 100%;
+    background: #f9f9f9
+}
+
+.catalog .product-card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    font-family: "object-fit:contain";
+    object-fit: contain;
+    padding: 15px
+}
+
+.catalog .product-card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e74c3c;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700
+}
+
+.catalog .product-card-info {
+    padding: 15px
+}
+
+.catalog .product-card-name {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 500
+}
+
+.catalog .product-card-price {
+    margin-bottom: 15px
+}
+
+.catalog .product-card-price .old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+    margin-right: 5px
+}
+
+.catalog .product-card-price .current-price {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 18px
+}
+
+.catalog .product-card .add-to-cart {
+    width: 100%;
+    padding: 8px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-transition: background .2s;
+    -o-transition: background .2s;
+    transition: background .2s
+}
+
+.catalog .product-card .add-to-cart:hover {
+    background: #1a252f
+}
+
+.catalog-bottom-controls-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px
+}
+
+.catalog .pagination-bottom,
+.catalog .pagination-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 5px
+}
+
+.catalog .pagination-link {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    background: #f5f5f5;
+    color: #9EA3AF;
+    text-decoration: none
+}
+
+.catalog .pagination-link.active {
+    color: #2c3e50
+}
+
+.catalog .pagination-link:hover:not(.active) {
+    background: #e0e0e0
+}
+
+.catalog .pagination-dots {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px
+}
+
+.catalog .load-more {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    padding: 10px 25px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-transition: background .2s;
+    -o-transition: background .2s;
+    transition: background .2s
+}
+
+.catalog .load-more:hover {
+    background: #e0e0e0
+}
+
+@media screen and (max-width:767px) {
+    .catalog-filters {
+        display: none
+    }
+
+    .catalog-products {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+
+    .catalog .catalog-top-controls {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 20px;
+        border-top: none
+    }
+
+    .catalog .popular-categories {
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        width: 100%
+    }
+
+    .catalog .sorting {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid #E5E5E5;
+        padding-bottom: 15px
+    }
+
+    .catalog .catalog-bottom-controls {
+        display: none
+    }
+
+    .catalog .catalog-products-wrap {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+
+    .catalog .catalog-products-wrap .catalog-products {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 300px));
+        gap: 20px;
+        -ms-flex-line-pack: center;
+        align-content: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+}
+
+.banner-mini {
+    max-height: 150px;
+    overflow: hidden;
+    border-radius: 12px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-color: #030509
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .banner-mini {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .banner-mini {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .banner-mini {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .banner-mini {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .banner-mini {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .banner-mini {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .banner-mini {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.banner-mini .banner-mini-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.banner-mini .banner-mini-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #fff;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 3rem;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    padding: 60px;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0
+}
+
+.banner-mini .banner-mini-img img {
+    max-height: 400px;
+    position: relative;
+    bottom: 180px;
+    right: 100px
+}
+
+.banner-mini .banner-mini-text .banner-mini-mini-title{
+    font-weight: 700;
+    font-family: GT Eesti Pro Display;
+}
+
+.banner-mini .banner-mini-wrap .banner-mini-text .banner-mini-text-cont .banner-mini-subtitle {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: normal;
+    letter-spacing: 0;
+    color: #FFF
+}
+
+@media screen and (max-width:767px) {
+    .banner-mini .banner-mini-wrap .banner-mini-text {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        color: #fff;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        gap: 1rem;
+        -ms-flex-item-align: start;
+        align-self: flex-start;
+        padding: 20px;
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0
+    }
+
+    .banner-mini .banner-mini-wrap .banner-mini-text .banner-mini-text-cont {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 1rem
+    }
+
+    .banner-mini .banner-mini-wrap .banner-mini-text .banner-mini-text-cont .banner-mini-subtitle {
+        font-family: GT Eesti Pro Display;
+        font-weight: 300;
+        font-size: 10px;
+        line-height: 100%;
+        letter-spacing: 0;
+        color: #FFF
+    }
+
+    .banner-mini .banner-mini-img img {
+        max-height: 150px;
+        position: static
+    }
+}
+
+.product-card-single {
+    width: 100%
+}
+
+.product-card-single .product-card {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 2rem;
+    border: none;
+    /* -webkit-box-shadow: 0 1px 0 0 #E4E7EA;
+    box-shadow: 0 1px 0 0 #E4E7EA */
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .product-card-single .product-card {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .product-card-single .product-card {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .product-card-single .product-card {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .product-card-single .product-card {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .product-card-single .product-card {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .product-card-single .product-card {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .product-card-single .product-card {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.product-card-single .product-info-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.product-card-single .product-info-top .product-info-stock {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: .5rem
+}
+
+.product-card-single .product-info-top .product-brand {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 1.2px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    text-decoration: underline;
+    -webkit-text-decoration-style: solid;
+    text-decoration-style: solid;
+    text-decoration-offset: 0;
+    text-decoration-thickness: 0;
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+    color: #000
+}
+
+.product-card-single .product-gallery {
+    min-width: 300px;
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 15px;
+    padding-top: 50px
+}
+
+.product-card-single .thumbnail-slider .swiper-wrapper {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.product-card-single .thumbnail {
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--gray);
+    cursor: pointer;
+    -webkit-transition: border-color .3s;
+    -o-transition: border-color .3s;
+    transition: border-color .3s;
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+.thumbnail-slider .swiper-slide{
+    user-select: none;
+    width: 100% !important;
+}
+
+.product-card-single .thumbnail.active{
+    opacity: 1;
+}
+
+.product-card-single .thumbnail img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    font-family: "object-fit:cover";
+    object-fit: cover
+}
+
+.product-card-single .main-slider {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    width: 100%;
+    max-width: 500px
+}
+
+.product-card-single .main-slide {
+    height: 500px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.product-card-single .main-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    -o-object-fit: contain;
+    font-family: "object-fit:contain";
+    object-fit: contain
+}
+
+.product-card-single .product-info {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 300px;
+    gap: 1rem;
+    padding: 30px 50px;
+    border-radius: 12px;
+    border: 1px solid #E4E7EA
+}
+
+.product-card-single .product-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 20px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    color: #000
+}
+
+.product-card-single .product-code {
+    color: #626773;
+    font-size: 14px
+}
+
+.product-card-single .product-info__block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.product-card-single .price-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .5rem
+}
+
+.product-card-single .price-section-wrap {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    gap: 1rem
+}
+
+.product-card-single .current-price {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 27.45px;
+    line-height: 28px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.product-card-single .old-price {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 14.3px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    text-decoration: line-through;
+    color: #9EA3AF
+}
+
+.product-card-single .discount {
+    display: inline-block;
+    color: #D61E3D;
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.product-card-single .action-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .5rem
+}
+
+.product-card-single .btn-add-card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #000;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 12px;
+    max-height: 44px;
+    color: #fff;
+    width: 240px
+}
+
+.product-card-single .btn-like-secondary {
+    height: 44px;
+    width: 44px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #fff;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid #E4E7EA
+}
+
+.product-card-single .btn-primary:hover {
+    background-color: var(--secondary-color)
+}
+
+.product-card-single .features-list-title {
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16.9px;
+    letter-spacing: 0;
+    color: #000
+}
+
+.product-card-single .features-list-wrap {
+    padding: 20px;
+    border: 1px solid #E4E7EA;
+    border-radius: 10px
+}
+
+.product-card-single .features-list {
+    list-style-type: none
+}
+
+.product-card-single .features-list li {
+    border-bottom: 1px solid #E4E7EA;
+    padding-bottom: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.product-card-single .features-list li span {
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16.9px;
+    letter-spacing: 0
+}
+
+.product-card-single .features-list li span:first-child {
+    width: 50%
+}
+
+.product-card-single .all-artibutes {
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16.9px;
+    letter-spacing: 0;
+    text-decoration: underline;
+    -webkit-text-decoration-style: solid;
+    text-decoration-style: solid;
+    text-decoration-offset: 0;
+    text-decoration-thickness: 0;
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+    color: #626773
+}
+
+.product-card-single .all-artibutes a {
+    text-decoration: none;
+    color: #000
+}
+
+.product-card-single .delivery-wrap {
+    padding: 20px;
+    border: 1px solid #E4E7EA;
+    border-radius: 10px
+}
+
+.product-card-single .delivery-title {
+    font-family: Tondo Corp;
+    font-size: 13px;
+    line-height: 16.9px;
+    letter-spacing: 0;
+    color: #000
+}
+
+.product-card-single .delivery-info {
+    border-radius: 4px
+}
+
+.product-card-single .delivery-info li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border-bottom: 1px solid #E4E7EA;
+    padding-bottom: 5px
+}
+
+.product-card-single .delivery-info li span {
+    font-family: Tondo Corp;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16.9px;
+    letter-spacing: 0
+}
+
+.product-card-single .delivery-title {
+    font-weight: 700;
+    margin-bottom: 10px
+}
+
+.product-card-single .product-card__bottoms {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1rem
+}
+
+.product-card-single .product-card__bottoms .product-card__bottom {
+    background-color: #F1F3F4;
+    color: #000;
+    width: calc(100% / 3);
+    border-radius: 12px;
+    height: 42px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.product-card-single .product-card__bottoms .product-card__bottom span {
+    font-family: GT Eesti Pro Display;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 16.9px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.product-card-single .tabs {
+    margin-top: 40px;
+    width: 100%
+}
+
+.product-card-single .tabs-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 20px
+}
+
+.product-card-single .tab-btn {
+    padding: 12px 20px;
+    background: 0 0;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    position: relative;
+    color: var(--dark-gray);
+    color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 14px; /* 100% */
+}
+
+.product-card-single .tab-btn.active {
+    color: #fff;
+    background-color: #000;
+    border-radius: 4px
+}
+
+.product-card-single .tab-btn.active:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color)
+}
+
+.product-card-single .tab-content {
+    display: none;
+    padding: 15px 0;
+}
+
+.product-card-single .tab-content h3{
+    color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 83.333% */
+}
+
+.product-card-single .tab-content p{
+    color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 20px;
+}
+
+.product-card-single .tab-content.active {
+    display: block
+}
+
+.product-card-single .pagination__block,
+.product-card-single .show-discount {
+    display: none
+}
+
+@media screen and (max-width:767px) {
+    .product-card-single .thumbnail-slider {
+        display: none
+    }
+
+    .product-card-single .product-gallery {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-top: 0
+    }
+
+    .product-card-single .pagination__block {
+        width: 100%;
+        height: 50px;
+        z-index: 1000;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 1rem
+    }
+
+    .product-card-single .pagination__block .swiper2-pagination {
+        width: auto;
+        height: 10px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        gap: 1rem
+    }
+
+    .product-card-single .pagination__block .swiper2-pagination .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        background-color: #9EA3AF;
+        border-radius: 20px
+    }
+
+    .product-card-single .pagination__block .swiper2-pagination .swiper-pagination-bullet-active {
+        background-color: #000
+    }
+
+    .product-card-single .pagination__block .swiper2-button-next,
+    .product-card-single .pagination__block .swiper2-button-prev {
+        width: 18px;
+        height: 18px;
+        position: static;
+        z-index: 1000;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        font-size: 30px
+    }
+
+    .product-card-single .all-artibutes {
+        display: none
+    }
+
+    .product-card-single .product-info-top {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    .product-card-single .product-info {
+        border: none;
+        padding: 0
+    }
+
+    .product-card-single .product-code {
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2
+    }
+
+    .product-card-single .product-title {
+        -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+        order: 3;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #E5E5E5
+    }
+
+    .product-card-single .product-yandex {
+        -webkit-box-ordinal-group: 7;
+        -ms-flex-order: 6;
+        order: 6
+    }
+
+    .product-card-single .product-split {
+        -webkit-box-ordinal-group: 8;
+        -ms-flex-order: 7;
+        order: 7
+    }
+
+    .product-card-single .btn-add-card {
+        width: auto;
+        min-width: 80px
+    }
+
+    .product-card-single .product-card__bottoms {
+        -webkit-box-ordinal-group: 5;
+        -ms-flex-order: 4;
+        order: 4;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap
+    }
+
+    .product-card-single .features-list-wrap {
+        -webkit-box-ordinal-group: 9;
+        -ms-flex-order: 8;
+        order: 8
+    }
+
+    .product-card-single .delivery-wrap {
+        -webkit-box-ordinal-group: 10;
+        -ms-flex-order: 9;
+        order: 9
+    }
+
+    .product-card-single .product-info__block {
+        -webkit-box-ordinal-group: 6;
+        -ms-flex-order: 5;
+        order: 5
+    }
+
+    .product-card-single .show-discount {
+        -webkit-box-ordinal-group: 9;
+        -ms-flex-order: 8;
+        order: 8;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+    .product-card-single .show-discount .show-discount-text {
+        max-width: 60%;
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        letter-spacing: 0;
+        vertical-align: middle
+    }
+
+    .product-card-single .show-discount .show-discount-btn {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        height: 30px;
+        width: 123px;
+        border: 1px solid #FF2C27;
+        border-radius: 12px
+    }
+
+    .product-card-single .show-discount .show-discount-btn a {
+        font-family: GT Eesti Pro Display;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 16.9px;
+        letter-spacing: 0;
+        text-align: center;
+        vertical-align: middle;
+        color: #FF2C27
+    }
+
+    .product-card-single .tabs-header {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .product-card-single .tabs-header .tab-btn {
+        background-color: transparent;
+        color: #000;
+        padding: 10px 0;
+        border-bottom: 1px solid #E5E5E5;
+        border-radius: inherit;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        position: relative
+    }
+
+    .product-card-single .tabs-header .tab-btn:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 15px;
+        background-image: url(../img/filteropen.svg);
+        width: 10px;
+        height: 10px;
+        display: inline-block
+    }
+
+    .product-card-single .tabs-header .tab-btn.active {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        position: relative;
+        opacity: .7
+    }
+
+    .product-card-single .tabs-header .tab-btn.active:after {
+        content: '';
+        background-image: url(../img/filterclose.svg);
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 15px;
+        left: auto
+    }
+
+    .product-card-single .tab-content {
+        padding: 0
+    }
+}
+
+.banner-simple .banner-simple-wrap {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    position: relative;
+    
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .banner-simple .banner-simple-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .banner-simple .banner-simple-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .banner-simple .banner-simple-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .banner-simple .banner-simple-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .banner-simple .banner-simple-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .banner-simple .banner-simple-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .banner-simple .banner-simple-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.banner-simple .banner-simple-wrap img {
+    width: 100%;
+    max-height: 665px;
+    border-radius: 12px
+}
+
+.banner-simple .banner-simple-wrap .banner-simple-text-wrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 12px
+}
+
+.banner-simple .banner-simple-wrap .banner-simple-text {
+    color: #fff;
+    max-width: 30%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around
+}
+
+.banner-simple .banner-simple-wrap .banner-simple-text__title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 500;
+    font-size: 52px;
+    line-height: 62.4px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.banner-simple .banner-simple-wrap .banner-simple-text__subtitle {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 21.83px;
+    line-height: 33px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.banner-simple .banner-simple-wrap .banner-simple-btn {
+    margin-top: 100px
+}
+
+@media screen and (max-width:767px) {
+    .banner-simple .banner-simple-wrap {
+        background: #000
+    }
+
+    .banner-simple .banner-simple-wrap .banner-simple-text-wrap {
+        opacity: 1;
+        z-index: 1000
+    }
+
+    .banner-simple .banner-simple-wrap img {
+        opacity: .6;
+        height: 100%;
+        -o-object-fit: cover;
+        font-family: "object-fit:cover";
+        object-fit: cover
+    }
+
+    .banner-simple .banner-simple-wrap .banner-simple-text {
+        max-width: 100%;
+        height: auto;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 2rem
+    }
+
+    .banner-simple .banner-simple-wrap .banner-simple-text__title {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center
+    }
+
+    .banner-simple .banner-simple-wrap .banner-simple-text__subtitle {
+        font-family: GT Eesti Pro Display;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0
+    }
+
+    .banner-simple .banner-simple-wrap .banner-simple-btn {
+        margin-top: auto
+    }
+}
+
+.advantage {
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+@media screen and (min-width:1280px) and (max-width:1439px) {
+    .advantage {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    .advantage {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (max-width:767px) {
+    .advantage {
+        padding-top: 20px;
+        padding-bottom: 20px
+    }
+}
+
+.advantage .advantage-wrap {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .advantage .advantage-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .advantage .advantage-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .advantage .advantage-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .advantage .advantage-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .advantage .advantage-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .advantage .advantage-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .advantage .advantage-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.advantage .advantage-title {
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.advantage .advantage__blocks {
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem
+}
+
+.advantage .advantage__block {
+    padding: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid #E4E7EA;
+    border-radius: 10px
+}
+
+.advantage .advantage__block .advantage__block-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 23.81px;
+    line-height: 31.2px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.advantage .advantage__block .advantage__block-text{
+    color: #1D1D1D;
+    font-family: "GT Eesti Pro Display";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 21px; /* 150% */
+}
+
+.advantage .advantage__block .advantage__block-subtitle {
+    font-family: GT Eesti Pro Display;
+    font-weight: 300;
+    font-size: 13.89px;
+    line-height: 21px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+@media screen and (max-width:767px) {
+    .advantage .advantage-title {
+        padding-left: 10px;
+        padding-right: 10px
+    }
+
+    .advantage .advantage__blocks {
+        padding: 0 10px;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: auto
+    }
+
+    .advantage .advantage__block {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: .5rem;
+        text-align: center;
+        padding: 15px
+    }
+}
+
+.best-brends .best-brends-title {
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.best-brends .brands__blocks {
+    padding: 0 20px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 2rem
+}
+
+.best-brends .brands__block {
+    border-radius: 12px;
+    width: calc((100% / 3) - calc(4rem / 3));
+    padding: 80px 30px
+}
+
+@media screen and (max-width:767px) {
+    .best-brends .best-brends-title {
+        padding-left: 10px;
+        padding-right: 10px
+    }
+
+    .best-brends .brands__blocks {
+        padding: 0 10px;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        gap: 1rem
+    }
+
+    .best-brends .brands__block {
+        border-radius: 12px;
+        width: calc((100% / 2) - calc(2rem / 2));
+        padding: 10px
+    }
+}
+
+.receive-form {
+    padding-top: 30px;
+    /* padding-bottom: 30px; */
+}
+
+@media screen and (min-width:1280px) and (max-width:1439px) {
+    .receive-form {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    .receive-form {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (max-width:767px) {
+    .receive-form {
+        padding-top: 20px;
+        padding-bottom: 20px
+    }
+}
+
+.receive-form .receive-form-wrap {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-color: #F7F7F7;
+    padding: 30px 50px;
+    border-radius: 12px
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .receive-form .receive-form-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .receive-form .receive-form-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .receive-form .receive-form-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .receive-form .receive-form-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .receive-form .receive-form-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .receive-form .receive-form-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .receive-form .receive-form-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.receive-form .receive-form__blocks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.receive-form .receive-form__block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.receive-form .receive-form__block:nth-child(2) {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    width: 40%
+}
+
+.receive-form .receive-form__block:nth-child(2) img {
+    max-width: 100%
+}
+
+.receive-form .receive-form-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 62.4px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.receive-form .receive-form-subtitle {
+    color: #1C2E36;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 23.81px;
+    line-height: 31.2px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.receive-form .receive-form-f {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.receive-form .receive-form-column {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.receive-form label {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16.9px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    padding-bottom: 5px
+}
+
+.receive-form input {
+    height: 46px;
+    width: 316px;
+    border-radius: 10px;
+    border: 1px solid #E4E7EA
+}
+
+.receive-form textarea {
+    height: 86px;
+    border-radius: 10px;
+    width: 520px;
+    border: 1px solid #E4E7EA
+}
+
+.receive-form .receive-form__submit {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    max-width: 550px
+}
+
+.receive-form .receive-form__submit input {
+    width: 205px;
+    height: 44px;
+    background-color: #000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #fff;
+
+    font-family: "Tondo Corp";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.5px; /* 150% */
+}
+
+.receive-form .receive-form__submit .receive-form-politics {
+    font-family: GT Eesti Pro Display;
+    color: #9EA3AF;
+    font-weight: 300;
+    font-size: 11.81px;
+    line-height: 18px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0;
+    text-decoration-skip-ink: auto;
+
+}
+
+.receive-form .receive-form__submit .receive-form-politics a {
+    text-decoration: underline;
+    font-family: GT Eesti Pro Display;
+    color: #9EA3AF;
+    font-weight: 300;
+    font-size: 11.81px;
+    line-height: 18px;
+}
+
+.receive-form .receive-form__question {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 23.81px;
+    line-height: 31.2px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+
+.receive-form .receive-form__callback {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .5rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23.4px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.receive-form .receive-form__callback a {
+    color: #000
+}
+
+@media screen and (max-width:767px) {
+    .receive-form .receive-form-wrap {
+        padding: 0
+    }
+
+    .receive-form .receive-form__blocks {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .receive-form .receive-form__block:nth-child(1) {
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2;
+        padding: 20px;
+        gap: 1rem
+    }
+
+    .receive-form .receive-form__block:nth-child(2) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1;
+        width: 100%;
+        background-color: #fff
+    }
+
+    .receive-form .receive-form-title {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 28px;
+        letter-spacing: 0;
+        vertical-align: middle
+    }
+
+    .receive-form .receive-form-subtitle {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0;
+        vertical-align: middle
+    }
+
+    .receive-form input,
+    .receive-form textarea {
+        width: 100%
+    }
+
+    .receive-form .receive-form__submit {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start
+    }
+
+    .receive-form .receive-form__submit input {
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start
+    }
+
+    .receive-form .receive-form__submit .receive-form-politics {
+        color: #9EA3AF
+    }
+
+    .receive-form .receive-form__question {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 23.81px;
+        line-height: 31.2px;
+        letter-spacing: 0;
+        vertical-align: middle
+    }
+}
+
+.banner-minimal {
+    height: 430px
+}
+
+.banner-minimal .banner-minimal-wrap {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 430px;
+    overflow: hidden;
+    background: #000;
+    border-radius: 12px;
+    position: relative
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .banner-minimal .banner-minimal-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .banner-minimal .banner-minimal-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .banner-minimal .banner-minimal-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .banner-minimal .banner-minimal-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .banner-minimal .banner-minimal-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .banner-minimal .banner-minimal-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .banner-minimal .banner-minimal-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.banner-minimal .banner-minimal-wrap img {
+    width: 100%;
+    max-height: 665px;
+    -o-object-fit: cover;
+    font-family: "object-fit:cover";
+    object-fit: cover;
+    opacity: .6;
+    border-radius: 12px
+}
+
+.banner-minimal .banner-minimal-wrap .banner-minimal-text-wrap {
+    opacity: 1;
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 12px
+}
+
+.banner-minimal .banner-minimal-wrap .banner-minimal-text {
+    color: #fff;
+    max-width: 40%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    gap: 3rem
+}
+
+.banner-minimal .banner-minimal-wrap .banner-minimal-text__title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 500;
+    font-size: 52px;
+    line-height: 62.4px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.banner-minimal .banner-minimal-wrap .banner-minimal-text__subtitle {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 21.83px;
+    line-height: 33px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.banner-minimal .banner-minimal-wrap .banner-minimal-btn {
+    margin-top: 100px
+}
+
+@media screen and (max-width:767px) {
+    .banner-minimal .banner-minimal-wrap {
+        background: #000
+    }
+
+    .banner-minimal .banner-minimal-wrap .banner-minimal-text-wrap {
+        opacity: 1;
+        z-index: 1000
+    }
+
+    .banner-minimal .banner-minimal-wrap img {
+        opacity: .6;
+        height: 100%;
+        -o-object-fit: cover;
+        font-family: "object-fit:cover";
+        object-fit: cover
+    }
+
+    .banner-minimal .banner-minimal-wrap .banner-minimal-text {
+        max-width: 100%;
+        height: auto;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 2rem
+    }
+
+    .banner-minimal .banner-minimal-wrap .banner-minimal-text__title {
+        font-family: GT Eesti Pro Display;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center
+    }
+
+    .banner-minimal .banner-minimal-wrap .banner-minimal-text__subtitle {
+        font-family: GT Eesti Pro Display;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0
+    }
+
+    .banner-minimal .banner-minimal-wrap .banner-minimal-btn {
+        margin-top: auto
+    }
+}
+
+.palazzetti {
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+@media screen and (min-width:1280px) and (max-width:1439px) {
+    .palazzetti {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    .palazzetti {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (max-width:767px) {
+    .palazzetti {
+        padding-top: 20px;
+        padding-bottom: 20px
+    }
+}
+
+.palazzetti .palazzetti-wrap {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .palazzetti .palazzetti-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .palazzetti .palazzetti-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .palazzetti .palazzetti-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .palazzetti .palazzetti-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .palazzetti .palazzetti-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .palazzetti .palazzetti-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .palazzetti .palazzetti-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.palazzetti .palazzetti__blocks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 2rem
+}
+
+.palazzetti .palazzetti__block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    border-radius: 12px
+}
+
+.palazzetti .palazzetti-img {
+    width: 30%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.palazzetti .palazzetti-img img {
+    width: 50%;
+    -o-object-fit: cover;
+    font-family: "object-fit:cover";
+    object-fit: cover
+}
+
+.palazzetti .palazzetti-text {
+    padding: 20px;
+    background-color: #F1F2F2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1.5rem;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.palazzetti .palazzetti-text-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 27.14px;
+    line-height: 49.5px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.palazzetti .palazzetti-text-subtitle {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 16.72px;
+    line-height: 28px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.palazzetti .palazzetti-text-all {
+    font-family: GT Eesti Pro Display;
+    font-weight: 300;
+    font-size: 13.13px;
+    line-height: 22px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.palazzetti .palazzetti-text-href a {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 11.44px;
+    line-height: 16px;
+    letter-spacing: .2px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #B79961
+}
+
+@media screen and (max-width:767px) {
+    .palazzetti .palazzetti__block {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        border-radius: unset
+    }
+
+    .palazzetti .palazzetti-img {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex
+    }
+
+    .palazzetti .palazzetti-img img {
+        width: 50%;
+        -o-object-fit: cover;
+        font-family: "object-fit:cover";
+        object-fit: cover
+    }
+
+    .palazzetti .palazzetti-text {
+        text-align: center
+    }
+
+    .palazzetti .palazzetti-text-all,
+    .palazzetti .palazzetti-text-href {
+        display: none
+    }
+}
+
+.banner-light {
+    padding-top: 30px;
+    /* padding-bottom: 30px */
+}
+
+@media screen and (min-width:1280px) and (max-width:1439px) {
+    .banner-light {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    .banner-light {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (max-width:767px) {
+    .banner-light {
+        padding-top: 20px;
+        padding-bottom: 20px
+    }
+}
+
+.banner-light .banner-light-wrap {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .banner-light .banner-light-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .banner-light .banner-light-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .banner-light .banner-light-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .banner-light .banner-light-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .banner-light .banner-light-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .banner-light .banner-light-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .banner-light .banner-light-wrap {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.banner-light img {
+    max-width: 100%;
+    max-height: 600px;
+    -o-object-fit: fill;
+    font-family: "object-fit:fill";
+    object-fit: fill
+}
+
+.banner-light .banner-light-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 300;
+    font-size: 38.63px;
+    line-height: 48px;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+.banner-light .banner-light-subtitle {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 11.06px;
+    line-height: 16px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    margin-bottom: 40px
+}
+
+.banner-light .banner-light-text {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: start
+}
+
+@media screen and (min-width:1280px) and (max-width:1439px) {
+    .banner-light .banner-light-text {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1279px) {
+    .banner-light .banner-light-text {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+}
+
+@media screen and (max-width:767px) {
+    .banner-light .banner-light-text {
+        padding-top: 20px;
+        padding-bottom: 20px
+    }
+}
+
+.banner-light .banner-light-text .banner-light-text-title {
+    text-align: start;
+    font-family: GT Eesti Pro Display;
+    font-weight: 500;
+    font-size: 38.63px;
+    line-height: 36px;
+    letter-spacing: 1.2px;
+    vertical-align: middle;
+    margin-bottom: 40px;
+}
+
+.banner-light .banner-light-text p{
+    color: #000; 
+    font-family: "GT Eesti Pro Display";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 36px;
+    letter-spacing: 1.2px;
+}
+
+.banner-light .banner-light-text a {
+    color: #9D9E9E;
+    font-family: "GT Eesti Pro Display";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px; /* 150% */
+    letter-spacing: 1.2px;
+}
+
+.banner-light .banner-light-show {
+    height: 48px;
+    margin-top: 50px;
+    border-left: 1px solid #E4E7EA;
+    background: #F1F3F4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-family: GT Eesti Pro Display;
+    color: #000000;
+    font-weight: 300;
+    font-size: 13.89px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle
+}
+
+@media screen and (max-width:767px) {
+    .banner-light .banner-light-text .banner-light-text-title {
+        font-family: GT Eesti Pro Display;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 36px;
+        letter-spacing: 1.2px;
+        vertical-align: middle
+    }
+}
+
+.cart {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.cart .header-cart {
+    background-color: #fff;
+    padding: 15px 0;
+    top: 0;
+    z-index: 100;
+    -webkit-box-shadow: 0 1px 0 0 #E4E7EA;
+    box-shadow: 0 1px 0 0 #E4E7EA
+}
+
+.cart .header-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.cart .header-left a {
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.cart .header-left a i {
+    margin-right: 5px
+}
+
+.cart .header-center {
+    font-weight: 700;
+    font-size: 18px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 330px
+}
+
+.cart .header-center span {
+    padding-left: 20px;
+    border-left: 1px solid #000
+}
+
+.cart .header-right {
+    font-weight: 700
+}
+
+.cart .cart-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 2rem
+}
+
+.cart .cart-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 39.84px;
+    line-height: 52px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    color: #000
+}
+
+.cart .cheaper-banner {
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 1rem
+}
+
+.cart .cheaper-banner span{
+    color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 13.891px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.cart .cheaper-banner-btn {
+    width: 110px;
+    height: 37px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 12px
+}
+
+.cart .cheaper-banner-btn a {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    text-decoration: underline;
+    -webkit-text-decoration-style: solid;
+    text-decoration-style: solid;
+    text-decoration-offset: 0;
+    text-decoration-thickness: 0;
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+    color: #000
+}
+
+.cart .products-list {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 300px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .5rem
+}
+
+.cart .products-list-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 2rem
+}
+
+.cart .product-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 20px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: 1px solid #E4E7EA;
+    gap: 15px
+}
+
+.cart .product-item:last-child {
+    border-bottom: none
+}
+
+.cart .product-image {
+    height: 100%;
+    -o-object-fit: contain;
+    font-family: "object-fit:contain";
+    object-fit: contain
+}
+
+.cart .product-info {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.cart .product-info-wrap .product-sku {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1rem;
+    color: #9EA3AF
+}
+
+.cart .product-info-wrap .product-sku span {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 1.2px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #000
+}
+
+.cart .product-name {
+   color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    margin-bottom: 5px
+}
+
+.cart .product-sku {
+    color: #9EA3AF;
+    font-size: 12px;
+    margin-bottom: 5px
+}
+
+.cart .prices {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    margin-bottom: 10px
+}
+
+.cart .current-price {
+    color: #000;
+    margin-right: 10px;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 14.88px;
+    line-height: 21px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.cart .old-price {
+    text-decoration: line-through;
+    color: #9EA3AF
+}
+
+.cart .discount {
+    color: #D61E3D;
+    font-size: 12px;
+    padding: 2px 5px
+}
+
+.cart .quantity-control {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.cart .minus {
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 1px solid #F1F3F4
+}
+
+.cart .plus {
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 1px solid #F1F3F4
+}
+
+.cart .quantity-input {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    border: 1px solid #F1F3F4
+}
+
+.cart .prices-summ {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 14.88px;
+    line-height: 21px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.cart .remove-btn {
+    color: #000;
+    background: 0 0;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.cart .remove-btn i {
+    margin-right: 5px
+}
+
+.cart .clear-cart {
+    margin-top: 20px;
+    background: 0 0;
+    gap: 0 7px;
+    color: var(--dark-gray);
+    cursor: pointer;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 14px;
+    margin-right: 5px;
+    height: 40px;
+    border-radius: 12px;
+    width: 195px;
+    border: 1px solid #E4E7EA;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    color: #000;
+    text-align: center;
+    font-family: "GT Eesti Pro Display";
+    font-size: 12.898px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.cart .clear-cart i {
+    margin-right: 5px
+}
+
+.cart .cart-summary {
+    width: 300px;
+    background-color: #F1F3F4;
+    border-radius: 11px;
+    padding: 35px;
+    position: sticky;
+    top: 100px;
+    -ms-flex-item-align: start;
+    align-self: flex-start
+}
+
+.cart .summary-title {
+    color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23.4px; /* 130% */
+    margin-bottom: 15px;
+}
+
+.cart .summary-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 15px
+}
+
+.cart .summary-row  span{
+    cursor: pointer;
+    color: #798897;
+    font-family: "GT Eesti Pro Display";
+    font-size: 12.898px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16.9px; /* 131.024% */
+}
+
+.cart .total-row {
+    margin-bottom: 50px;
+    padding-top: 15px;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 12.9px;
+    line-height: 16.9px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    color: #798897
+}
+
+.cart .checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 13px;
+    -webkit-transition: background-color .3s;
+    -o-transition: background-color .3s;
+    transition: background-color .3s
+}
+
+/* .cart .checkout-btn:hover {
+    background-color: #F1F3F4;
+    color: #000
+} */
+
+.cart .one-click-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    border: unset
+}
+
+/* .cart .one-click-btn:hover {
+    background-color: #000;
+    color: #F1F3F4
+} */
+
+.cart .prices-mobile-look,
+.header-cart {
+    display: none
+}
+
+@media (max-width:768px) {
+    .header-cart {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%
+    }
+
+    .header-cart .header-wrap {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        width: 100%
+    }
+
+    .cart .header-cart {
+        display: none
+    }
+
+    .cart .cart-wrap {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding: 0 20px
+    }
+
+    .cart .prices-desctop-none {
+        display: none
+    }
+
+    .cart .products-list-wrap {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .cart .cart-summary {
+        width: 100%;
+        position: static;
+        gap: 0;
+        padding: 20px
+    }
+
+    .cart .prices-mobile-look {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        height: 60px;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+    .cart .product-item {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap
+    }
+
+    .cart .product-item img {
+        height: 62px
+    }
+
+    .cart .cart-summary-btn-wrap {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 40px
+    }
+
+    .cart .checkout-btn {
+        width: calc(50% - .5rem);
+        height: 39px
+    }
+
+    .cart .summary-row {
+        margin-bottom: 0
+    }
+
+
+
+    .cart .total-row {
+        display: none
+    }
+
+    .cart .one-click-btn {
+        width: calc(50% - .5rem);
+        height: 39px
+    }
+
+    .cart .clear-cart {
+        display: none
+    }
+}
+
+.checkout {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .checkout {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .checkout {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .checkout {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .checkout {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .checkout {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .checkout {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .checkout {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.checkout .header-checkout {
+    background-color: #fff;
+    padding: 15px 0;
+    top: 0;
+    z-index: 100;
+    -webkit-box-shadow: 0 1px 0 0 #E4E7EA;
+    box-shadow: 0 1px 0 0 #E4E7EA
+}
+
+.checkout .header-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.checkout .header-left a {
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.checkout .header-left a i {
+    margin-right: 5px
+}
+
+.checkout .header-center {
+    font-weight: 700;
+    font-size: 18px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 330px
+}
+
+.checkout .header-center span {
+    padding-left: 20px;
+    border-left: 1px solid #000
+}
+
+.checkout .header-right {
+    font-weight: 700
+}
+
+.checkout .checkout-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 2rem
+}
+
+.checkout .checkout-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 39.84px;
+    line-height: 52px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    margin-top: 30px;
+    color: #000
+}
+
+.checkout .cheaper-banner {
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 1rem
+}
+
+.checkout .cheaper-banner-btn {
+    width: 110px;
+    height: 37px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 12px
+}
+
+.checkout .cheaper-banner-btn a {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    text-decoration: underline;
+    -webkit-text-decoration-style: solid;
+    text-decoration-style: solid;
+    text-decoration-offset: 0;
+    text-decoration-thickness: 0;
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+    color: #000
+}
+
+.checkout .products-list {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 300px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .5rem
+}
+
+.checkout .products-list-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 2rem;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.checkout .product-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 20px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: 1px solid #E4E7EA;
+    gap: 15px
+}
+
+.checkout .product-form-title {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 23.81px;
+    line-height: 31.2px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    margin: 20px 0
+}
+
+.checkout .product-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.checkout .product-form form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 2rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.checkout .product-form .product-form-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .3rem
+}
+
+.checkout .product-form input {
+    min-width: 415px;
+    height: 44px;
+    border: 1px solid #E4E7EA;
+    border-radius: 12px;
+    padding-left: 8px;
+    font-size: 17px;
+    font-family: GT Eesti Pro Display;
+    font-weight: 300;
+}
+
+.checkout .product-item:last-child {
+    border-bottom: none
+}
+
+.checkout .product-image {
+    height: 100%;
+    -o-object-fit: contain;
+    font-family: "object-fit:contain";
+    object-fit: contain
+}
+
+.checkout .product-info {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.checkout .product-info-wrap .product-sku {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1rem;
+    color: #9EA3AF
+}
+
+.checkout .product-info-wrap .product-sku span {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 1.2px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #000
+}
+
+.checkout .product-name {
+    font-weight: 700;
+    margin-bottom: 5px
+}
+
+.checkout .product-sku {
+    color: #9EA3AF;
+    font-size: 12px;
+    margin-bottom: 5px
+}
+
+.checkout .prices {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    margin-bottom: 10px
+}
+
+.checkout .current-price {
+    color: #000;
+    margin-right: 10px;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 14.88px;
+    line-height: 21px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.checkout .old-price {
+    text-decoration: line-through;
+    color: #9EA3AF
+}
+
+.checkout .discount {
+    color: #D61E3D;
+    font-size: 12px;
+    padding: 2px 5px
+}
+
+.checkout .quantity-control {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.checkout .minus {
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 1px solid #F1F3F4
+}
+
+.checkout .plus {
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 1px solid #F1F3F4
+}
+
+.checkout .quantity-input {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    border: 1px solid #F1F3F4
+}
+
+.checkout .prices-summ {
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 14.88px;
+    line-height: 21px;
+    letter-spacing: 0;
+    vertical-align: middle
+}
+
+.checkout .remove-btn {
+    color: #000;
+    background: 0 0;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.checkout .remove-btn i {
+    margin-right: 5px
+}
+
+.checkout .clear-checkout {
+    margin-top: 20px;
+    background: 0 0;
+    color: var(--dark-gray);
+    cursor: pointer;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 14px;
+    margin-right: 5px;
+    height: 40px;
+    border-radius: 12px;
+    width: 195px;
+    border: 1px solid #E4E7EA;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.checkout .clear-checkout i {
+    margin-right: 5px
+}
+
+.checkout .checkout-summary {
+    width: 300px;
+    background-color: #F1F3F4;
+    border-radius: 11px;
+    padding: 35px;
+    position: sticky;
+    top: 100px;
+    -ms-flex-item-align: start;
+    align-self: flex-start
+}
+
+.checkout .summary-title {
+    color: #000;
+    font-family: "GT Eesti Pro Display";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23.4px; /* 130% */
+    margin-bottom: 20px;
+}
+
+.checkout .summary-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .5rem;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 15px
+}
+
+.checkout .summary-row span:nth-child(2) {
+    color: #9EA3AF
+}
+
+.checkout .total-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin-bottom: 24px;
+    padding-top: 15px;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 12.9px;
+    line-height: 16.9px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    color: #798897
+}
+
+.checkout .total-row span,
+.checkout .total-row span:nth-child(2) {
+    color: #000
+}
+
+.checkout .checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 13px;
+    -webkit-transition: background-color .3s;
+    -o-transition: background-color .3s;
+    transition: background-color .3s
+}
+
+.checkout .checkout-btn:hover {
+    background-color: #F1F3F4;
+    color: #000
+}
+
+.checkout .one-click-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    border: unset
+}
+
+.checkout .checkout-summary-politics {
+    color: #9EA3AF
+}
+
+.checkout .one-click-btn:hover {
+    background-color: #000;
+    color: #F1F3F4
+}
+
+.checkout .prices-mobile-look {
+    display: none
+}
+
+@media (max-width:768px) {
+    .header-cart {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%
+    }
+
+    .header-cart .header-wrap {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        width: 100%
+    }
+
+    .checkout {
+        padding: 0 20px
+    }
+
+    .checkout .header-checkout {
+        display: none
+    }
+
+    .checkout .checkout-wrap {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding: 0 20px
+    }
+
+    .checkout .prices-desctop-none {
+        display: none
+    }
+
+    .checkout .product-form {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 1rem
+    }
+
+    .checkout .product-form form {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        gap: 2rem;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .checkout .product-form .product-form-wrap {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: .3rem
+    }
+
+    .checkout .product-form input {
+        min-width: 100%;
+        height: 44px;
+        border: 1px solid #E4E7EA;
+        border-radius: 12px
+    }
+
+    .checkout .products-list-wrap {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .checkout .checkout-summary {
+        width: 100%;
+        position: static;
+        gap: 0;
+        padding: 20px
+    }
+
+    .checkout .prices-mobile-look {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        height: 60px;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+    .checkout .product-item {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap
+    }
+
+    .checkout .product-item img {
+        height: 62px
+    }
+
+    .checkout .checkout-summary-btn-wrap {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        gap: 0;
+        margin-top: 40px
+    }
+
+    .checkout .checkout-btn {
+        width: calc(50% - .5rem);
+        height: 39px
+    }
+
+    .checkout .summary-row {
+        margin-bottom: 0
+    }
+
+    .checkout .total-row {
+        display: none
+    }
+
+    .checkout .one-click-btn {
+        width: calc(50% - .5rem);
+        height: 39px
+    }
+
+    .checkout .clear-checkout {
+        display: none
+    }
+}
+
+.header-cart {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .header-cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .header-cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .header-cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .header-cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .header-cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .header-cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .header-cart {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.header-cart .header-wrap {
+    height: 80px;
+    display: grid;
+    grid-auto-flow: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 20px;
+    -webkit-box-shadow: 0 1px 0 0 #E4E7EA;
+    box-shadow: 0 1px 0 0 #E4E7EA
+}
+
+.header-cart .header-wrap .header-cont {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 2rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.header-cart .header-wrap .header-cont .header-text {
+    max-width: 120px;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+    font-size: 11.81px;
+    line-height: 15.6px;
+    letter-spacing: .25px;
+    border-left: 2px solid #000;
+    padding-left: 20px
+}
+
+.header-cart .header-wrap .header-menu ul {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 2rem
+}
+
+.header-cart .header-wrap .header-mini {
+    display: grid;
+    grid-auto-flow: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 1rem
+}
+
+.header-cart .header-wrap .header-mini{
+    
+}
+
+.header-cart .header-wrap .header-mini img {
+    cursor: pointer
+}
+
+.header-cart .header-wrap .header-phone {
+    display: none
+}
+
+@media screen and (max-width:767px) {
+    .header-cart .header-wrap {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between
+    }
+
+    .header-cart .header-wrap .header-cont {
+        gap: 0
+    }
+
+    .header-cart .header-wrap .header-cont .header-text {
+        padding-left: 10px
+    }
+
+    .header-cart .header-wrap .header-menu {
+        display: none
+    }
+
+    .header-cart .header-wrap .header-phone {
+        display: block
+    }
+
+    .header-cart .header-wrap .header-like {
+        display: none
+    }
+}
+
+#component-uikit {
+    padding: 20px
+}
+
+#component-uikit pre {
+    margin: 20px 0;
+    padding: 20px 0
+}
+
+#component-uikit .component-buttons__list {
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    list-style: none
+}
+
+#component-uikit .component-buttons__list li {
+    margin: 0;
+    padding: 0;
+    background: 0 0
+}
+
+#component-uikit .component-buttons__list li:after,
+#component-uikit .component-buttons__list li:before {
+    content: none
+}
+
+#component-uikit .component-buttons__list li {
+    margin-right: 10px
+}
+
+.page {
+    position: relative;
+    font-family: GT Eesti Pro Display;
+    font-weight: 400;
+}
+
+.page__content {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto
+}
+
+.page-head {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2.2%;
+    margin-bottom: 21px
+}
+
+@media screen and (min-width:1280px) {
+    .page-head {
+        max-width: 1440px;
+        width: 100%
+    }
+}
+
+.page-head__title {
+    width: 100%;
+    margin: 0;
+    padding: 0
+}
+
+.page-head__exit {
+    font-size: 16px;
+    color: #000
+}
+
+.page-head__exit:hover {
+    color: #ea8d1b;
+    text-decoration: underline
+}
+
+.container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding: 0 2.77778%;
+    margin-bottom: 16px
+}
+
+@media screen and (min-width:568px) and (orientation:landscape) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        width: 100%
+    }
+}
+
+@media screen and (min-width:768px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 98%;
+        width: 98%
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1440px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:1920px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+@media screen and (min-width:2560px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1440px;
+        width: 1440px
+    }
+}
+
+.loading-images {
+    display: none
+}
