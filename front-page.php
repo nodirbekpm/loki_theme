@@ -38,77 +38,77 @@ $home = get_field('home');
         </div>
     </div>
 <?php endif; ?>
+
+<?php if ($home['catalog_hidden'] !== "Да"): ?>
     <div class="catalog-new">
         <div class="catalog-wrap">
             <div class="catalog__blocks">
-                <div class="catalog__block">
-                    <div class="catalog__block-cont">
-                        <div class="catalog__block-count">
-                            232 товара
+                <?php
+                $catalogs = get_posts([
+                    'post_type' => 'catalog',
+                    'posts_per_page' => -1,
+                    'post_status' => 'publish',
+                    'order' => 'ASC',
+                ]);
+
+                foreach ($catalogs as $catalog) :
+                    $card = get_field('card', $catalog->ID); // group field
+                    $card_title = $card['title'] ?? get_the_title($catalog); // fallback to post title
+                    $card_image = $card['image']; // array (ACF image)
+                    $product_count = 0;
+
+                    // Mahsulotlar sonini hisoblash (shu catalogga bog‘langan productlar)
+                    $categories = get_posts([
+                        'post_type' => 'product_category',
+                        'meta_key' => 'catalog',
+                        'meta_value' => $catalog->ID,
+                        'posts_per_page' => -1,
+                        'fields' => 'ids',
+                    ]);
+
+                    if ($categories) {
+                        $product_query = new WP_Query([
+                            'post_type' => 'product',
+                            'posts_per_page' => -1,
+                            'meta_query' => [
+                                [
+                                    'key' => 'category',
+                                    'value' => $categories,
+                                    'compare' => 'IN',
+                                ]
+                            ],
+                            'fields' => 'ids',
+                        ]);
+                        $product_count = $product_query->found_posts;
+                    }
+
+                    $catalog_link = get_permalink($catalog->ID);
+                    ?>
+                    <div class="catalog__block">
+                        <div class="catalog__block-cont">
+                            <div class="catalog__block-count">
+                                <?= esc_html($product_count) ?> товара
+                            </div>
+                            <div class="catalog__block-title">
+                                <?= esc_html($card_title) ?>
+                            </div>
                         </div>
-                        <div class="catalog__block-title">
-                            Современные камины
+                        <div class="catalog__block-imgmini">
+                            <img src="<?= esc_url($card_image['sizes']['thumbnail'] ?? '') ?>" alt="">
                         </div>
-                    </div>
-                    <div class="catalog__block-imgmini">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/catmini3.svg" alt="">
-                    </div>
-                    <div class="catalog__block-img">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/cat3.png" alt="">
-                    </div>
-
-                    <a href="shop.html" class="catalog__block-href">
-                        Перейти в раздел
-                    </a>
-
-                </div>
-                <div class="catalog__block">
-                    <div class="catalog__block-cont">
-                        <div class="catalog__block-count">
-                            232 товара
+                        <div class="catalog__block-img">
+                            <img src="<?= esc_url($card_image['url'] ?? '') ?>" alt="">
                         </div>
-                        <div class="catalog__block-title">
-                            Печи
-                        </div>
+                        <a href="<?= esc_url($catalog_link) ?>" class="catalog__block-href">
+                            Перейти в раздел
+                        </a>
                     </div>
-                    <div class="catalog__block-imgmini">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/catmini2.svg" alt="">
-                    </div>
-                    <div class="catalog__block-img">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/cat2.png" alt="">
-                    </div>
-
-                    <a href="shop.html" class="catalog__block-href">
-                        Перейти в раздел
-                    </a>
-
-                </div>
-                <div class="catalog__block">
-                    <div class="catalog__block-cont">
-                        <div class="catalog__block-count">
-                            232 товара
-                        </div>
-                        <div class="catalog__block-title">
-                            Каминные топки
-                        </div>
-                    </div>
-                    <div class="catalog__block-imgmini">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/catmini1.svg" alt="">
-                    </div>
-                    <div class="catalog__block-img">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/cat1.png" alt="">
-                    </div>
-
-                    <a href="shop.html" class="catalog__block-href">
-                        Перейти в раздел
-                    </a>
-
-                </div>
-
-
+                <?php endforeach; ?>
             </div>
+
         </div>
     </div>
+<?php endif; ?>
 
     <div class="bandw">
         <div class="bandw-wrap">
