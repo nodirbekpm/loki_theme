@@ -20,38 +20,63 @@ require_once get_template_directory() . '/inc/custom-post-types.php';
 if( function_exists('acf_add_options_page') ) {
     acf_add_options_page(array(
         'page_title'    => 'General Settings',
-        'menu_title'    => 'Site Settings',
+        'menu_title'    => 'Настройки сайта',
         'menu_slug'     => 'site-settings',
         'capability'    => 'edit_posts',
         'redirect'      => false
     ));
 }
 
-function auto_assign_product_code($post_id) {
-    if (get_post_type($post_id) !== 'product') return;
+function make_product_code_field_readonly($field) {
+    if ($field['name'] === 'product_code') {
+        $field['readonly'] = 1;
+    }
+    return $field;
+}
+add_filter('acf/prepare_field', 'make_product_code_field_readonly');
 
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
-    if (get_field('product_code', $post_id)) return;
+require get_template_directory() . '/inc/acf-hooks.php';
 
-    $latest_product = new WP_Query([
-        'post_type' => 'product',
-        'posts_per_page' => 1,
-        'meta_key' => 'product_code',
-        'orderby' => 'meta_value_num',
-        'order' => 'DESC',
-        'post__not_in' => [$post_id],
-        'fields' => 'ids',
-    ]);
+// lIke qismi
+function increment_like_callback() {
+    $post_id = intval($_POST['post_id']);
 
-    $last_code = 0;
-    if ($latest_product->have_posts()) {
-        $last_product_id = $latest_product->posts[0];
-        $last_code = (int) get_field('product_code', $last_product_id);
+    if ($post_id) {
+        $likes = (int) get_post_meta($post_id, 'like_count', true);
+        $likes++;
+        update_post_meta($post_id, 'like_count', $likes);
+
+        wp_send_json_success($likes);
     }
 
-    $new_code = $last_code + 1;
-
-    update_field('product_code', $new_code, $post_id);
+    wp_send_json_error();
 }
-add_action('save_post_product', 'auto_assign_product_code');
+add_action('wp_ajax_increment_like', 'increment_like_callback');
+add_action('wp_ajax_nopriv_increment_like', 'increment_like_callback');
+
+
+// Narxni hisoblash formulasi
+function get_discounted_price($product_id) {
+    $group = get_field('product', $product_id);
+
+    if (!$group) return null;
+
+    $cost = isset($group['cost']) ? (float)$group['cost'] : 0;
+    $discount = isset($group['discount']) ? (float)$group['discount'] : 0;
+
+    if ($cost && $discount > 0) {
+        $new_price = $cost - ($cost * $discount / 100);
+        return [
+            'original' => $cost,
+            'discount' => $discount,
+            'final' => round($new_price),
+        ];
+    }
+
+    return [
+        'original' => $cost,
+        'discount' => 0,
+        'final' => $cost,
+    ];
+}

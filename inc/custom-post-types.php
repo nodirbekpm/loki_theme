@@ -6,16 +6,16 @@
 function register_product_post_type() {
     register_post_type('product', [
         'labels' => [
-            'name' => 'Mahsulotlar',
-            'singular_name' => 'Mahsulot',
-            'add_new' => 'Yangi mahsulot',
-            'add_new_item' => 'Yangi mahsulot qo‘shish',
-            'edit_item' => 'Mahsulotni tahrirlash',
-            'new_item' => 'Yangi mahsulot',
-            'view_item' => 'Mahsulotni ko‘rish',
-            'search_items' => 'Qidirish',
-            'not_found' => 'Topilmadi',
-            'menu_name' => 'Mahsulotlar',
+            'name' => 'Продукты',
+            'singular_name' => 'Продукт',
+            'add_new' => 'Новый продукт',
+            'add_new_item' => 'Добавление нового продукта',
+            'edit_item' => 'Редактировать продукт',
+            'new_item' => 'Новый продукт',
+            'view_item' => 'Просмотр продукта',
+            'search_items' => 'Поиск',
+            'not_found' => 'Не найдено',
+            'menu_name' => 'Продукты',
         ],
         'public' => true,
         'has_archive' => true,
@@ -30,11 +30,11 @@ add_action('init', 'register_product_post_type');
 function register_catalog_post_type() {
     register_post_type('catalog', [
         'labels' => [
-            'name' => 'Kataloglar',
-            'singular_name' => 'Katalog',
-            'add_new_item' => 'Yangi katalog',
-            'edit_item' => 'Katalogni tahrirlash',
-            'menu_name' => 'Kataloglar',
+            'name' => 'Каталоги',
+            'singular_name' => 'Каталог',
+            'add_new_item' => 'Новый каталог',
+            'edit_item' => 'Редактировать каталог',
+            'menu_name' => 'Каталоги',
         ],
         'public' => true,
         'has_archive' => true,
@@ -48,11 +48,11 @@ add_action('init', 'register_catalog_post_type');
 function register_brand_post_type() {
     register_post_type('brand', [
         'labels' => [
-            'name' => 'Brendlar',
+            'name' => 'Бренды',
             'singular_name' => 'Brend',
-            'add_new_item' => 'Yangi brend',
-            'edit_item' => 'Brendni tahrirlash',
-            'menu_name' => 'Brendlar',
+            'add_new_item' => 'Бренд',
+            'edit_item' => 'Редактировать бренд',
+            'menu_name' => 'Бренды',
         ],
         'public' => true,
         'has_archive' => true,
@@ -66,11 +66,11 @@ add_action('init', 'register_brand_post_type');
 function register_product_category_post_type() {
     register_post_type('product_category', [
         'labels' => [
-            'name' => 'Kategoriyalar',
-            'singular_name' => 'Kategoriya',
-            'add_new_item' => 'Yangi kategoriya',
-            'edit_item' => 'Kategoriya tahriri',
-            'menu_name' => 'Kategoriyalar',
+            'name' => 'Категории',
+            'singular_name' => 'Категории',
+            'add_new_item' => 'Новая категория',
+            'edit_item' => 'Редактировать категорию',
+            'menu_name' => 'Категории',
         ],
         'public' => true,
         'has_archive' => false,
@@ -84,10 +84,10 @@ add_action('init', 'register_product_category_post_type');
 function register_color_taxonomy() {
     register_taxonomy('color', 'product', [
         'labels' => [
-            'name' => 'Ranglar',
-            'singular_name' => 'Rang',
-            'add_new_item' => 'Yangi rang qo‘shish',
-            'menu_name' => 'Ranglar',
+            'name' => 'Цвета',
+            'singular_name' => 'Цвет',
+            'add_new_item' => 'Добавление нового цвета',
+            'menu_name' => 'Цвета',
         ],
         'public' => true,
         'hierarchical' => false,
@@ -100,10 +100,10 @@ add_action('init', 'register_color_taxonomy');
 function register_shape_taxonomy() {
     register_taxonomy('shape', 'product', [
         'labels' => [
-            'name' => 'Shakllar',
-            'singular_name' => 'Shakl',
-            'add_new_item' => 'Yangi shakl qo‘shish',
-            'menu_name' => 'Shakllar',
+            'name' => 'Формы',
+            'singular_name' => 'Форма',
+            'add_new_item' => 'Добавить новую форму',
+            'menu_name' => 'Формы',
         ],
         'public' => true,
         'hierarchical' => false,
