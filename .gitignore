@@ -1,0 +1,47 @@
+# IntelliJ IDEA (JetBrains)
+.idea/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Node modules (agar JS ishlatsangiz)
+node_modules/
+
+# Python virtual environments
+venv/
+env/
+
+# macOS sistemasi
+.DS_Store
+
+# Windows sistemasi
+Thumbs.db
+desktop.ini
+
+# Log va temp fayllar
+*.log
+*.tmp
+
+# Pycache
+__pycache__/
+
+# Compiled fayllar
+*.pyc
+*.pyo
+*.exe
+*.class
+
+# Backup fayllar
+*.bak
+*.swp
+*.swo
+
+# .env fayllar (maxfiy ma'lumotlar)
+.env
+.env.*
+
+# Database yoki cache fayllar
+*.sqlite3
+*.db
+*.db3

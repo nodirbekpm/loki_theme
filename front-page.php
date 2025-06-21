@@ -6,6 +6,7 @@
 get_header();
 
 $home = get_field('home');
+
 ?>
 
 <?php if ($home['banner_hidden'] !== "Да"): ?>
@@ -385,6 +386,7 @@ if ($home['brandw_hidden'] !== "Да"):
     </div>
 <?php endif; ?>
 
+
     <div class="request-form">
 
         <div class="form-title form-title-block">Поможем с выбором</div>
@@ -398,21 +400,8 @@ if ($home['brandw_hidden'] !== "Да"):
                 продукции и помогут подобрать оптимальный вариант
             </div>
 
-            <form class="contact-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name" class="form-label"> имя</label>
-                        <input type="text" id="name" class="form-input">
-                    </div>
+            <?php echo do_shortcode('[contact-form-7 id="1174d82" title="Поможем с выбором"]'); ?>
 
-                    <div class="form-group">
-                        <label for="phone" class="form-label">телефон</label>
-                        <input type="tel" id="phone" class="form-input">
-                    </div>
-
-                    <button type="submit" class="submit-btn">Отправить заявку</button>
-                </div>
-            </form>
         </div>
         <div class="form-image">
             <img src="<?php echo get_template_directory_uri() ?>/assets/img/formimg2.png" alt="Форма обратной связи"

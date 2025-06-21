@@ -27,6 +27,20 @@ if( function_exists('acf_add_options_page') ) {
     ));
 }
 
+function register_my_menus() {
+    register_nav_menus([
+        'header_menu' => 'Header menyusi',
+    ]);
+}
+add_action('after_setup_theme', 'register_my_menus');
+
+add_filter('nav_menu_css_class', function($classes, $item, $args) {
+    if ($args->theme_location === 'header_menu') {
+        return []; // Barcha classlarni olib tashlash
+    }
+    return $classes;
+}, 10, 3);
+
 function make_product_code_field_readonly($field) {
     if ($field['name'] === 'product_code') {
         $field['readonly'] = 1;
@@ -80,3 +94,5 @@ function get_discounted_price($product_id) {
         'final' => $cost,
     ];
 }
+
+add_filter('wpcf7_autop_or_not', '__return_false');

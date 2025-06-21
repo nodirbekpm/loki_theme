@@ -45,26 +45,34 @@
 
 
 
+<?php
+$site_name = get_field('site_name', 'option');
+$black_logo = get_field('black_logo', 'option');
+$phone = get_field('phone', 'option');
+?>
 
     <div class="header">
         <div class="header-wrap">
             <div class="header-cont">
                 <a href="index.html" class="header-logo">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/logo.svg" alt="">
+                    <img src="<?php echo $black_logo['url'] ?>" alt="">
                 </a>
                 <div class="header-text">
-                    Интернет-магазин <br>каминов и печей
+                    <?= $site_name ?>
                 </div>
             </div>
 
             <div class="header-menu " id="navbar">
                 <ul>
-                    <li><a href="shop.html">КАТАЛОГ</a></li>
-                    <li><a href="chekcout-step.html">ДОСТАВКА И ОПЛАТА</a></li>
-
-                    <li><a href="professionals.html">ДЛЯ ПРОФЕССИОНАЛОВ</a></li>
-                    <li><a href="#">О КОМПАНИИ</a></li>
-                    <li><a href="tel:74951253027">+7 495 125-30-27</a></li>
+                    <?php
+                    wp_nav_menu([
+                        'theme_location' => 'header_menu',
+                        'container' => false,
+                        'menu_class' => '',
+                        'items_wrap' => '<ul>%3$s</ul>',
+                    ]);
+                    ?>
+                    <li><a href="tel:<?= $phone ?>"><?= $phone ?></a></li>
                     <li class="mobile_links">
                         <img src="img/cart.svg" alt="">
                         <a href="cart.html">КОРЗИНА</a>
