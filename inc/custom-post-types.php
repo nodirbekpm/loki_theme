@@ -112,3 +112,35 @@ function register_shape_taxonomy() {
     ]);
 }
 add_action('init', 'register_shape_taxonomy');
+
+function register_installation_taxonomy() {
+    register_taxonomy('installation', 'product', [
+        'labels' => [
+            'name' => 'Установки',
+            'singular_name' => 'Установка',
+            'add_new_item' => 'Добавить новую установку',
+            'menu_name' => 'Установки',
+        ],
+        'public' => true,
+        'hierarchical' => false,
+        'show_in_rest' => true,
+        'rewrite' => ['slug' => 'installation'],
+    ]);
+}
+add_action('init', 'register_installation_taxonomy');
+
+function register_collection_taxonomy() {
+    register_taxonomy('collection', 'product', [
+        'labels' => [
+            'name' => 'Коллекции',
+            'singular_name' => 'Коллекция',
+            'add_new_item' => 'Добавить новую коллекцию',
+            'menu_name' => 'Коллекции',
+        ],
+        'public' => true,
+        'hierarchical' => false,
+        'show_in_rest' => true,
+        'rewrite' => ['slug' => 'collection'],
+    ]);
+}
+add_action('init', 'register_collection_taxonomy');

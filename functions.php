@@ -8,18 +8,21 @@ function loki_theme_setup() {
 }
 add_action('after_setup_theme', 'loki_theme_setup');
 
-function loki_enqueue_styles() {
-    wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/style.min.css', array(), '1.0.0');
-    wp_enqueue_style('custom-fonts', get_template_directory_uri() . '/assets/fonts/font.css', array(), '1.0.0');
+function loki_enqueue_assets() {
+    wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/style.min.css');
+    wp_enqueue_style('custom-fonts', get_template_directory_uri() . '/assets/fonts/font.css');
+
 }
-add_action('wp_enqueue_scripts', 'loki_enqueue_styles');
+add_action('wp_enqueue_scripts', 'loki_enqueue_assets', 10);
+
+
 
 require_once get_template_directory() . '/inc/custom-post-types.php';
 
 
 if( function_exists('acf_add_options_page') ) {
     acf_add_options_page(array(
-        'page_title'    => 'General Settings',
+        'page_title'    => 'Настройки сайта',
         'menu_title'    => 'Настройки сайта',
         'menu_slug'     => 'site-settings',
         'capability'    => 'edit_posts',
@@ -36,7 +39,7 @@ add_action('after_setup_theme', 'register_my_menus');
 
 add_filter('nav_menu_css_class', function($classes, $item, $args) {
     if ($args->theme_location === 'header_menu') {
-        return []; // Barcha classlarni olib tashlash
+        return [];
     }
     return $classes;
 }, 10, 3);
@@ -69,7 +72,6 @@ function increment_like_callback() {
 add_action('wp_ajax_increment_like', 'increment_like_callback');
 add_action('wp_ajax_nopriv_increment_like', 'increment_like_callback');
 
-
 // Narxni hisoblash formulasi
 function get_discounted_price($product_id) {
     $group = get_field('product', $product_id);
@@ -96,3 +98,14 @@ function get_discounted_price($product_id) {
 }
 
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+
+
+
+// ================= Catalog sahifasida filterlash =====================
+
+require_once get_template_directory() . '/inc/ajax/filter-products.php';
+
+//foreach (glob(get_template_directory() . '/filters/*.php') as $filename) {
+//    require_once $filename;
+//}

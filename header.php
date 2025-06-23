@@ -52,64 +52,66 @@ $phone = get_field('phone', 'option');
 ?>
 
     <div class="header">
-        <div class="header-wrap">
-            <div class="header-cont">
-                <a href="index.html" class="header-logo">
-                    <img src="<?php echo $black_logo['url'] ?>" alt="">
-                </a>
-                <div class="header-text">
-                    <?= $site_name ?>
-                </div>
-            </div>
-
-            <div class="header-menu " id="navbar">
-                <ul>
-                    <?php
-                    wp_nav_menu([
-                        'theme_location' => 'header_menu',
-                        'container' => false,
-                        'menu_class' => '',
-                        'items_wrap' => '<ul>%3$s</ul>',
-                    ]);
-                    ?>
-                    <li><a href="tel:<?= $phone ?>"><?= $phone ?></a></li>
-                    <li class="mobile_links">
-                        <img src="img/cart.svg" alt="">
-                        <a href="cart.html">КОРЗИНА</a>
-                    </li>
-
-                    <li class="mobile_links">
-                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/like.svg" alt="">
-                        <a href="#">ИЗБРАННОЕ</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="header-mini">
-                <a href="#">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/search.svg" alt="" class="header-search">
-                </a>
-
-                <a href="tel:74951253027" class="header-phone">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/phone 1.svg" alt="">
-                </a>
-
-                <a href="#" class="laptop_icon">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/like.svg" alt="" class="header-like">
-                </a>
-
-                <a href="cart.html" class="laptop_icon">
-                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/cart.svg" alt="" class="header-gamb">
-                </a>
-
-
-                <div class="burger" onclick="toggleNav()">
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
+        <div class="container">
+            <div class="header-wrap">
+                <div class="header-cont">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="header-logo">
+                        <img src="<?php echo $black_logo['url'] ?>" alt="">
+                    </a>
+                    <div class="header-text">
+                        <?= $site_name ?>
+                    </div>
                 </div>
 
+                <div class="header-menu " id="navbar">
+                    <ul>
+                        <?php
+                        wp_nav_menu([
+                            'theme_location' => 'header_menu',
+                            'container' => false,
+                            'menu_class' => '',
+                            'items_wrap' => '<ul>%3$s</ul>',
+                        ]);
+                        ?>
+                        <li><a href="tel:<?= $phone ?>"><?= $phone ?></a></li>
+                        <li class="mobile_links">
+                            <img src="img/cart.svg" alt="">
+                            <a href="cart.html">КОРЗИНА</a>
+                        </li>
+
+                        <li class="mobile_links">
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/like.svg" alt="">
+                            <a href="#">ИЗБРАННОЕ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="header-mini">
+                    <a href="#">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/search.svg" alt="" class="header-search">
+                    </a>
+
+                    <a href="tel:74951253027" class="header-phone">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/phone 1.svg" alt="">
+                    </a>
+
+                    <a href="#" class="laptop_icon">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/like.svg" alt="" class="header-like">
+                    </a>
+
+                    <a href="cart.html" class="laptop_icon">
+                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/cart.svg" alt="" class="header-gamb">
+                    </a>
+
+
+                    <div class="burger" onclick="toggleNav()">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+
+                </div>
+
+
             </div>
-
-
         </div>
     </div>

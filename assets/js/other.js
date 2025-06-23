@@ -26,6 +26,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+
+
+  // catalog filter open 
+    window.toggleCatalogFilters = function () {
+        document.getElementById('catalog-filters').classList.toggle('show');
+    }
+
+    // catalog filter close
+    window.hideCatalogFilters = function () {
+        document.getElementById('catalog-filters').classList.remove('show');
+    };
+
     // // Navbar burger button show/off
     // window.toggleNav = function () {
     //   const menu = document.getElementById('navbar');
@@ -84,32 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-
-
-  // const thumbnailSwiper = new Swiper(".thumbnail-swiper", {
-  //   direction: "vertical",
-  //   spaceBetween: 10,
-  //   slidesPerView: 6,
-  //   freeMode: true,
-  //   watchSlidesProgress: true,
-  //   breakpoints: {
-  //     768: {
-  //       direction: "horizontal",
-  //     },
-  //   },
-  // });
-
-  // const thumbnails = document.querySelectorAll(".thumbnail-slider .swiper-slide");
-
-  // thumbnails.forEach((thumb) => {
-  //   thumb.addEventListener("click", function () {
-  //     // Remove .active from all thumbnails
-  //     thumbnails.forEach((t) => t.classList.remove("active"));
-
-  //     // Add .active to clicked thumbnail
-  //     this.classList.add("active");
-  //   });
-  // });
 
  const thumbnailSwiperEl = document.querySelector(".thumbnail-swiper");
   const mainSwiperEl = document.querySelector(".main-swiper");
@@ -178,10 +164,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // catalog left filter
   // Select necessary elements
   const rangeSlider = document.querySelector(".range-slider");
-  const minInput = document.querySelector(".min-input");
-  const maxInput = document.querySelector(".max-input");
-  const minPrice = document.querySelector(".min-price");
-  const maxPrice = document.querySelector(".max-price");
+  // const minInput = document.querySelector(".min-input");
+  // const maxInput = document.querySelector(".max-input");
+  // const minPrice = document.querySelector(".min-price");
+  // const maxPrice = document.querySelector(".max-price");
   const filterTitles = document.getElementsByClassName("filter-title");
 
   // Add click event listener to each filter title
@@ -195,6 +181,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+
+
+  // Select elements
+const minInput = document.querySelector(".min-input");
+const maxInput = document.querySelector(".max-input");
+const minPrice = document.querySelector(".min-price");
+const maxPrice = document.querySelector(".max-price");
+
+// Proceed only if all required elements exist
+if (minInput && maxInput && minPrice && maxPrice) {
   // Minimum distance between min and max
   const priceGap = 100;
 
@@ -242,6 +238,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     maxInput.value = maxVal;
   });
+}
+
+  // accordion
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const currentItem = header.parentElement;
+      const currentContent = currentItem.querySelector('.accordion-content');
+      const isActive = header.classList.contains('active');
+
+      // Close all
+      document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+      document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+
+      // Open if not active
+      if (!isActive) {
+        header.classList.add('active');
+        currentContent.classList.add('active');
+      }
+    });
+  });
+
 
 });
 
