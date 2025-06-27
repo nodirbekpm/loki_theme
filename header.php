@@ -75,8 +75,8 @@ $phone = get_field('phone', 'option');
                         ?>
                         <li><a href="tel:<?= $phone ?>"><?= $phone ?></a></li>
                         <li class="mobile_links">
-                            <img src="img/cart.svg" alt="">
-                            <a href="cart.html">КОРЗИНА</a>
+                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/cart.svg" alt="">
+                            <a href="/корзина/">КОРЗИНА</a>
                         </li>
 
                         <li class="mobile_links">
@@ -98,7 +98,7 @@ $phone = get_field('phone', 'option');
                         <img src="<?php echo get_template_directory_uri() ?>/assets/img/like.svg" alt="" class="header-like">
                     </a>
 
-                    <a href="cart.html" class="laptop_icon">
+                    <a href="/корзина/" class="laptop_icon">
                         <img src="<?php echo get_template_directory_uri() ?>/assets/img/cart.svg" alt="" class="header-gamb">
                     </a>
 

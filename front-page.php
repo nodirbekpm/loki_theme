@@ -1,6 +1,6 @@
 <?php
 /*
- * Template name: Main page
+ * Template name: Главная страница
  * */
 
 get_header();
@@ -57,6 +57,7 @@ $home = get_field('home');
                         $card = get_field('card', $catalog->ID);
                         $card_title = $card['title'] ?? get_the_title($catalog);
                         $card_image = $card['image'];
+                        $card_mini_image = $card['mini_image'];
                         $product_count = 0;
 
                         $categories = get_posts([
@@ -110,7 +111,7 @@ $home = get_field('home');
                                 </div>
                             </div>
                             <div class="catalog__block-imgmini">
-                                <img src="<?= esc_url($card_image['sizes']['thumbnail'] ?? '') ?>" alt="">
+                                <img src="<?= esc_url($card_mini_image['url'] ?? '') ?>" alt="">
                             </div>
                             <div class="catalog__block-img">
                                 <img src="<?= esc_url($card_image['url'] ?? '') ?>" alt="">
@@ -333,7 +334,7 @@ if ($home['brandw_hidden'] !== "Да"):
                         $product_code = get_field('product_code', $product->ID);
                         $description = $product_fields['short_description'] ?? '';
                         $image = $product_fields['image']['url'] ?? get_the_post_thumbnail_url($product->ID, 'medium');
-
+                        $link = get_permalink($product->ID);
                         $prices = get_discounted_price($product->ID);
                         ?>
                         <div class="product-card">
@@ -353,7 +354,7 @@ if ($home['brandw_hidden'] !== "Да"):
                                     <div class="product-article">Код: <?= esc_html($product_code) ?></div>
                                 </div>
 
-                                <div class="product-description"><?= esc_html($description) ?></div>
+                                <a href="<?= esc_url($link) ?>" style="cursor: pointer; color: #000;" class="product-description"><?= esc_html($description) ?></a>
 
                                 <div class="product-wrap">
                                     <div class="product-prices">
@@ -368,7 +369,7 @@ if ($home['brandw_hidden'] !== "Да"):
                                         <span class="old-price"><?= number_format($prices['final'], 0, '', ' ') ?> ₽</span>
                                     </div>
 
-                                    <button class="add-to-cart-btn">В корзину</button>
+                                    <button class="add-to-cart-btn" data-product-id="<?php echo get_the_ID(); ?>">В корзину</button>
                                 </div>
 
                                 <div class="product-yandex">

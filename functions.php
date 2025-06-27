@@ -109,3 +109,9 @@ require_once get_template_directory() . '/inc/ajax/filter-products.php';
 //foreach (glob(get_template_directory() . '/filters/*.php') as $filename) {
 //    require_once $filename;
 //}
+
+
+// ================= Cart korzinka xullas =====================
+
+require_once get_template_directory() . '/inc/ajax/cart.php';
+require_once get_template_directory() . '/inc/ajax/cart2.php';

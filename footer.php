@@ -84,9 +84,9 @@ $delivery_places = get_field('delivery_places', 'option');
                         <?php endforeach; ?>
                     </ul>
 
-                    <a href="brands.html" class="footer__menu-title">Бренды</a>
+                    <a href="/brands/" class="footer__menu-title">Бренды</a>
                     <a href="#" class="footer__menu-title">ПРОЕКТНЫЕ ПОСТАВКИ</a>
-                    <a href="professionals.html" class="footer__menu-title">Для профессионалов</a>
+                    <a href="/локи-для-профессионалов/" class="footer__menu-title">Для профессионалов</a>
                 </div>
 
                 <!-- Третья колонка -->
@@ -96,7 +96,7 @@ $delivery_places = get_field('delivery_places', 'option');
                         <ul class="footer__menu">
                             <li><a href="#" class="footer__link">Личный кабинет</a></li>
                             <li><a href="#" class="footer__link">Избранное </a></li>
-                            <li><a href="cart.html" class="footer__link">Доставка и оплата</a></li>
+                            <li><a href="/корзина/" class="footer__link">Доставка и оплата</a></li>
                             <li><a href="#" class="footer__link">Блог: гид по выбору</a></li>
                             <li><a href="#" class="footer__link">О компании</a></li>
                             <li><a href="#" class="footer__link">Рассрочка и кредит</a></li>
@@ -163,9 +163,13 @@ $delivery_places = get_field('delivery_places', 'option');
 <script>
     var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
 </script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script defer src="<?php echo get_template_directory_uri() ?>/assets/js/filter.js"></script>
+<script defer src="<?php echo get_template_directory_uri() ?>/assets/js/cart.js"></script>
 <script defer src="<?php echo get_template_directory_uri() ?>/assets/js/app.js"></script>
 <script defer src="<?php echo get_template_directory_uri() ?>/assets/js/other.js"></script>
+
+<noscript><link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/assets/css/style.min.css?v=1748246790517"></noscript>
 
 
 </body>

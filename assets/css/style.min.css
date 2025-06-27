@@ -7158,6 +7158,7 @@ h5 {
 }
 
 .cart .product-image {
+    max-width: 160px;
     height: 100%;
     -o-object-fit: contain;
     font-family: "object-fit:contain";

@@ -1,6 +1,6 @@
 <?php
 /*
- * Template Name: Katalog
+ * Template Name: Каталог
  */
 get_header();
 
@@ -55,7 +55,7 @@ $categories = get_posts([
 
                 <aside class="catalog-filters" id="catalog-filters">
                     <div class="filter_container">
-                        <div class="filter_close_button" onclick="window.hideCatalogFilters()"><img src="img/close.svg"
+                        <div class="filter_close_button" onclick="window.hideCatalogFilters()"><img src="<?php echo get_template_directory_uri() ?>/assets/img/close.svg"
                                                                                                     alt=""></div>
                         <div class="filter-section">
                             <?php if ($categories): ?>
@@ -71,190 +71,78 @@ $categories = get_posts([
 
                             <?php endif; ?>
                         </div>
+
+                        <?php
+                        $catalog_id = get_the_ID();
+                        $min_price = PHP_INT_MAX;
+                        $max_price = 0;
+
+                        $all_products = get_posts([
+                            'post_type' => 'product',
+                            'post_status' => 'publish',
+                            'numberposts' => -1,
+                        ]);
+
+                        foreach ($all_products as $product) {
+                            $group = get_field('product', $product->ID);
+                            if (!$group) continue;
+
+                            $category = $group['category'] ?? null;
+
+                            if (!$category) continue;
+
+                            if (is_array($category)) {
+                                $category_id = $category[0]->ID ?? 0;
+                            } elseif (is_object($category)) {
+                                $category_id = $category->ID;
+                            } else {
+                                $category_id = (int)$category;
+                            }
+
+                            if (!$category_id) continue;
+
+                            $linked_catalog = get_field('catalog', $category_id);
+
+                            if (is_array($linked_catalog)) {
+                                $linked_catalog_id = $linked_catalog[0]->ID ?? 0;
+                            } elseif (is_object($linked_catalog)) {
+                                $linked_catalog_id = $linked_catalog->ID;
+                            } else {
+                                $linked_catalog_id = (int)$linked_catalog;
+                            }
+
+                            if ($linked_catalog_id !== $catalog_id) continue;
+
+                            $price_data = get_discounted_price($product->ID);
+                            $price = $price_data['final'] ?? 0;
+
+                            if ($price <= 0) continue;
+
+                            $min_price = min($min_price, $price);
+                            $max_price = max($max_price, $price);
+                        }
+
+                        if ($min_price === PHP_INT_MAX) $min_price = 0;
+                        if ($max_price === 0) $max_price = 100000;
+
+                        ?>
                         <div class="filter-section">
                             <h3 class="filter-title">Цена, ₽</h3>
                             <div class="price-range-slider">
 
                                 <div class="price-inputs">
-                                    <input type="number" class="price-input min-input" value="0">
+                                    <input type="number" class="price-input min-input" value="<?php echo esc_attr($min_price); ?>">
                                     <span class="price-separator">-</span>
-                                    <input type="number" class="price-input max-input" value="2390000">
+                                    <input type="number" class="price-input max-input" value="<?php echo esc_attr($max_price); ?>">
                                 </div>
+
                                 <div class="range-slider">
-                                    <input type="range" class="min-price" min="0" max="2390000" value="0">
-                                    <input type="range" class="max-price" min="0" max="2390000" value="2390000">
+                                    <input type="range" class="min-price" min="<?php echo esc_attr($min_price); ?>" max="<?php echo esc_attr($max_price); ?>" value="<?php echo esc_attr($min_price); ?>">
+                                    <input type="range" class="max-price" min="<?php echo esc_attr($min_price); ?>" max="<?php echo esc_attr($max_price); ?>" value="<?php echo esc_attr($max_price); ?>">
                                 </div>
                             </div>
                         </div>
 
-                        <!--                        --><?php
-                        //                        $brands = get_posts([
-                        //                            'post_type' => 'brand',
-                        //                            'post_status' => 'publish',
-                        //                            'numberposts' => -1,
-                        //                        ]);
-                        //
-                        //                        if ($brands):
-                        //                            ?>
-                        <!--                            <div class="filter-section">-->
-                        <!--                                <h3 class="filter-title">Бренд</h3>-->
-                        <!--                                <div class="filter-checkboxes">-->
-                        <!--                                    --><?php //foreach ($brands as $brand):
-                        //                                        $products = get_posts([
-                        //                                            'post_type' => 'product',
-                        //                                            'post_status' => 'publish',
-                        //                                            'numberposts' => -1,
-                        //                                            'meta_query' => [
-                        //                                                [
-                        //                                                    'key' => 'product_brand',
-                        //                                                    'value' => $brand->ID,
-                        //                                                    'compare' => '=',
-                        //                                                ],
-                        //                                            ],
-                        //                                            'fields' => 'ids',
-                        //                                        ]);
-                        //                                        $product_count = count($products);
-                        //                                        ?>
-                        <!--                                        <label class="filter-checkbox">-->
-                        <!--                                            <input type="checkbox" class="brand-filter" value="-->
-                        <?php //= $brand->ID ?><!--">-->
-                        <!--                                            <span class="checkmark"></span>-->
-                        <!--                                            <span class="filter-name">-->
-                        <?php //= esc_html(get_the_title($brand)) ?><!--</span>-->
-                        <!--                                            <span class="filter-count">(-->
-                        <?php //= esc_html($product_count) ?><!--)</span>-->
-                        <!--                                        </label>-->
-                        <!--                                    --><?php //endforeach; ?>
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        --><?php //endif; ?>
-                        <!---->
-                        <!---->
-                        <!--                        --><?php
-                        //                        $shapes = get_terms([
-                        //                            'taxonomy' => 'shape',
-                        //                            'hide_empty' => false,
-                        //                        ]);
-                        //
-                        //                        if (!empty($shapes) && !is_wp_error($shapes)) :
-                        //                            ?>
-                        <!--                            <div class="filter-section">-->
-                        <!--                                <h3 class="filter-title filter-title_close">Форма</h3>-->
-                        <!--                                <div class="filter-checkboxes filter-content_close">-->
-                        <!---->
-                        <!--                                    --><?php
-                        //                                    $all_products = get_posts([
-                        //                                        'post_type' => 'product',
-                        //                                        'post_status' => 'publish',
-                        //                                        'posts_per_page' => -1,
-                        //                                    ]);
-                        //
-                        //                                    $shape_counts = [];
-                        //
-                        //                                    foreach ($all_products as $product) {
-                        //                                        $product_fields = get_field('product', $product->ID); // group field
-                        //
-                        //                                        if (!empty($product_fields['shape'])) {
-                        //                                            $shape_field = $product_fields['shape'];
-                        //
-                        //                                            if (is_array($shape_field)) {
-                        //                                                foreach ($shape_field as $item) {
-                        //                                                    $term_id = is_array($item) && isset($item['term_id']) ? $item['term_id'] : (int) $item;
-                        //                                                    if (!isset($shape_counts[$term_id])) {
-                        //                                                        $shape_counts[$term_id] = 0;
-                        //                                                    }
-                        //                                                    $shape_counts[$term_id]++;
-                        //                                                }
-                        //                                            } else {
-                        //                                                $term_id = is_array($shape_field) && isset($shape_field['term_id']) ? $shape_field['term_id'] : (int) $shape_field;
-                        //                                                if (!isset($shape_counts[$term_id])) {
-                        //                                                    $shape_counts[$term_id] = 0;
-                        //                                                }
-                        //                                                $shape_counts[$term_id]++;
-                        //                                            }
-                        //                                        }
-                        //                                    }
-                        //
-                        //                                    foreach ($shapes as $index => $shape) :
-                        //                                        $count = $shape_counts[$shape->term_id] ?? 0;
-                        //                                        ?>
-                        <!--                                        <label class="filter-checkbox">-->
-                        <!--                                            <input type="checkbox" class="shape-filter" data-term-id="-->
-                        <?php //= $shape->term_id ?><!--">-->
-                        <!--                                            <span class="checkmark"></span>-->
-                        <!--                                            <span class="filter-name">-->
-                        <?php //= esc_html($shape->name) ?><!--</span>-->
-                        <!--                                            <span class="filter-count">(-->
-                        <?php //= $count ?><!--)</span>-->
-                        <!--                                        </label>-->
-                        <!--                                    --><?php //endforeach; ?>
-                        <!---->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        --><?php //endif; ?>
-                        <!---->
-                        <!--                        --><?php
-                        //                        $colors = get_terms([
-                        //                            'taxonomy' => 'color',
-                        //                            'hide_empty' => false,
-                        //                        ]);
-                        //
-                        //                        if (!empty($colors) && !is_wp_error($colors)) :
-                        //                            ?>
-                        <!--                            <div class="filter-section">-->
-                        <!--                                <h3 class="filter-title">Цвет</h3>-->
-                        <!--                                <div class="filter-checkboxes">-->
-                        <!---->
-                        <!--                                    --><?php
-                        //                                    $all_products = get_posts([
-                        //                                        'post_type' => 'product',
-                        //                                        'post_status' => 'publish',
-                        //                                        'posts_per_page' => -1,
-                        //                                    ]);
-                        //
-                        //                                    $color_counts = [];
-                        //
-                        //                                    foreach ($all_products as $product) {
-                        //                                        $product_fields = get_field('product', $product->ID);
-                        //
-                        //                                        if (!empty($product_fields['color'])) {
-                        //                                            $color_field = $product_fields['color'];
-                        //
-                        //                                            if (is_array($color_field)) {
-                        //                                                foreach ($color_field as $item) {
-                        //                                                    $term_id = is_array($item) && isset($item['term_id']) ? $item['term_id'] : (int) $item;
-                        //                                                    if (!isset($color_counts[$term_id])) {
-                        //                                                        $color_counts[$term_id] = 0;
-                        //                                                    }
-                        //                                                    $color_counts[$term_id]++;
-                        //                                                }
-                        //                                            } else {
-                        //                                                $term_id = is_array($color_field) && isset($color_field['term_id']) ? $color_field['term_id'] : (int) $color_field;
-                        //                                                if (!isset($color_counts[$term_id])) {
-                        //                                                    $color_counts[$term_id] = 0;
-                        //                                                }
-                        //                                                $color_counts[$term_id]++;
-                        //                                            }
-                        //                                        }
-                        //                                    }
-                        //
-                        //                                    foreach ($colors as $index => $color) :
-                        //                                        $count = $color_counts[$color->term_id] ?? 0;
-                        //                                        ?>
-                        <!--                                        <label class="filter-checkbox">-->
-                        <!--                                            <input type="checkbox" class="color-filter" data-term-id="-->
-                        <?php //= $color->term_id ?><!--">-->
-                        <!--                                            <span class="checkmark"></span>-->
-                        <!--                                            <span class="filter-name">-->
-                        <?php //= esc_html($color->name) ?><!--</span>-->
-                        <!--                                            <span class="filter-count">(-->
-                        <?php //= $count ?><!--)</span>-->
-                        <!--                                        </label>-->
-                        <!--                                    --><?php //endforeach; ?>
-                        <!---->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        --><?php //endif; ?>
 
                         <?php
                         $catalog_id = get_the_ID();
@@ -342,7 +230,8 @@ $categories = get_posts([
 //                                        if ($count === 0) continue;
                                         ?>
                                         <label class="filter-checkbox">
-                                            <input type="checkbox" class="shape-filter" data-term-id="<?= $shape->term_id ?>">
+                                            <input type="checkbox" class="shape-filter"
+                                                   data-term-id="<?= $shape->term_id ?>">
                                             <span class="checkmark"></span>
                                             <span class="filter-name"><?= esc_html($shape->name) ?></span>
                                             <span class="filter-count">(<?= $count ?>)</span>
@@ -380,7 +269,8 @@ $categories = get_posts([
 //                                        if ($count === 0) continue;
                                         ?>
                                         <label class="filter-checkbox">
-                                            <input type="checkbox" class="color-filter" data-term-id="<?= $color->term_id ?>">
+                                            <input type="checkbox" class="color-filter"
+                                                   data-term-id="<?= $color->term_id ?>">
                                             <span class="checkmark"></span>
                                             <span class="filter-name"><?= esc_html($color->name) ?></span>
                                             <span class="filter-count">(<?= $count ?>)</span>
@@ -393,9 +283,8 @@ $categories = get_posts([
 
 
                         <?php
-                        $catalog_id = get_the_ID(); // joriy catalog ID
+                        $catalog_id = get_the_ID();
 
-                        // Katalogga tegishli barcha productlarni olish
                         $all_products = get_posts([
                             'post_type' => 'product',
                             'post_status' => 'publish',
@@ -409,12 +298,19 @@ $categories = get_posts([
                             if (!$fields) continue;
 
                             $category = $fields['category'] ?? null;
-                            if (!$category || get_field('catalog', $category->ID) != $catalog_id) continue;
+                            if (!$category) continue;
+
+                            $category_id = is_object($category) ? $category->ID : (int)$category;
+
+                            $linked_catalog = get_field('catalog', $category_id);
+                            $linked_catalog_id = is_object($linked_catalog) ? $linked_catalog->ID : (int)$linked_catalog;
+
+                            if ($linked_catalog_id !== $catalog_id) continue;
 
                             $size = $fields['size_sm'] ?? null;
                             if ($size === null || $size === '') continue;
 
-                            $size = floatval($size); // formatlash
+                            $size = floatval($size);
 
                             if (!isset($size_counts[$size])) {
                                 $size_counts[$size] = 0;
@@ -423,7 +319,7 @@ $categories = get_posts([
                         }
 
                         if (!empty($size_counts)) :
-                            ksort($size_counts); // tartib bilan chiqarish (20, 30, 40...)
+                            ksort($size_counts);
                             ?>
                             <div class="filter-section">
                                 <h3 class="filter-title">Размер</h3>
@@ -440,88 +336,111 @@ $categories = get_posts([
                             </div>
                         <?php endif; ?>
 
+
                         <div class="filter-section">
-                            <?php
-                            $terms = get_terms([
-                                'taxonomy' => 'installation',
-                                'hide_empty' => false,
-                            ]);
+                            <h3 class="filter-title">Установка</h3>
+                            <div class="filter-checkboxes">
+                                <?php
+                                $catalog_id = get_the_ID();
+                                $terms = get_terms([
+                                    'taxonomy' => 'installation',
+                                    'hide_empty' => false,
+                                ]);
 
-                            if (!empty($terms) && !is_wp_error($terms)) : ?>
-                                <div class="filter-section">
-                                    <h3 class="filter-title">Установка</h3>
-                                    <div class="filter-checkboxes">
-                                        <?php foreach ($terms as $index => $term) :
-                                            // ACF orqali product postlaridan installation id bilan bog‘langanlarni sanaymiz
-                                            $count_query = new WP_Query([
-                                                'post_type' => 'product',
-                                                'posts_per_page' => -1,
-                                                'post_status' => 'publish',
-                                                'meta_query' => [
-                                                    [
-                                                        'key' => 'product_installation', // <-- bu sizning ACF group ichidagi installation field name
-                                                        'value' => '"' . $term->term_id . '"',
-                                                        'compare' => 'LIKE'
-                                                    ]
-                                                ]
-                                            ]);
-                                            $count = $count_query->found_posts;
-                                            ?>
-                                            <label class="filter-checkbox">
-                                                <input type="checkbox" <?= $index === 0 ? 'checked' : '' ?>>
-                                                <span class="checkmark"></span>
-                                                <span class="filter-name"><?= esc_html($term->name) ?></span>
-                                                <span class="filter-count">(<?= esc_html($count) ?>)</span>
-                                            </label>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
+                                $installation_counts = [];
 
+                                $all_products = get_posts([
+                                    'post_type' => 'product',
+                                    'post_status' => 'publish',
+                                    'posts_per_page' => -1,
+                                ]);
+
+                                foreach ($all_products as $product) {
+                                    $group = get_field('product', $product->ID);
+                                    if (!$group) continue;
+
+                                    $category = $group['category'] ?? null;
+                                    if (!$category) continue;
+                                    $category_id = is_object($category) ? $category->ID : (int)$category;
+                                    $linked_catalog = get_field('catalog', $category_id);
+                                    $linked_catalog_id = is_object($linked_catalog) ? $linked_catalog->ID : (int)$linked_catalog;
+
+                                    if ($linked_catalog_id !== $catalog_id) continue;
+
+                                    $installations = $group['installation'] ?? [];
+                                    if (!is_array($installations)) $installations = [$installations];
+
+                                    foreach ($installations as $ins) {
+                                        $term_id = is_array($ins) ? $ins['term_id'] : (int)$ins;
+                                        $installation_counts[$term_id] = ($installation_counts[$term_id] ?? 0) + 1;
+                                    }
+                                }
+
+                                if (!empty($terms) && !is_wp_error($terms)) :
+                                    foreach ($terms as $term):
+                                        $count = $installation_counts[$term->term_id] ?? 0;
+                                        ?>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" class="installation-filter"
+                                                   data-term-id="<?= esc_attr($term->term_id) ?>">
+                                            <span class="checkmark"></span>
+                                            <span class="filter-name"><?= esc_html($term->name) ?></span>
+                                            <span class="filter-count">(<?= esc_html($count) ?>)</span>
+                                        </label>
+                                    <?php endforeach;
+                                endif;
+                                ?>
+                            </div>
                         </div>
 
-                        <?php
-                        $yes_query = new WP_Query([
-                            'post_type' => 'product',
-                            'posts_per_page' => -1,
-                            'post_status' => 'publish',
-                            'meta_query' => [
-                                [
-                                    'key' => 'product_anti_fog',
-                                    'value' => '1',
-                                    'compare' => '='
-                                ]
-                            ]
-                        ]);
-                        $yes_count = $yes_query->found_posts;
 
-                        $no_query = new WP_Query([
+                        <?php
+                        $catalog_id = get_the_ID();
+
+                        $yes_count = 0;
+                        $no_count = 0;
+
+                        $products = get_posts([
                             'post_type' => 'product',
-                            'posts_per_page' => -1,
                             'post_status' => 'publish',
-                            'meta_query' => [
-                                [
-                                    'key' => 'product_anti_fog',
-                                    'value' => '0',
-                                    'compare' => '='
-                                ]
-                            ]
+                            'numberposts' => -1,
                         ]);
-                        $no_count = $no_query->found_posts;
+
+                        foreach ($products as $product) {
+                            $group = get_field('product', $product->ID);
+                            if (!$group) continue;
+
+                            $category = $group['category'] ?? null;
+                            if (!$category) continue;
+
+                            $category_id = is_object($category) ? $category->ID : (int)$category;
+                            $linked_catalog = get_field('catalog', $category_id);
+                            $linked_catalog_id = is_object($linked_catalog) ? $linked_catalog->ID : (int)$linked_catalog;
+
+                            if ($linked_catalog_id !== $catalog_id) continue;
+
+                            $anti_fog = $group['anti_fog'] ?? null;
+
+                            if ($anti_fog) {
+                                $yes_count++;
+                            } else {
+                                $no_count++;
+                            }
+                        }
                         ?>
 
                         <div class="filter-section">
                             <h3 class="filter-title">Функция антизапотевания</h3>
                             <div class="filter-checkboxes">
                                 <label class="filter-checkbox">
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" class="anti-fog-filter" value="1">
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Да</span>
                                     <span class="filter-count">(<?= $yes_count ?>)</span>
                                 </label>
 
                                 <label class="filter-checkbox">
-                                    <input type="checkbox">
+                                    <input type="checkbox" class="anti-fog-filter" value="0">
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Нет</span>
                                     <span class="filter-count">(<?= $no_count ?>)</span>
@@ -531,47 +450,51 @@ $categories = get_posts([
 
 
                         <?php
-                        $clock_yes_query = new WP_Query([
-                            'post_type' => 'product',
-                            'posts_per_page' => -1,
-                            'post_status' => 'publish',
-                            'meta_query' => [
-                                [
-                                    'key' => 'product_built_clock',
-                                    'value' => '1',
-                                    'compare' => '='
-                                ]
-                            ]
-                        ]);
-                        $clock_yes_count = $clock_yes_query->found_posts;
+                        $clock_yes_count = 0;
+                        $clock_no_count = 0;
+                        $catalog_id = get_the_ID();
 
-                        $clock_no_query = new WP_Query([
+                        $products = get_posts([
                             'post_type' => 'product',
-                            'posts_per_page' => -1,
                             'post_status' => 'publish',
-                            'meta_query' => [
-                                [
-                                    'key' => 'product_built_clock',
-                                    'value' => '0',
-                                    'compare' => '='
-                                ]
-                            ]
+                            'numberposts' => -1,
                         ]);
-                        $clock_no_count = $clock_no_query->found_posts;
+
+                        foreach ($products as $product) {
+                            $group = get_field('product', $product->ID);
+                            if (!$group) continue;
+
+                            $category = $group['category'] ?? null;
+                            if (!$category) continue;
+
+                            $category_id = is_object($category) ? $category->ID : (int)$category;
+                            $linked_catalog = get_field('catalog', $category_id);
+                            $linked_catalog_id = is_object($linked_catalog) ? $linked_catalog->ID : (int)$linked_catalog;
+
+                            if ($linked_catalog_id !== $catalog_id) continue;
+
+                            $built_clock = $group['built_clock'] ?? null;
+
+                            if ($built_clock) {
+                                $clock_yes_count++;
+                            } else {
+                                $clock_no_count++;
+                            }
+                        }
                         ?>
 
                         <div class="filter-section">
                             <h3 class="filter-title">Встроенные часы</h3>
                             <div class="filter-checkboxes">
                                 <label class="filter-checkbox">
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" class="built-clock-filter" value="1">
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Да</span>
                                     <span class="filter-count">(<?= $clock_yes_count ?>)</span>
                                 </label>
 
                                 <label class="filter-checkbox">
-                                    <input type="checkbox">
+                                    <input type="checkbox" class="built-clock-filter" value="0">
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Нет</span>
                                     <span class="filter-count">(<?= $clock_no_count ?>)</span>
@@ -581,46 +504,51 @@ $categories = get_posts([
 
 
                         <?php
-                        $cosmetic_yes_query = new WP_Query([
-                            'post_type' => 'product',
-                            'posts_per_page' => -1,
-                            'post_status' => 'publish',
-                            'meta_query' => [
-                                [
-                                    'key' => 'product_cosmetic_mirror',
-                                    'value' => '1',
-                                    'compare' => '='
-                                ]
-                            ]
-                        ]);
-                        $cosmetic_yes_count = $cosmetic_yes_query->found_posts;
+                        $cosmetic_yes_count = 0;
+                        $cosmetic_no_count = 0;
+                        $catalog_id = get_the_ID();
 
-                        $cosmetic_no_query = new WP_Query([
+                        $products = get_posts([
                             'post_type' => 'product',
-                            'posts_per_page' => -1,
                             'post_status' => 'publish',
-                            'meta_query' => [
-                                [
-                                    'key' => 'product_cosmetic_mirror',
-                                    'value' => '0',
-                                    'compare' => '='
-                                ]
-                            ]
+                            'numberposts' => -1,
                         ]);
-                        $cosmetic_no_count = $cosmetic_no_query->found_posts;
+
+                        foreach ($products as $product) {
+                            $group = get_field('product', $product->ID);
+                            if (!$group) continue;
+
+                            $category = $group['category'] ?? null;
+                            if (!$category) continue;
+
+                            $category_id = is_object($category) ? $category->ID : (int)$category;
+                            $linked_catalog = get_field('catalog', $category_id);
+                            $linked_catalog_id = is_object($linked_catalog) ? $linked_catalog->ID : (int)$linked_catalog;
+
+                            if ($linked_catalog_id !== $catalog_id) continue;
+
+                            $cosmetic = $group['cosmetic_mirror'] ?? null;
+
+                            if ($cosmetic) {
+                                $cosmetic_yes_count++;
+                            } else {
+                                $cosmetic_no_count++;
+                            }
+                        }
                         ?>
+
                         <div class="filter-section">
                             <h3 class="filter-title">Косметическое зеркало</h3>
                             <div class="filter-checkboxes">
                                 <label class="filter-checkbox">
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" class="cosmetic-mirror-filter" value="1">
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Да</span>
                                     <span class="filter-count">(<?= $cosmetic_yes_count ?>)</span>
                                 </label>
 
                                 <label class="filter-checkbox">
-                                    <input type="checkbox">
+                                    <input type="checkbox" class="cosmetic-mirror-filter" value="0">
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Нет</span>
                                     <span class="filter-count">(<?= $cosmetic_no_count ?>)</span>
@@ -630,45 +558,64 @@ $categories = get_posts([
 
 
                         <?php
+                        $catalog_id = get_the_ID();
+
                         $collection_terms = get_terms([
                             'taxonomy' => 'collection',
                             'hide_empty' => false,
                         ]);
 
-                        if (!empty($collection_terms) && !is_wp_error($collection_terms)) : ?>
+                        if (!empty($collection_terms) && !is_wp_error($collection_terms)) :
+                            $collection_counts = [];
+
+                            // Barcha mahsulotlarni olish
+                            $products = get_posts([
+                                'post_type' => 'product',
+                                'post_status' => 'publish',
+                                'numberposts' => -1,
+                            ]);
+
+                            foreach ($products as $product) {
+                                $group = get_field('product', $product->ID);
+                                if (!$group) continue;
+
+                                $category = $group['category'] ?? null;
+                                if (!$category) continue;
+
+                                $category_id = is_object($category) ? $category->ID : (int)$category;
+                                $linked_catalog = get_field('catalog', $category_id);
+                                $linked_catalog_id = is_object($linked_catalog) ? $linked_catalog->ID : (int)$linked_catalog;
+
+                                if ($linked_catalog_id !== $catalog_id) continue;
+
+                                $collections = $group['collection'] ?? [];
+
+                                if (!is_array($collections)) {
+                                    $collections = [$collections];
+                                }
+
+                                foreach ($collections as $term) {
+                                    $term_id = is_array($term) ? ($term['term_id'] ?? 0) : (int)$term;
+                                    if (!$term_id) continue;
+
+                                    if (!isset($collection_counts[$term_id])) {
+                                        $collection_counts[$term_id] = 0;
+                                    }
+                                    $collection_counts[$term_id]++;
+                                }
+                            }
+                            ?>
+
                             <div class="filter-section">
                                 <h3 class="filter-title">Коллекция</h3>
                                 <div class="filter-checkboxes">
-                                    <?php foreach ($collection_terms as $term) :
-                                        $count = 0;
-
-                                        $products = get_posts([
-                                            'post_type' => 'product',
-                                            'post_status' => 'publish',
-                                            'posts_per_page' => -1,
-                                        ]);
-
-                                        foreach ($products as $product) {
-                                            $product_fields = get_field('product', $product->ID);
-                                            $product_collections = $product_fields['collection'] ?? [];
-
-                                            if (!is_array($product_collections)) {
-                                                $product_collections = [$product_collections];
-                                            }
-
-                                            foreach ($product_collections as $collection_term_id) {
-                                                if ((int)$collection_term_id === $term->term_id) {
-                                                    $count++;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        ?>
+                                    <?php foreach ($collection_terms as $term): ?>
                                         <label class="filter-checkbox">
-                                            <input type="checkbox">
+                                            <input type="checkbox" class="collection-filter"
+                                                   data-term-id="<?= $term->term_id ?>">
                                             <span class="checkmark"></span>
                                             <span class="filter-name"><?= esc_html($term->name) ?></span>
-                                            <span class="filter-count">(<?= $count ?>)</span>
+                                            <span class="filter-count">(<?= $collection_counts[$term->term_id] ?? 0 ?>)</span>
                                         </label>
                                     <?php endforeach; ?>
                                 </div>
@@ -676,20 +623,36 @@ $categories = get_posts([
                         <?php endif; ?>
 
 
+
                         <?php
+                        $catalog_id = get_the_ID();
+
                         $yes_count = 0;
                         $no_count = 0;
 
                         $products = get_posts([
                             'post_type' => 'product',
                             'post_status' => 'publish',
-                            'posts_per_page' => -1,
+                            'numberposts' => -1,
                         ]);
 
                         foreach ($products as $product) {
-                            $prices = get_discounted_price($product->ID);
+                            $group = get_field('product', $product->ID);
+                            if (!$group) continue;
 
-                            if (!empty($prices['discount']) && $prices['discount'] > 0) {
+                            $category = $group['category'] ?? null;
+                            if (!$category) continue;
+
+                            $category_id = is_object($category) ? $category->ID : (int)$category;
+                            $linked_catalog = get_field('catalog', $category_id);
+                            $linked_catalog_id = is_object($linked_catalog) ? $linked_catalog->ID : (int)$linked_catalog;
+
+                            if ($linked_catalog_id !== $catalog_id) continue;
+
+                            $prices = get_discounted_price($product->ID);
+                            $discount = $prices['discount'] ?? 0;
+
+                            if ($discount > 0) {
                                 $yes_count++;
                             } else {
                                 $no_count++;
@@ -701,14 +664,14 @@ $categories = get_posts([
                             <h3 class="filter-title">Товар со скидкой</h3>
                             <div class="filter-checkboxes">
                                 <label class="filter-checkbox">
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" class="discount-filter" value="1">
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Да</span>
                                     <span class="filter-count">(<?= $yes_count ?>)</span>
                                 </label>
 
                                 <label class="filter-checkbox">
-                                    <input type="checkbox">
+                                    <input type="checkbox" class="discount-filter" value="0">
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Нет</span>
                                     <span class="filter-count">(<?= $no_count ?>)</span>
@@ -718,6 +681,8 @@ $categories = get_posts([
 
 
                         <?php
+                        $catalog_id = get_the_ID();
+
                         $in_stock_count = 0;
 
                         $products = get_posts([
@@ -727,18 +692,30 @@ $categories = get_posts([
                         ]);
 
                         foreach ($products as $product) {
-                            $product_fields = get_field('product', $product->ID);
-                            if (!empty($product_fields['in_stock'])) {
+                            $group = get_field('product', $product->ID);
+                            if (!$group) continue;
+
+                            $category = $group['category'] ?? null;
+                            if (!$category) continue;
+
+                            $category_id = is_object($category) ? $category->ID : (int)$category;
+                            $linked_catalog = get_field('catalog', $category_id);
+                            $linked_catalog_id = is_object($linked_catalog) ? $linked_catalog->ID : (int)$linked_catalog;
+
+                            if ($linked_catalog_id !== $catalog_id) continue;
+
+                            if (!empty($group['in_stock'])) {
                                 $in_stock_count++;
                             }
                         }
                         ?>
 
+
                         <div class="filter-section">
                             <h3 class="filter-title">Показать</h3>
                             <div class="filter-checkboxes">
                                 <label class="filter-checkbox">
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" class="in-stock-filter" value="1" checked>
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Только в наличии</span>
                                     <span class="filter-count">(<?= $in_stock_count ?>)</span>
@@ -766,97 +743,22 @@ $categories = get_posts([
 
                 <div class="catalog-products-wrap">
                     <main class="catalog-products">
-                        <?php
-                        $catalog_id = get_the_ID();
+<!--                        <div class="loading-spinner" style="display: flex; justify-content: left; align-items: center;">-->
+<!--                            <style>-->
+<!--                                @keyframes fadeInOut {-->
+<!--                                    0%, 100% { opacity: 0; }-->
+<!--                                    50%      { opacity: 1; }-->
+<!--                                }-->
+<!--                            </style>-->
+<!--                            <div style="-->
+<!--                                font-size: 20px;-->
+<!--                                color: #1C1230;-->
+<!--                                animation: fadeInOut 1.5s infinite;-->
+<!--                            ">-->
+<!--                                Loading...-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                        $categories = get_posts([
-                            'post_type' => 'product_category',
-                            'meta_key' => 'catalog',
-                            'meta_value' => $catalog_id,
-                            'posts_per_page' => -1,
-                            'fields' => 'ids',
-                        ]);
-
-                        if ($categories):
-                            $products = get_posts([
-                                'post_type' => 'product',
-                                'post_status' => 'publish',
-                                'posts_per_page' => -1,
-                                'meta_query' => [
-                                    [
-                                        'key' => 'product_category',
-                                        'compare' => 'EXISTS',
-                                    ]
-                                ],
-                            ]);
-                            ?>
-
-                            <?php foreach ($products as $product):
-                            $product_fields = get_field('product', $product->ID);
-                            if (!$product_fields) continue;
-
-                            $product_category = $product_fields['category'] ?? null;
-                            if (!$product_category || !in_array($product_category->ID, $categories)) continue;
-
-                            $brand_post = $product_fields['brand'] ?? null;
-                            $brand_title = $brand_post ? get_the_title($brand_post) : '';
-
-                            $product_code = get_field('product_code', $product->ID);
-                            $description = $product_fields['short_description'] ?? '';
-                            $image = $product_fields['image']['url'] ?? get_the_post_thumbnail_url($product->ID, 'medium');
-
-                            $prices = get_discounted_price($product->ID);
-                            ?>
-
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="<?= esc_url($image) ?>" alt="<?= esc_attr($brand_title) ?>"
-                                         class="product-img">
-                                </div>
-
-                                <div class="product-card__top">
-                                    <img src="<?= get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
-                                    <img src="<?= get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
-                                </div>
-
-                                <div class="product-details">
-                                    <div class="product-details__cont">
-                                        <div class="product-title"><?= esc_html($brand_title) ?></div>
-                                        <div class="product-article">Код: <?= esc_html($product_code) ?></div>
-                                    </div>
-
-                                    <div class="product-description"><?= esc_html($description) ?></div>
-
-                                    <div class="product-wrap">
-                                        <div class="product-prices">
-                                            <div class="product-prices-wrap">
-                                                <?php if ($prices['discount'] > 0): ?>
-                                                    <span class="current-price"><?= number_format($prices['original'], 0, '', ' ') ?> ₽</span>
-                                                    <span class="product-badge">-<?= $prices['discount'] ?>%</span>
-                                                <?php endif; ?>
-                                            </div>
-                                            <span class="old-price"><?= number_format($prices['final'], 0, '', ' ') ?> ₽</span>
-                                        </div>
-
-                                        <button class="add-to-cart-btn">В корзину</button>
-                                    </div>
-
-                                    <div class="product-yandex">
-                                        <img src="<?= get_template_directory_uri() ?>/assets/img/plus.svg" alt="">
-                                        1 199 баллов Плюса кэшбэк в
-                                        <img src="<?= get_template_directory_uri() ?>/assets/img/ya-pay.svg" alt="">
-                                    </div>
-
-                                    <div class="product-split">
-                                        <img src="<?= get_template_directory_uri() ?>/assets/img/cask.svg" alt="">
-                                        х4 платежа в
-                                        <img src="<?= get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                        <?php endforeach; ?>
-                        <?php endif; ?>
                     </main>
 
 
@@ -864,20 +766,12 @@ $categories = get_posts([
                         <button class="load-more">Показать еще</button>
                         <div class="catalog-bottom-controls-wrap">
                             <div class="pagination-count">
-                                Показаны 28 из 240
+                                Показаны 0 из 0
                             </div>
-
                             <div class="pagination-bottom">
-                                <a href="#" class="pagination-link active">1</a>
-                                <a href="#" class="pagination-link">2</a>
-                                <a href="#" class="pagination-link">3</a>
-                                <a href="#" class="pagination-link">4</a>
-                                <a href="#" class="pagination-link">5</a>
-
-                                <a href="#" class="pagination-link next">></a>
+                                <!-- Sahifalar bu yerda paydo bo‘ladi -->
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
