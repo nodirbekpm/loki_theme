@@ -57,59 +57,87 @@ $brand = get_field('brand');
                 </div>
                 <div class="hits__blocks">
                     <?php
-                    $latest_products = get_posts([
-                        'post_type' => 'product',
-                        'post_status' => 'publish',
+                    $args = [
+                        'post_type'      => 'product',
+                        'post_status'    => 'publish',
                         'posts_per_page' => 8,
-                        'orderby' => 'date',
-                        'order' => 'DESC',
-                    ]);
+                        'orderby'        => 'date',
+                        'order'          => 'DESC',
+                    ];
 
-                    foreach ($latest_products as $product) :
-                        $product_fields = get_field('product', $product->ID); // group field
-                        $brand_post = $product_fields['brand'] ?? null;
-                        $brand_title = $brand_post ? get_the_title($brand_post) : '';
+                    $loop = new WP_Query($args);
 
-                        $product_code = get_field('product_code', $product->ID);
-                        $description = $product_fields['short_description'] ?? '';
-                        $image = $product_fields['image']['url'] ?? get_the_post_thumbnail_url($product->ID, 'medium');
-                        $link = get_permalink($product->ID);
-                        $prices = get_discounted_price($product->ID);
+                    while ($loop->have_posts()) : $loop->the_post();
+                        $product = wc_get_product(get_the_ID());
+
+                        $brand_id     = get_field('brand', $product->get_id());
+                        $brand_title    = $brand_id    ? get_the_title($brand_id)    : '';
+
+                        $regular_price = (float) $product->get_regular_price();
+                        $sale_price    = (float) $product->get_sale_price();
+                        $final_price   = $sale_price > 0 ? $sale_price : $regular_price;
+
+                        $discount = ($regular_price && $sale_price)
+                            ? round((($regular_price - $sale_price) / $regular_price) * 100)
+                            : 0;
+                        $product_title = $product->get_title();
+                        $desc = $product->get_description();
+                        $short_desc = $product->get_short_description();
+                        $sku        = $product->get_sku();
+                        $permalink  = get_permalink($product->get_id());
+                        $image_url  = wp_get_attachment_image_url($product->get_image_id(), 'medium');
+
+                        // Atributlar olish (Color, Shape, Installation)
+                        $attributes = [];
+                        foreach (['pa_color', 'pa_shape', 'pa_installation', 'pa_collection'] as $attr) {
+                            $terms = wp_get_post_terms($product->get_id(), $attr);
+                            foreach ($terms as $term) {
+                                $attributes[] = $term->name;
+                            }
+                        }
+
+                        $attributes_str = implode(', ', $attributes);
                         ?>
                         <div class="product-card">
-
                             <div class="product-image">
-                                <img src="<?= esc_url($image) ?>" alt="<?= esc_attr($brand_title) ?>"
-                                     class="product-img">
+                                <img src="<?= esc_url($image_url) ?>" alt="<?= esc_attr($product->get_name()) ?>" class="product-img">
                             </div>
 
                             <div class="product-card__top">
-                                <img src="<?= get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
+                                <!--                                <img src="--><?php //= get_template_directory_uri() ?><!--/assets/img/checking.svg" alt="">-->
                                 <img src="<?= get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
                             </div>
 
                             <div class="product-details">
                                 <div class="product-details__cont">
                                     <div class="product-title"><?= esc_html($brand_title) ?></div>
-                                    <div class="product-article">Код: <?= esc_html($product_code) ?></div>
+                                    <div class="product-article">Код: <?= esc_html($sku) ?></div>
                                 </div>
 
-                                <a href="<?= esc_url($link) ?>" style="cursor: pointer; color: #000;" class="product-description"><?= esc_html($description) ?></a>
+                                <a href="<?= esc_url($permalink) ?>" style="cursor: pointer; color: #000;" class="product-description">
+                                    <?php if($short_desc): ?>
+                                        <?= esc_html($short_desc) ?>
+                                    <?php else: ?>
+                                        <?= esc_html($product_title) ?>
+                                    <?php endif; ?>
+                                </a>
+
+                                <?php if (!empty($attributes_str)) : ?>
+                                    <div class="product-attributes"><?= esc_html($attributes_str) ?></div>
+                                <?php endif; ?>
 
                                 <div class="product-wrap">
                                     <div class="product-prices">
                                         <div class="product-prices-wrap">
-                                            <?php if ($prices['discount'] > 0): ?>
-                                                <span class="current-price"><?= number_format($prices['original'], 0, '', ' ') ?> ₽</span>
-                                            <?php endif; ?>
-                                            <?php if ($prices['discount'] > 0): ?>
-                                                <span class="product-badge">-<?= $prices['discount'] ?>%</span>
+                                            <?php if ($sale_price > 0): ?>
+                                                <span class="current-price"><?= number_format($regular_price, 0, '', ' ') ?> ₽</span>
+                                                <span class="product-badge">-<?= $discount ?>%</span>
                                             <?php endif; ?>
                                         </div>
-                                        <span class="old-price"><?= number_format($prices['final'], 0, '', ' ') ?> ₽</span>
+                                        <span class="old-price"><?= number_format($final_price, 0, '', ' ') ?> ₽</span>
                                     </div>
 
-                                    <button class="add-to-cart-btn" data-product-id="<?php echo $product->ID; ?>">В корзину</button>
+                                    <button class="add-to-cart-btn" data-product-id="<?= $product->get_id(); ?>">В корзину</button>
                                 </div>
 
                                 <div class="product-yandex">
@@ -124,10 +152,11 @@ $brand = get_field('brand');
                                     <img src="<?= get_template_directory_uri() ?>/assets/img/ya-split.svg" alt="">
                                 </div>
                             </div>
-
                         </div>
-                    <?php endforeach; ?>
+                    <?php endwhile; wp_reset_postdata(); ?>
                 </div>
+
+
 
                 <div class="hits-btn-go ">
                     <a href="shop.html">Перейти в каталог</a>

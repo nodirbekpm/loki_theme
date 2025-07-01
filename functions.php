@@ -72,30 +72,8 @@ function increment_like_callback() {
 add_action('wp_ajax_increment_like', 'increment_like_callback');
 add_action('wp_ajax_nopriv_increment_like', 'increment_like_callback');
 
-// Narxni hisoblash formulasi
-function get_discounted_price($product_id) {
-    $group = get_field('product', $product_id);
 
-    if (!$group) return null;
 
-    $cost = isset($group['cost']) ? (float)$group['cost'] : 0;
-    $discount = isset($group['discount']) ? (float)$group['discount'] : 0;
-
-    if ($cost && $discount > 0) {
-        $new_price = $cost - ($cost * $discount / 100);
-        return [
-            'original' => $cost,
-            'discount' => $discount,
-            'final' => round($new_price),
-        ];
-    }
-
-    return [
-        'original' => $cost,
-        'discount' => 0,
-        'final' => $cost,
-    ];
-}
 
 add_filter('wpcf7_autop_or_not', '__return_false');
 
@@ -125,12 +103,8 @@ add_action('wp', function() {
 
 
 
-add_action('pre_get_posts', function ($query) {
-    if (!is_admin() && $query->is_main_query() && is_page()) {
-        $paged = get_query_var('paged') ?: get_query_var('page') ?: 1;
-        $query->set('paged', $paged);
-    }
-});
+
+
 
 
 // ========================== IMPORT ===========================
@@ -214,6 +188,21 @@ function custom_link_acf_fields_after_import($post_id, $data, $import_id) {
         $brand_id = get_or_create_post_by_title($brand_name, 'brand');
         update_field($brand_field_key, $brand_id, $post_id);
         error_log("🔗 Linked brand to product [ID: $brand_id]");
+    }
+}
+
+
+
+
+add_action('init', 'modify_product_brand_taxonomy', 1000); // Yuqori prioritet
+function modify_product_brand_taxonomy() {
+    if (taxonomy_exists('product_brand')) {
+        unregister_taxonomy('product_brand'); // Avval o‘chirish
+        register_taxonomy('product_brand', 'product', [
+            'label' => __('Product Brands', 'loki'),
+            'rewrite' => ['slug' => 'product-brand', 'with_front' => false],
+            'hierarchical' => true,
+        ]);
     }
 }
 

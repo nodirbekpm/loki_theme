@@ -46,12 +46,12 @@ get_header();
                 <div class="cart-summary">
                     <div class="summary-title">Корзина</div>
                     <div class="summary-row">
-                        <span>3 товара</span>
-                        <span>66560 ₽</span>
+                        <span>0 товара</span>
+                        <span>0 ₽</span>
                     </div>
                     <div class="summary-row">
                         <span>Итого к оплате</span>
-                        <span>35 480 ₽</span>
+                        <span>0 ₽</span>
                     </div>
                     <div class="summary-row total-row">
                         <span>Ввести код купона</span>

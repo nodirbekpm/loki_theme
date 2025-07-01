@@ -45,11 +45,11 @@
 
 
 
-<?php
-$site_name = get_field('site_name', 'option');
-$black_logo = get_field('black_logo', 'option');
-$phone = get_field('phone', 'option');
-?>
+    <?php
+    $site_name = get_field('site_name', 'option');
+    $black_logo = get_field('black_logo', 'option');
+    $phone = get_field('phone', 'option');
+    ?>
 
     <div class="header">
         <div class="container">
@@ -74,9 +74,10 @@ $phone = get_field('phone', 'option');
                         ]);
                         ?>
                         <li><a href="tel:<?= $phone ?>"><?= $phone ?></a></li>
-                        <li class="mobile_links">
+                        <li class="mobile_links counter basket_counter">
                             <img src="<?php echo get_template_directory_uri() ?>/assets/img/cart.svg" alt="">
                             <a href="/корзина/">КОРЗИНА</a>
+                            <span></span>
                         </li>
 
                         <li class="mobile_links">
@@ -98,8 +99,9 @@ $phone = get_field('phone', 'option');
                         <img src="<?php echo get_template_directory_uri() ?>/assets/img/like.svg" alt="" class="header-like">
                     </a>
 
-                    <a href="/корзина/" class="laptop_icon">
+                    <a href="/корзина/" class="laptop_icon counter basket_counter">
                         <img src="<?php echo get_template_directory_uri() ?>/assets/img/cart.svg" alt="" class="header-gamb">
+                        <span></span>
                     </a>
 
 

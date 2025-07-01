@@ -1,13 +1,16 @@
 <?php
-/*
- * Template Name: Single Catalog
- */
 get_header();
 
-$catalog_id = get_the_ID();
-$catalog_slug = isset($_GET['catalog']) ? sanitize_text_field($_GET['catalog']) : '';
+$current_term = get_queried_object();
 
-// Kategoriyalarni olish
+if ($current_term instanceof WP_Term && $current_term->taxonomy === 'catalog') {
+    $catalog_id = (int) $current_term->term_id; // bu tax_query uchun mos
+} else {
+    $catalog_id = 0; // fallback
+}
+$paged = max(1, get_query_var('paged')); // Faqat paged ishlatiladi
+
+// Kategoriyalar ro‘yxati
 $categories = get_posts([
     'post_type' => 'category',
     'numberposts' => -1,
@@ -15,23 +18,19 @@ $categories = get_posts([
     'order' => 'ASC'
 ]);
 
-$paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
-
-// Narxlar oralig‘ini aniqlash
+// Narx oralig‘ini aniqlash
 $price_query = new WP_Query([
     'post_type' => 'product',
     'posts_per_page' => -1,
-    'meta_query' => [
-        [
-            'key' => 'catalog',
-            'value' => $catalog_id,
-            'compare' => '='
-        ],
-        [
-            'key' => '_price',
-            'compare' => 'EXISTS'
-        ]
-    ],
+    'tax_query' => [[
+        'taxonomy' => 'catalog',
+        'field' => 'term_id',
+        'terms' => $catalog_id
+    ]],
+    'meta_query' => [[
+        'key' => '_price',
+        'compare' => 'EXISTS'
+    ]],
     'fields' => 'ids'
 ]);
 $product_ids = $price_query->posts;
@@ -43,14 +42,15 @@ foreach ($product_ids as $pid) {
 $min_catalog_price = count($prices) ? min($prices) : 0;
 $max_catalog_price = count($prices) ? max($prices) : 999999999;
 
+// Filtr parametrlari
 $min_price = isset($_GET['min_price']) ? floatval($_GET['min_price']) : $min_catalog_price;
 $max_price = isset($_GET['max_price']) ? floatval($_GET['max_price']) : $max_catalog_price;
-
 $in_stock = isset($_GET['in_stock']) && $_GET['in_stock'] == '1';
+$on_sale = isset($_GET['on_sale']) ? sanitize_text_field($_GET['on_sale']) : '';
 $orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'date-desc';
 $category_filter = isset($_GET['category']) ? array_map('intval', (array)$_GET['category']) : [];
 
-// Saralash variantlari
+// Tartiblash sozlamalari
 $order_map = [
     'price-asc' => ['key' => '_price', 'orderby' => 'meta_value_num', 'order' => 'ASC'],
     'price-desc' => ['key' => '_price', 'orderby' => 'meta_value_num', 'order' => 'DESC'],
@@ -61,49 +61,52 @@ $order_map = [
 ];
 $sort = isset($order_map[$orderby]) ? $order_map[$orderby] : $order_map['date-desc'];
 
-// Tax query
-$tax_query = ['relation' => 'AND'];
+// Tax_query sozlamalari
+$tax_query = [
+    'relation' => 'AND',
+    [
+        'taxonomy' => 'catalog',
+        'field' => 'term_id',
+        'terms' => [$catalog_id] // Massiv sifatida
+    ]
+];
+
+// Atributlar uchun tax_query
 foreach ($_GET as $key => $values) {
     if (strpos($key, 'pa_') === 0) {
-        $cleaned_values = [];
-        $values = array_filter((array)$values, function($value) {
-            return is_string($value) && !empty($value);
-        });
-        foreach ($values as $value) {
-            $cleaned_value = sanitize_title($value);
-            if (!empty($cleaned_value)) {
-                $cleaned_values[] = $cleaned_value;
-            } else {
-                error_log('Invalid value in $_GET[' . $key . ']: ' . print_r($value, true));
+        $sanitized_terms = [];
+
+        // Faqat string qiymatlarni olib, array emasligini tekshiramiz
+        foreach ((array) $values as $val) {
+            if (is_string($val) && $val !== '') {
+                $sanitized_terms[] = sanitize_title($val);
             }
         }
-        if (!empty($cleaned_values) && taxonomy_exists($key)) {
+
+        if (!empty($sanitized_terms)) {
             $tax_query[] = [
                 'taxonomy' => $key,
-                'field' => 'slug',
-                'terms' => $cleaned_values,
+                'field'    => 'slug',
+                'terms'    => $sanitized_terms,
                 'operator' => 'IN'
             ];
         }
     }
 }
 
-// Meta query
+
+// Meta_query sozlamalari
 $meta_query = [
     'relation' => 'AND',
-    [
-        'key' => 'catalog',
-        'value' => $catalog_id,
-        'compare' => '=',
-    ],
     [
         'key' => '_price',
         'value' => [$min_price, $max_price],
         'compare' => 'BETWEEN',
         'type' => 'NUMERIC'
-    ],
+    ]
 ];
 
+// Omadda mavjudlik filtri
 if ($in_stock) {
     $meta_query[] = [
         'key' => '_stock_status',
@@ -112,6 +115,22 @@ if ($in_stock) {
     ];
 }
 
+// Chegirma filtri
+if ($on_sale === '1') {
+    $meta_query[] = [
+        'key' => '_sale_price',
+        'value' => 0,
+        'compare' => '>',
+        'type' => 'NUMERIC'
+    ];
+} elseif ($on_sale === '0') {
+    $meta_query[] = [
+        'key' => '_sale_price',
+        'compare' => 'NOT EXISTS'
+    ];
+}
+
+// Kategoriya filtri
 if (!empty($category_filter)) {
     $meta_query[] = [
         'key' => 'category',
@@ -120,16 +139,16 @@ if (!empty($category_filter)) {
     ];
 }
 
-// WP_Query
+// WP_Query so‘rovi
 $args = [
     'post_type' => 'product',
     'post_status' => 'publish',
     'posts_per_page' => 5,
     'paged' => $paged,
     'meta_query' => $meta_query,
-    'tax_query' => !empty($tax_query['relation']) ? $tax_query : [],
+    'tax_query' => $tax_query,
     'orderby' => $sort['orderby'],
-    'order' => $sort['order'],
+    'order' => $sort['order']
 ];
 
 if (isset($sort['key'])) {
@@ -144,14 +163,20 @@ $total_pages = $products->max_num_pages;
 
     <div class="catalog" id="product-catalog" data-catalog-id="<?= get_the_ID() ?>">
         <div class="container">
+            <?php
+            $term = get_queried_object();
+            $catalog_name = $term->name;
+            ?>
+
             <div class="catalog_info">
-                <a href="#" class="text">Каталог</a>
-                <div class="text"><?php the_title(); ?></div>
+                <a href="<?= home_url('/catalog/') ?>" class="text">Каталог</a>
+                <div class="text"><?= esc_html($catalog_name) ?></div>
             </div>
 
             <div class="catalog_title">
-                <?php the_title(); ?>
+                <?= esc_html($catalog_name) ?>
             </div>
+
 
             <div class="catalog-top-controls">
                 <div class="popular-categories">
@@ -211,27 +236,40 @@ $total_pages = $products->max_num_pages;
                 <aside class="catalog-filters" id="catalog-filters">
                     <form method="get" class="filter_container">
                         <div class="filter_close_button"><img src="<?php echo get_template_directory_uri() ?>/assets/img/close.svg" alt=""></div>
+
+                        <!-- CATEGORIES -->
                         <div class="filter-section">
                             <h3 class="filter-title">Категории</h3>
                             <div class="filter-section-categorys">
-                                <?php foreach ($categories as $index => $cat): ?>
+                                <?php foreach ($categories as $cat): ?>
                                     <?php
-                                    $cat_count = new WP_Query([
+                                    $cat_query = new WP_Query([
                                         'post_type' => 'product',
                                         'posts_per_page' => -1,
+                                        'tax_query' => [
+                                            [
+                                                'taxonomy' => 'catalog',
+                                                'field' => 'term_id',
+                                                'terms' => $catalog_id
+                                            ]
+                                        ],
                                         'meta_query' => [
-                                            ['key' => 'catalog', 'value' => $catalog_id, 'compare' => '='],
                                             ['key' => 'category', 'value' => $cat->ID, 'compare' => '=']
                                         ]
                                     ]);
-                                    if ($cat_count->found_posts === 0) continue;
+                                    if ($cat_query->found_posts === 0) continue;
+                                    wp_reset_postdata();
+
+                                    $active = in_array($cat->ID, $category_filter);
                                     ?>
-                                    <div class="filter-section-category <?= in_array($cat->ID, $category_filter) ? 'filter-section-category_active' : '' ?>" data-cat-id="<?= esc_attr($cat->ID) ?>">
+                                    <div class="filter-section-category <?= $active ? 'filter-section-category_active' : '' ?>" data-cat-id="<?= esc_attr($cat->ID) ?>">
                                         <?= esc_html($cat->post_title) ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
+
+                        <!-- PRICE -->
                         <div class="filter-section">
                             <h3 class="filter-title">Цена, ₽</h3>
                             <div class="price-range-slider">
@@ -243,66 +281,69 @@ $total_pages = $products->max_num_pages;
                             </div>
                         </div>
 
+                        <!-- ATTRIBUTE FILTERS -->
                         <?php
-                        // Attribute filters
                         $attribute_taxonomies = wc_get_attribute_taxonomies();
+
+                        $current_term = get_queried_object();
+                        $catalog_id = isset($current_term->term_id) ? intval($current_term->term_id) : 0;
+
                         foreach ($attribute_taxonomies as $tax) {
                             if (!$tax->attribute_public || $tax->attribute_type !== 'select') continue;
+
                             $taxonomy = 'pa_' . $tax->attribute_name;
                             if (!taxonomy_exists($taxonomy)) continue;
 
-                            $terms = get_terms(['taxonomy' => $taxonomy, 'hide_empty' => false]);
-                            if (empty($terms) || is_wp_error($terms)) {
-                                error_log('Error in get_terms for taxonomy: ' . $taxonomy);
-                                continue;
-                            }
+                            $terms = get_terms([
+                                'taxonomy' => $taxonomy,
+                                'hide_empty' => false
+                            ]);
+                            if (empty($terms)) continue;
 
                             $output = '';
+
                             foreach ($terms as $term) {
                                 $term_name = strtolower(trim($term->name));
                                 if (in_array($term_name, ['да', 'нет', 'есть'])) continue;
 
-                                if (!is_string($term->slug)) {
-                                    error_log('Non-string term slug detected: ' . print_r($term->slug, true));
-                                    continue;
+                                $term_slug = sanitize_title($term->slug);
+
+                                // ✅ GET qiymatlarini urldecode qilish
+                                $param = [];
+                                if (isset($_GET[$taxonomy])) {
+                                    foreach ((array) $_GET[$taxonomy] as $v) {
+                                        if (!is_array($v)) $param[] = sanitize_title(urldecode($v));
+                                    }
                                 }
 
-                                $term_products = new WP_Query([
+                                // 🧪 Mahsulotni hisoblash
+                                $term_query = new WP_Query([
                                     'post_type' => 'product',
                                     'posts_per_page' => -1,
-                                    'meta_query' => [
-                                        [
-                                            'key' => 'catalog',
-                                            'value' => $catalog_id,
-                                            'compare' => '='
-                                        ]
-                                    ],
                                     'tax_query' => [
+                                        [
+                                            'taxonomy' => 'catalog',
+                                            'field' => 'term_id',
+                                            'terms' => [$catalog_id],
+                                        ],
                                         [
                                             'taxonomy' => $taxonomy,
                                             'field' => 'slug',
-                                            'terms' => $term->slug,
-                                        ]
+                                            'terms' => [$term_slug],
+                                        ],
                                     ]
                                 ]);
+                                if ($term_query->found_posts === 0) continue;
+                                wp_reset_postdata();
 
-                                if ($term_products->found_posts === 0) {
-                                    wp_reset_postdata();
-                                    continue;
-                                }
-
-                                $param = isset($_GET[$taxonomy]) ? array_filter((array)$_GET[$taxonomy], 'is_string') : [];
-                                $param = array_map('sanitize_text_field', $param);
-                                $checked = in_array($term->slug, $param);
+                                $checked = in_array($term_slug, $param);
 
                                 $output .= '<label class="filter-checkbox">';
-                                $output .= '<input type="checkbox" name="' . esc_attr($taxonomy) . '[]" value="' . esc_attr($term->slug) . '" ' . ($checked ? 'checked' : '') . '>';
+                                $output .= '<input type="checkbox" name="' . esc_attr($taxonomy) . '[]" value="' . esc_attr($term_slug) . '" ' . ($checked ? 'checked' : '') . '>';
                                 $output .= '<span class="checkmark"></span>';
                                 $output .= '<span class="filter-name">' . esc_html(ucfirst($term->name)) . '</span>';
-                                $output .= '<span class="filter-count">(' . $term_products->found_posts . ')</span>';
+                                $output .= '<span class="filter-count">(' . $term_query->found_posts . ')</span>';
                                 $output .= '</label>';
-
-                                wp_reset_postdata();
                             }
 
                             if (!empty($output)) {
@@ -315,40 +356,30 @@ $total_pages = $products->max_num_pages;
                         }
                         ?>
 
+
+
+
+                        <!-- DISCOUNT FILTER -->
                         <?php
-                        $stock_yes = (new WP_Query([
-                            'post_type' => 'product',
-                            'posts_per_page' => -1,
-                            'meta_query' => [
-                                [ 'key' => 'catalog', 'value' => $catalog_id, 'compare' => '=' ],
-                                [ 'key' => '_stock_status', 'value' => 'instock', 'compare' => '=' ]
-                            ]
-                        ]))->found_posts;
-
-                        $stock_no = (new WP_Query([
-                            'post_type' => 'product',
-                            'posts_per_page' => -1,
-                            'meta_query' => [
-                                [ 'key' => 'catalog', 'value' => $catalog_id, 'compare' => '=' ],
-                                [ 'key' => '_stock_status', 'value' => 'outofstock', 'compare' => '=' ]
-                            ]
-                        ]))->found_posts;
-
                         $yes_count = (new WP_Query([
                             'post_type' => 'product',
                             'posts_per_page' => -1,
+                            'tax_query' => [
+                                ['taxonomy' => 'catalog', 'field' => 'term_id', 'terms' => $catalog_id]
+                            ],
                             'meta_query' => [
-                                [ 'key' => 'catalog', 'value' => $catalog_id, 'compare' => '=' ],
-                                [ 'key' => '_sale_price', 'value' => 0, 'compare' => '>', 'type' => 'NUMERIC' ]
+                                ['key' => '_sale_price', 'value' => 0, 'compare' => '>', 'type' => 'NUMERIC']
                             ]
                         ]))->found_posts;
 
                         $no_count = (new WP_Query([
                             'post_type' => 'product',
                             'posts_per_page' => -1,
+                            'tax_query' => [
+                                ['taxonomy' => 'catalog', 'field' => 'term_id', 'terms' => $catalog_id]
+                            ],
                             'meta_query' => [
-                                [ 'key' => 'catalog', 'value' => $catalog_id, 'compare' => '=' ],
-                                [ 'key' => '_sale_price', 'compare' => 'NOT EXISTS' ]
+                                ['key' => '_sale_price', 'compare' => 'NOT EXISTS']
                             ]
                         ]))->found_posts;
                         ?>
@@ -372,11 +403,25 @@ $total_pages = $products->max_num_pages;
                             </div>
                         </div>
 
+                        <!-- STOCK -->
+                        <?php
+                        $stock_yes = (new WP_Query([
+                            'post_type' => 'product',
+                            'posts_per_page' => -1,
+                            'tax_query' => [
+                                ['taxonomy' => 'catalog', 'field' => 'term_id', 'terms' => $catalog_id]
+                            ],
+                            'meta_query' => [
+                                ['key' => '_stock_status', 'value' => 'instock', 'compare' => '=']
+                            ]
+                        ]))->found_posts;
+                        ?>
+
                         <div class="filter-section">
                             <h3 class="filter-title">Показать</h3>
                             <div class="filter-checkboxes">
                                 <label class="filter-checkbox">
-                                    <input type="checkbox" name="in_stock" value="1" checked>
+                                    <input type="checkbox" name="in_stock" value="1" <?= $in_stock ? 'checked' : '' ?>>
                                     <span class="checkmark"></span>
                                     <span class="filter-name">Только в наличии</span>
                                     <span class="filter-count">(<?= $stock_yes ?>)</span>
@@ -384,9 +429,10 @@ $total_pages = $products->max_num_pages;
                             </div>
                         </div>
 
+                        <!-- ACTION BUTTONS -->
                         <div class="action_buttons">
                             <div class="btn_clear action_button">
-                                <a href="<?= get_permalink($catalog_id) ?>">Сбросить</a>
+                                <a href="<?= esc_url(get_term_link($catalog_id, 'catalog')) ?>">Сбросить</a>
                             </div>
                             <div class="btn_show action_button">
                                 <a href="">Показать</a>
@@ -396,109 +442,95 @@ $total_pages = $products->max_num_pages;
                 </aside>
 
 
+
                 <div class="catalog-products-wrap">
-                    <!-- Mahsulotlar -->
                     <main class="catalog-products">
-                        <?php if ($products->have_posts()): ?>
-                            <?php while ($products->have_posts()): $products->the_post();
-                                global $product;
-                                $brand_id = get_field('brand', $product->get_id());
-                                $brand_title = $brand_id ? get_the_title($brand_id) : '';
-                                $main_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
-                                $price = $product->get_price();
-                                $regular = $product->get_regular_price();
-                                $sale = $product->get_sale_price();
-                                $link = get_permalink($product->ID);
-                                ?>
-                                <div class="product-card">
-                                    <div class="product-image">
-                                        <?php if ($main_image && is_string($main_image)): ?>
-                                            <img src="<?= esc_url($main_image) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-img">
-                                        <?php else: ?>
-                                            <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/placeholder.jpg') ?>" alt="Placeholder Image" class="product-img">
-                                        <?php endif; ?>
+                        <?php while ($products->have_posts()): $products->the_post();
+                            global $product;
+                            $brand_id = get_field('brand', $product->get_id());
+                            $brand_title = $brand_id ? get_the_title($brand_id) : '';
+                            $main_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
+                            $price = $product->get_price();
+                            $regular = $product->get_regular_price();
+                            $sale = $product->get_sale_price();
+                            ?>
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="<?= esc_url($main_image) ?>" alt="<?= esc_attr(get_the_title()) ?>"
+                                         class="product-img">
+                                </div>
+                                <div class="product-card__top">
+                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg"
+                                         alt="">
+                                </div>
+                                <div class="product-details">
+                                    <div class="product-details__cont">
+                                        <div class="product-title"><?= esc_html($brand_title) ?></div>
+                                        <div class="product-article">Код: <?= esc_html($product->get_sku()) ?></div>
                                     </div>
-                                    <div class="product-card__top">
-                                        <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/addlikes.svg') ?>" alt="Add to Likes">
+                                    <div class="product-description">
+                                        <?= esc_html(wp_trim_words(get_the_content(), 20)) ?>
                                     </div>
-                                    <div class="product-details">
-                                        <div class="product-details__cont">
-                                            <div class="product-title"><?= esc_html($brand_title) ?></div>
-                                            <div class="product-article">Код: <?= esc_html($product->get_sku()) ?></div>
-                                        </div>
-                                        <a href="<?= esc_url($link) ?>" style="cursor: pointer; color: #000;" class="product-description">
-                                            <?= esc_html(wp_trim_words(get_the_content(), 20)) ?>
-                                        </a>
-                                        <div class="product-wrap">
-                                            <div class="product-prices">
-                                                <div class="product-prices-wrap">
-                                                    <?php if ($regular > $price && !empty($regular)): ?>
-                                                        <span class="current-price"><?= wc_price($regular) ?></span>
-                                                    <?php endif; ?>
-                                                    <?php if ($regular > $price && !empty($regular)): ?>
-                                                        <span class="product-badge">-<?= round((($regular - $price) / $regular) * 100) ?>%</span>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <span class="old-price"><?= wc_price($price) ?></span>
+                                    <div class="product-wrap">
+                                        <div class="product-prices">
+                                            <div class="product-prices-wrap">
+                                                <?php if ($regular > $price): ?>
+                                                    <span class="current-price"><?= wc_price($regular) ?></span>
+                                                <?php endif; ?>
+                                                <?php if ($regular > $price): ?>
+                                                    <span class="product-badge">-<?= round((($regular - $price) / $regular) * 100) ?>%</span>
+                                                <?php endif; ?>
                                             </div>
-                                            <button class="add-to-cart-btn" data-product-id="<?= esc_attr($product->get_id()) ?>">
-                                                В корзину
-                                            </button>
+                                            <span class="old-price"><?= wc_price($price) ?></span>
                                         </div>
-                                        <div class="product-yandex">
-                                            <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/plus.svg') ?>" alt="Yandex Plus">
-                                            1 199 баллов Плюса кэшбэк в
-                                            <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/ya-pay.svg') ?>" alt="Yandex Pay">
-                                        </div>
-                                        <div class="product-split">
-                                            <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/cask.svg') ?>" alt="Yandex Split">
-                                            х4 платежа в
-                                            <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/ya-split.svg') ?>" alt="Yandex Split">
-                                        </div>
+                                        <button class="add-to-cart-btn"
+                                                data-product_id="<?= esc_attr($product->get_id()) ?>">
+                                            В корзину
+                                        </button>
+                                    </div>
+                                    <div class="product-yandex">
+                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/plus.svg"
+                                             alt="">
+                                        1 199 баллов Плюса кэшбэк в
+                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-pay.svg"
+                                             alt="">
+                                    </div>
+                                    <div class="product-split">
+                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/cask.svg"
+                                             alt="">
+                                        х4 платежа в
+                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/ya-split.svg"
+                                             alt="">
                                     </div>
                                 </div>
-                            <?php endwhile; ?>
-                            <?php wp_reset_postdata(); ?>
-                        <?php else: ?>
-                            <p>Mahsulotlar topilmadi</p>
-                        <?php endif; ?>
+                            </div>
+                        <?php endwhile; ?>
                     </main>
 
 
-                    <div class="catalog-bottom-controls" data-catalog-id="<?= esc_attr($catalog_id) ?>">
-                        <?php if ($total_pages > $paged): ?>
-                            <button class="load-more" data-current-page="<?= esc_attr($paged) ?>">Показать еще</button>
-                        <?php endif; ?>
-                        <div class="catalog-bottom-controls-wrap">
-                            <div class="pagination-count">
-                                Показаны <?= $current_count ?> из <?= $total_found ?>
-                            </div>
-                            <div class="pagination-bottom">
-                                <?php
-                                $pagination_args = [
-                                    'base' => get_permalink($catalog_id) . '%_%',
-                                    'format' => '?paged=%#%',
-                                    'current' => $paged,
-                                    'total' => $total_pages,
-                                    'prev_text' => '«',
-                                    'next_text' => '»',
-                                    'type' => 'plain',
-                                    'add_args' => array_diff_key($_GET, array_flip(['paged', 'page'])),
-                                    'before_page_number' => '<span class="pagination-link">',
-                                    'after_page_number' => '</span>',
-                                ];
+                    <?php // Paginatsiya
+                    if ($total_pages > 1) {
+                        echo '<div class="catalog-bottom-controls">';
+                        if ($paged < $total_pages) {
+                            echo '<button id="load-more" class="load-more" data-next-page="' . ($paged + 1) . '" data-catalog-id="' . $catalog_id . '">Показать еще</button>';
+                        }
+                        echo '<div class="catalog-bottom-controls-wrap">';
+                        echo '<div class="pagination-count">Показаны ' . $current_count . ' из ' . $total_found . '</div>';
+                        echo '<div class="pagination-bottom">';
+                        for ($i = 1; $i <= $total_pages; $i++) {
+                            $url = add_query_arg('paged', $i, get_term_link($catalog_id, 'catalog'));
+                            $active = $i == $paged ? 'pagination-link active' : 'pagination-link';
+                            echo '<a href="' . esc_url($url) . '" class="' . $active . '" data-page="' . $i . '">' . $i . '</a>';
+                        }
+                        if ($paged < $total_pages) {
+                            $next_url = add_query_arg('paged', $paged + 1, get_term_link($catalog_id, 'catalog'));
+                            echo '<a href="' . esc_url($next_url) . '" class="pagination-link next">></a>';
+                        }
+                        echo '</div></div></div>';
+                    }
+                    wp_reset_postdata(); ?>
 
-                                $pagination_links = paginate_links($pagination_args);
-                                $pagination_links = str_replace('page-numbers current', 'pagination-link active', $pagination_links);
-                                $pagination_links = str_replace('page-numbers', 'pagination-link', $pagination_links);
-                                $pagination_links = str_replace('prev page-numbers', 'pagination-link prev', $pagination_links);
-                                $pagination_links = str_replace('next page-numbers', 'pagination-link next', $pagination_links);
 
-                                echo $pagination_links;
-                                ?>
-                            </div>
-                        </div>
-                    </div>
 
 
                 </div>
@@ -593,30 +625,49 @@ $total_pages = $products->max_num_pages;
         </div>
     </div>
 
+    <script>
+        Jquery(document).ready(function ($) {
+            $('#load-more').on('click', function(e) {
+                e.preventDefault();
 
+                var $btn = $(this);
+                var nextPage = $btn.data('next-page');
+                var catalogId = $btn.data('catalog-id');
 
-    <div id="spinner-loader" style="
-  position: fixed;
-  z-index: 9999;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: none; /* ← defaultda yashiringan */
-  align-items: center;
-  justify-content: center;
-">
-        <div style="position: relative; width: 80px; height: 80px;">
-            <div style="position: absolute; width: 12px; height: 12px; background: #fff; border-radius: 50%; animation: spin 1.2s linear infinite; transform-origin: 40px 40px; top: 0; left: 34px;"></div>
-            <div style="position: absolute; width: 12px; height: 12px; background: #fff; border-radius: 50%; animation: spin 1.2s linear infinite; transform-origin: 40px 40px; top: 0; left: 34px; animation-delay: 0.1s;"></div>
-            <div style="position: absolute; width: 12px; height: 12px; background: #fff; border-radius: 50%; animation: spin 1.2s linear infinite; transform-origin: 40px 40px; top: 0; left: 34px; animation-delay: 0.2s;"></div>
-            <div style="position: absolute; width: 12px; height: 12px; background: #fff; border-radius: 50%; animation: spin 1.2s linear infinite; transform-origin: 40px 40px; top: 0; left: 34px; animation-delay: 0.3s;"></div>
-        </div>
+                $.ajax({
+                    url: ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'load_more_products',
+                        paged: nextPage,
+                        catalog_id: catalogId
+                    },
+                    success: function(response) {
+                        var $response = $('<div>').html(response);
+                        var newProducts = $response.find('#product-list').html();
+                        $('#product-list').append(newProducts);
 
-        <style>
-            @keyframes spin {
-                0%   { transform: rotate(0deg) translateX(40px) rotate(0deg); }
-                100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
-            }
-        </style>
-    </div>
+                        // Brauzer URL’ni yangilash
+                        var newUrl = window.location.pathname + '?paged=' + nextPage;
+                        window.history.pushState({}, '', newUrl);
+
+                        // Next button update
+                        if (nextPage < <?= $total_pages ?>) {
+                            $btn.data('next-page', nextPage + 1);
+                        } else {
+                            $btn.remove();
+                        }
+
+                        // Paginatsiya linklarini yangilash
+                        var newPagination = $response.find('.pagination-bottom');
+                        $('.pagination-bottom').replaceWith(newPagination);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('Error:', error);
+                    }
+                });
+            });
+
+        })
+    </script>
 <?php get_footer(); ?><?php

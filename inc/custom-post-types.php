@@ -45,6 +45,14 @@ function register_catalog_post_type() {
 }
 add_action('init', 'register_catalog_post_type');
 
+
+add_action('init', 'clean_brand_taxonomy', 100);
+function clean_brand_taxonomy() {
+    if (taxonomy_exists('brand')) {
+        unregister_taxonomy('brand');
+    }
+}
+
 function register_brand_post_type() {
     register_post_type('brand', [
         'labels' => [
@@ -55,13 +63,22 @@ function register_brand_post_type() {
             'menu_name' => 'Бренды',
         ],
         'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => ['slug' => 'brands', 'with_front' => false], // Yangi slug: /brands/vermont-castings
+        'capability_type' => 'post',
         'has_archive' => true,
-        'menu_icon' => 'dashicons-tag',
-        'supports' => ['title'],
+        'hierarchical' => false,
+        'menu_position' => 20,
+        'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
         'show_in_rest' => true,
     ]);
 }
 add_action('init', 'register_brand_post_type');
+
+
 
 function register_product_category_post_type() {
     register_post_type('product_category', [

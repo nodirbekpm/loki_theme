@@ -13,30 +13,28 @@ function get_cart2_products() {
     $total_sum = 0;
 
     foreach ($cart as $item) {
-        $post_id = isset($item['id']) ? intval($item['id']) : 0;
+        $product_id = isset($item['id']) ? intval($item['id']) : 0;
         $qty = isset($item['qty']) ? intval($item['qty']) : 1;
 
-        if (!$post_id || !$qty) continue;
+        if (!$product_id || !$qty) continue;
 
-        $post = get_post($post_id);
-        if (!$post || $post->post_type !== 'product') continue;
+        $product = wc_get_product($product_id);
+        if (!$product) continue;
 
-        $title = $post->post_title;
-        $price_data = function_exists('get_discounted_price') ? get_discounted_price($post_id) : ['final' => 0];
-        $price = $price_data['final'] ?? 0;
-
-        $total_sum += $qty * $price;
+        $title = $product->get_name();
+        $price = $product->get_price();
+        $sum = $qty * $price;
+        $total_sum += $sum;
         ?>
 
         <div class="summary-row">
             <span><?php echo esc_html($title); ?></span>
-            <span><?php echo $qty; ?>шт. х <?php echo number_format($price, 0, '', ' '); ?> ₽</span>
+            <span><?php echo $qty; ?> шт. × <?php echo number_format($price, 0, '', ' '); ?> ₽</span>
         </div>
 
         <?php
     }
 
-    // Yakuniy summa qatorini chiqarish
     ?>
     <div class="summary-row total-row">
         <span>Итого к оплате:</span>
@@ -47,5 +45,6 @@ function get_cart2_products() {
     echo ob_get_clean();
     wp_die();
 }
+
 
 

@@ -84,7 +84,7 @@ $delivery_places = get_field('delivery_places', 'option');
                         <?php endforeach; ?>
                     </ul>
 
-                    <a href="/brands/" class="footer__menu-title">Бренды</a>
+                    <a href="/our-brands/" class="footer__menu-title">Бренды</a>
                     <a href="#" class="footer__menu-title">ПРОЕКТНЫЕ ПОСТАВКИ</a>
                     <a href="/локи-для-профессионалов/" class="footer__menu-title">Для профессионалов</a>
                 </div>

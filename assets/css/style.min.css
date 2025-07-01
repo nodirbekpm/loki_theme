@@ -1968,6 +1968,42 @@ h5 {
 }
 
 
+.header .header-wrap .header-mini .laptop_icon.counter,.header .header-menu ul .mobile_links.counter {
+    position: relative;
+    /* display: inline-block; */
+}
+
+
+.header .header-wrap .header-mini .laptop_icon.counter span,.header .header-menu ul .mobile_links.counter span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background-color: #c40000 ;
+    color: white;
+    font-size: 9px;
+    /* padding: 6px 6px; */
+    padding-top: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    font-weight: bold;
+    line-height: 1;
+    /* min-width: 18px; */
+    text-align: center;
+}
+
+.header .header-menu ul .mobile_links.counter span{
+    left: 72px;
+    top: 43%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    padding-top: 2px;
+}
+
 
 
 

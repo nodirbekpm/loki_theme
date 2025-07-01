@@ -46,6 +46,7 @@ $home = get_field('home');
             <div class="catalog-wrap">
                 <div class="catalog__blocks">
                     <?php
+                    // Barcha kataloglarni olish
                     $catalogs = get_posts([
                         'post_type' => 'catalog',
                         'posts_per_page' => -1,
@@ -56,48 +57,26 @@ $home = get_field('home');
                     foreach ($catalogs as $catalog) :
                         $card = get_field('card', $catalog->ID);
                         $card_title = $card['title'] ?? get_the_title($catalog);
-                        $card_image = $card['image'];
-                        $card_mini_image = $card['mini_image'];
-                        $product_count = 0;
+                        $card_image = $card['image'] ?? [];
+                        $card_mini_image = $card['mini_image'] ?? [];
 
-                        $categories = get_posts([
-                            'post_type' => 'product_category',
-                            'meta_key' => 'catalog',
-                            'meta_value' => $catalog->ID,
+                        // Mahsulotlar sonini hisoblash (catalog field’ga asoslanib)
+                        $products = new WP_Query([
+                            'post_type' => 'product',
                             'posts_per_page' => -1,
-                            'fields' => 'ids',
+                            'post_status' => 'publish',
+                            'fields' => 'ids', // Faqat ID’larni olish (optimallashtirish uchun)
+                            'meta_query' => [
+                                [
+                                    'key' => 'catalog',
+                                    'value' => $catalog->ID,
+                                    'compare' => '=',
+                                ],
+                            ],
                         ]);
 
-                        if ($categories) {
-                            $products = get_posts([
-                                'post_type' => 'product',
-                                'posts_per_page' => -1,
-                                'post_status' => 'publish',
-                                'fields' => 'ids',
-                            ]);
-
-                            foreach ($products as $product_id) {
-                                $product_group = get_field('product', $product_id);
-                                $product_categories = $product_group['category'] ?? null;
-
-                                if ($product_categories) {
-                                    if (is_array($product_categories)) {
-                                        foreach ($product_categories as $cat) {
-                                            $cat_id = is_object($cat) ? $cat->ID : $cat;
-                                            if (in_array($cat_id, $categories)) {
-                                                $product_count++;
-                                                break;
-                                            }
-                                        }
-                                    } else {
-                                        $cat_id = is_object($product_categories) ? $product_categories->ID : $product_categories;
-                                        if (in_array($cat_id, $categories)) {
-                                            $product_count++;
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        $product_count = $products->found_posts; // Mahsulotlar soni
+                        wp_reset_postdata(); // Query’ni tozalash
 
                         $catalog_link = get_permalink($catalog->ID);
                         ?>
@@ -129,20 +108,50 @@ $home = get_field('home');
     </div>
 <?php endif; ?>
 
-<?php
-if ($home['brandw_hidden'] !== "Да"):
-    $new = $home['brandw_new_product'];
-    $white = $home['brandw_white_product'];
+<?php if ($home['brandw_hidden'] !== "Да"): ?>
+    <?php
+    // ACF field’lardan qora va oq mahsulotlarni olish
+    $new = $home['brandw_new_product'] ?: [];
+    $white = $home['brandw_white_product'] ?: [];
 
-    $new_product = $new['product'];
-    $white_product = $white['product'];
+    // Qora mahsulot uchun ma'lumotlar
+    $new_product_id = !empty($new['product']) ? (is_object($new['product']) ? $new['product']->ID : absint($new['product'])) : 0;
+    $new_title = !empty($new['title']) ? $new['title'] : '';
+    $new_product = $new_product_id ? wc_get_product($new_product_id) : null;
+    $new_text = $new_product ? wp_strip_all_tags($new_product->get_short_description()) : '';
 
-    $new_price = $new_product ? get_discounted_price($new_product->ID) : null;
-    $white_price = $white_product ? get_discounted_price($white_product->ID) : null;
+    // Oq mahsulot uchun ma'lumotlar
+    $white_product_id = !empty($white['product']) ? (is_object($white['product']) ? $white['product']->ID : absint($white['product'])) : 0;
+    $white_title = !empty($white['title']) ? $white['title'] : '';
+    $white_product = $white_product_id ? wc_get_product($white_product_id) : null;
+    $white_text = $white_product ? wp_strip_all_tags($white_product->get_short_description()) : '';
 
-    $new_image = get_field('product', $new_product->ID)['image'] ?? null;
-    $white_image = get_field('product', $white_product->ID)['image'] ?? null;
+    // Narx va chegirma hisoblash funksiyasi
+    function get_discounted_price($product) {
+        if (!$product || !$product->is_purchasable() || $product->get_status() !== 'publish') {
+            return null;
+        }
+        $regular_price = floatval($product->get_regular_price()) ?: 0;
+        $sale_price = floatval($product->get_sale_price()) ?: $regular_price;
+        $discount = ($regular_price && $sale_price && $regular_price > $sale_price)
+            ? round((($regular_price - $sale_price) / $regular_price) * 100)
+            : 0;
+        return [
+            'original' => $regular_price,
+            'final' => $sale_price,
+            'discount' => $discount
+        ];
+    }
+
+    // Narxlar
+    $new_price = $new_product ? get_discounted_price($new_product) : null;
+    $white_price = $white_product ? get_discounted_price($white_product) : null;
+
+    // Rasmlar
+    $new_image = $new_product ? wp_get_attachment_image_url($new_product->get_image_id(), 'medium') : '';
+    $white_image = $white_product ? wp_get_attachment_image_url($white_product->get_image_id(), 'medium') : '';
     ?>
+
     <div class="bandw">
         <div class="container">
             <div class="bandw-wrap">
@@ -151,10 +160,10 @@ if ($home['brandw_hidden'] !== "Да"):
                     <div class="bandw__block">
                         <div class="bandw__block-cont">
                             <div class="bandw__block-title">
-                                <?= esc_html($new['title']) ?>
+                                <?= esc_html($new_title) ?: 'Название отсутствует' ?>
                             </div>
                             <div class="bandw__block-text">
-                                <?= esc_html($new['text']) ?>
+                                <?= esc_html($new_text) ?: 'Описание отсутствует' ?>
                             </div>
                             <?php if ($new_price): ?>
                                 <div class="bandw__block-prices">
@@ -172,10 +181,16 @@ if ($home['brandw_hidden'] !== "Да"):
                                         <?= number_format($new_price['final'], 0, '', ' ') ?> ₽
                                     </div>
                                 </div>
+                            <?php else: ?>
+                                <div class="bandw__block-prices">
+                                    <div class="bandw__block-price">Цена недоступна</div>
+                                </div>
                             <?php endif; ?>
                             <div class="bandw__block-img">
-                                <?php if (!empty($new_image['url'])): ?>
-                                    <img src="<?= esc_url($new_image['url']) ?>" alt="">
+                                <?php if ($new_image): ?>
+                                    <img src="<?= esc_url($new_image) ?>" alt="<?= esc_attr($new_title) ?>">
+                                <?php else: ?>
+                                    <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/placeholder.png') ?>" alt="Нет изображения">
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -185,10 +200,10 @@ if ($home['brandw_hidden'] !== "Да"):
                     <div class="bandw__block">
                         <div class="bandw__block-cont">
                             <div class="bandw__block-title">
-                                <?= esc_html($white['title']) ?>
+                                <?= esc_html($white_title) ?: 'Название отсутствует' ?>
                             </div>
                             <div class="bandw__block-text">
-                                <?= esc_html($white['text']) ?>
+                                <?= esc_html($white_text) ?: 'Описание отсутствует' ?>
                             </div>
                             <?php if ($white_price): ?>
                                 <div class="bandw__block-prices">
@@ -206,10 +221,16 @@ if ($home['brandw_hidden'] !== "Да"):
                                         <?= number_format($white_price['final'], 0, '', ' ') ?> ₽
                                     </div>
                                 </div>
+                            <?php else: ?>
+                                <div class="bandw__block-prices">
+                                    <div class="bandw__block-price">Цена недоступна</div>
+                                </div>
                             <?php endif; ?>
                             <div class="bandw__block-img">
-                                <?php if (!empty($white_image['url'])): ?>
-                                    <img src="<?= esc_url($white_image['url']) ?>" alt="">
+                                <?php if ($white_image): ?>
+                                    <img src="<?= esc_url($white_image) ?>" alt="<?= esc_attr($white_title) ?>">
+                                <?php else: ?>
+                                    <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/placeholder.png') ?>" alt="Нет изображения">
                                 <?php endif; ?>
                             </div>
                         </div>
