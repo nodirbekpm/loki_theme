@@ -80,7 +80,7 @@ $home = get_field('home');
 
                         $catalog_link = get_permalink($catalog->ID);
                         ?>
-                        <div class="catalog__block">
+                        <a href="<?= esc_url($catalog_link) ?>" class="catalog__block">
                             <div class="catalog__block-cont">
                                 <div class="catalog__block-count">
                                     <?= esc_html($product_count) ?> товара
@@ -95,10 +95,10 @@ $home = get_field('home');
                             <div class="catalog__block-img">
                                 <img src="<?= esc_url($card_image['url'] ?? '') ?>" alt="">
                             </div>
-                            <a href="<?= esc_url($catalog_link) ?>" class="catalog__block-href">
+                            <div class="catalog__block-href">
                                 Перейти в раздел
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     <?php endforeach; ?>
                 </div>
 

@@ -10,9 +10,18 @@ jQuery(document).ready(function ($) {
     });
 
     // 2. Auto-submit all filters on change
-    $('.filter_container').on('change', 'input, select', function () {
-        $(this).closest('form').submit();
-    });
+$('.filter_container').on('change', 'input, select', function () {
+    const $form = $(this).closest('form');
+    const $btnShow = $form.find('.btn_show');
+
+    if ($btnShow.length && $btnShow.css('display') !== 'none') {
+        return;
+    }
+
+    // Aks holda (btn_show yo'q yoki display: none bo‘lsa) formani darhol yuboramiz
+    $form.submit();
+});
+
 
     function showSpinner() {
         $('#spinner-loader').css('display', 'flex');

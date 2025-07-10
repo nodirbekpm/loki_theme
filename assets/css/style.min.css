@@ -2931,13 +2931,12 @@ h5 {
     justify-content: space-between;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    gap:48px 0;
+    /*gap:48px 0;*/
 }
 
 .product-card {
-    width: calc(25% - 50.25px);
-    padding: 25px;
-    max-width: 300px;
+    width: 25%;
+    padding: 20px;
     border-top: 1px solid #E4E7EA;
     overflow: hidden;
     position: relative;
@@ -2947,6 +2946,7 @@ h5 {
     transition: transform .3s ease;
     transition: transform .3s ease, -webkit-transform .3s ease;
 }
+
 
 /* .product-card:hover {
     -webkit-transform: translateY(-5px);
@@ -2978,6 +2978,7 @@ h5 {
 }
 
 .product-card .product-image .product-img {
+    border-radius: 10px;
     width: 100%;
     height: 100%;
     -webkit-transition: -webkit-transform .3s ease;
@@ -2993,6 +2994,9 @@ h5 {
 }
 
 @media (max-width: 1220px) {
+    .product-card{
+        width: 50%;
+    }
     .product-card .product-image{
         height: 240px !important;
     }
@@ -3005,7 +3009,9 @@ h5 {
 }
 
 @media (max-width: 770px) {
-
+    .product-card{
+        width: 33%;
+    }
 }
 
 @media (max-width: 576px) {
@@ -3014,11 +3020,11 @@ h5 {
     }
 }
 
-.product-card .product-image .product-img:hover {
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05)
-}
+/*.product-card .product-image .product-img:hover {*/
+/*    -webkit-transform: scale(1.05);*/
+/*    -ms-transform: scale(1.05);*/
+/*    transform: scale(1.05)*/
+/*}*/
 
 .product-card .product-details {
     margin-top: 4px;
@@ -3110,12 +3116,14 @@ h5 {
 .product-card .product-prices .old-price {
     font-family: GT Eesti Pro Display;
     font-weight: 400;
-    font-size: 19.53px;
+    font-size: 18px;  /* not 19*/
+    white-space: nowrap;
     line-height: 26px;
     letter-spacing: 0;
     vertical-align: middle;
-    color: #000
+    color: #000;
 }
+
 
 .product-card .product-split,
 .product-card .product-yandex {
@@ -3150,8 +3158,16 @@ h5 {
     -ms-flex-pack: center;
     justify-content: center;
     gap: 8px;
-    border: 2px solid #888
+    border: 2px solid #888;
+    transition: .3s all ease;
+    white-space: nowrap;
 }
+
+.product-card .add-to-cart-btn:hover{
+    background-color: #000;
+    color: #fff;
+}
+
 
 @media (max-width: 1220px) {
 
@@ -3184,7 +3200,7 @@ h5 {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
-        gap: 25px;
+        /*gap: 25px;*/
         grid-template-columns: 80%
     }
 
@@ -4118,12 +4134,8 @@ h5 {
 }
 
 .catalog-products {
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    /* gap: 20px */
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .catalog-products-wrap {
@@ -4440,7 +4452,7 @@ h5 {
 }
 
 .catalog .product-card {
-    width: 100%;
+    /*width: 100%;*/
     border: 1px solid #eee;
     overflow: hidden;
     box-shadow: none;
@@ -5006,15 +5018,17 @@ h5 {
     display: -ms-flexbox;
     display: flex;
     gap: 15px;
-    padding-top: 50px
+
 }
 
 .product-card-single .thumbnail-slider .swiper-wrapper {
     width: 80px;
     display: flex;
     flex-direction: column;
-    gap: 10px
+    gap: 10px;
+    padding-top: 50px
 }
+
 
 .product-card-single .thumbnail {
     width: 80px;
@@ -5261,10 +5275,14 @@ h5 {
 .product-card-single .features-list li span {
     font-family: Tondo Corp;
     font-weight: 400;
-    font-size: 11px;
+    font-size: 14px;
     line-height: 16.9px;
     letter-spacing: 0
 }
+#description{
+    font-size: 14px;
+}
+
 
 .product-card-single .features-list li span:first-child {
     width: 50%

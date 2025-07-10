@@ -95,11 +95,11 @@ require_once get_template_directory() . '/inc/ajax/cart.php';
 require_once get_template_directory() . '/inc/ajax/cart2.php';
 
 
-add_action('wp', function() {
-    remove_all_actions('woocommerce_before_main_content');
-    remove_all_actions('woocommerce_before_single_product');
-    remove_all_actions('woocommerce_after_single_product');
-});
+// add_action('wp', function() {
+//     remove_all_actions('woocommerce_before_main_content');
+//     remove_all_actions('woocommerce_before_single_product');
+//     remove_all_actions('woocommerce_after_single_product');
+// });
 
 
 

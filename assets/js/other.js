@@ -161,18 +161,24 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initial sync
   updateActiveThumbnail(0);
 
-  // catalog left filter
-  // Select necessary elements
+// catalog left filter
+// Select necessary elements
   const rangeSlider = document.querySelector(".range-slider");
-  // const minInput = document.querySelector(".min-input");
-  // const maxInput = document.querySelector(".max-input");
-  // const minPrice = document.querySelector(".min-price");
-  // const maxPrice = document.querySelector(".max-price");
   const filterTitles = document.getElementsByClassName("filter-title");
 
-  // Add click event listener to each filter title
+// Ensure all filters are open initially
   for (let i = 0; i < filterTitles.length; i++) {
-    filterTitles[i].addEventListener("click", function () {
+    const title = filterTitles[i];
+    const content = title.nextElementSibling;
+
+    // Remove any "closed" classes to make sure they're open by default
+    title.classList.remove("filter-title_close");
+    if (content) {
+      content.classList.remove("filter-content_close");
+    }
+
+    // Add click event to toggle closed/open
+    title.addEventListener("click", function () {
       this.classList.toggle("filter-title_close");
       const content = this.nextElementSibling;
       if (content) {
@@ -180,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
 
 
 
