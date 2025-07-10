@@ -39,14 +39,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Delegated click listener
     document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('add-to-cart-btn')) {
+        if (e.target.classList.contains('add-to-cart-btn') || e.target.classList.contains('btn-add-card')) {
             e.preventDefault();
+			console.log('Clicked');
 
             const productId = parseInt(e.target.dataset.productId);
             if (!isNaN(productId)) {
                 addToCart(productId);
             }
         }
+		
     });
 
 });

@@ -13,8 +13,8 @@ $brand = get_field('brand');
             <!-- breadcrumbs -->
             <div class="bread_crumbs">
                 <a href="<?php echo esc_url(home_url('/')); ?>">Главная</a>
-                <a href="/brands">БРЕНДЫ</a>
-                <a href="#">PALAZZETTI</a>
+                <a href="<?php echo esc_url(get_post_type_archive_link('brand')); ?>">БРЕНДЫ</a>
+                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
             </div>
 
             <div class="banner-top">

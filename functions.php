@@ -8,6 +8,30 @@ function loki_theme_setup() {
 }
 add_action('after_setup_theme', 'loki_theme_setup');
 
+
+function loki_create_default_pages() {
+    $pages = array(
+        'main-page' => 'Main page',
+        'our-brands' => 'Бренды',
+        'корзина' => 'Корзина',
+        'корзина-шаг-2' => 'Корзина шаг 2',
+        'локи-для-профессионалов' => 'ЛОКИ Для профессионалов',
+    );
+
+    foreach ($pages as $slug => $title) {
+        if (!get_page_by_path($slug)) {
+            wp_insert_post(array(
+                'post_title' => $title,
+                'post_name' => sanitize_title($slug),
+                'post_status' => 'publish',
+                'post_type' => 'page',
+            ));
+        }
+    }
+}
+add_action('after_switch_theme', 'loki_create_default_pages');
+
+
 function loki_enqueue_assets() {
     wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/style.min.css');
     wp_enqueue_style('custom-fonts', get_template_directory_uri() . '/assets/fonts/font.css');
@@ -54,6 +78,7 @@ add_filter('acf/prepare_field', 'make_product_code_field_readonly');
 
 
 require get_template_directory() . '/inc/acf-hooks.php';
+require get_template_directory() . '/inc/acf-fields.php';
 
 // lIke qismi
 function increment_like_callback() {
@@ -95,11 +120,11 @@ require_once get_template_directory() . '/inc/ajax/cart.php';
 require_once get_template_directory() . '/inc/ajax/cart2.php';
 
 
-add_action('wp', function() {
-    remove_all_actions('woocommerce_before_main_content');
-    remove_all_actions('woocommerce_before_single_product');
-    remove_all_actions('woocommerce_after_single_product');
-});
+// add_action('wp', function() {
+//     remove_all_actions('woocommerce_before_main_content');
+//     remove_all_actions('woocommerce_before_single_product');
+//     remove_all_actions('woocommerce_after_single_product');
+// });
 
 
 

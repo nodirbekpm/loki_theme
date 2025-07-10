@@ -6710,6 +6710,7 @@ h5 {
 }
 
 .palazzetti .palazzetti-text {
+    width: 70%;
     padding: 20px;
     background-color: #F1F2F2;
     display: -webkit-box;
@@ -6805,6 +6806,7 @@ h5 {
     }
 
     .palazzetti .palazzetti-text {
+        width: 100%;
         text-align: center
     }
 
