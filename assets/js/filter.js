@@ -151,6 +151,127 @@ $('.filter_container').on('change', 'input, select', function () {
 
 
 
+    // 3. Load more: redirect to next paged version
+    $('.brand_load-more').on('click', function(e) {
+        e.preventDefault();
+        console.log('CLIOcdkcvdmvkmbkfkvmfmbfmfmbkmfbmbk')
+        var $button = $(this);
+        var currentPage = parseInt($button.data('current-page')); // Joriy sahifa
+        var nextPage = currentPage + 1; // Keyingi sahifa
+        var catalogId = $('.catalog-bottom-controls').data('catalog-id'); // Catalog ID
+
+        // Joriy GET parametrlarni olish
+        var params = new URLSearchParams(window.location.search);
+        params.set('paged', nextPage);
+
+        $.ajax({
+            url: '/wp-admin/admin-ajax.php',
+            type: 'POST',
+            beforeSend: function() {
+                showSpinner(); // Spinner’ni ko‘rsatish
+                $button.prop('disabled', true).text('Загрузка...');
+            },
+            data: {
+                action: 'load_brand_products',
+                paged: nextPage,
+                catalog_id: catalogId,
+                query_params: params.toString() // Barcha filter parametrlarini uzatish
+            },
+            beforeSend: function() {
+                $button.prop('disabled', true).text('Загрузка...'); // Tugma vaqtincha o‘chiriladi
+            },
+            success: function(response) {
+                // Mahsulotlarni append qilish
+                $('.catalog-products').append(response.products);
+
+                // Pagination count’ni yangilash
+                $('.pagination-count').html(response.pagination_count);
+
+                // Pagination linklarini yangilash
+                $('.pagination-bottom').html(response.pagination_links);
+
+                // Load More tugmasini yangilash
+                if (response.has_next_page) {
+                    $button.data('current-page', nextPage).text('Показать еще');
+                } else {
+                    $button.remove(); // Agar boshqa sahifa qolmasa, tugma olib tashlanadi
+                }
+
+                // Active sinfini yangilash
+                $('.brand_pagination-link').removeClass('active');
+                $('.brand_pagination-link').filter(function() {
+                    return $(this).text() == nextPage;
+                }).addClass('active');
+
+                hideSpinner(); // Spinner’ni yashirish
+                $button.prop('disabled', false);
+            },
+            error: function() {
+                hideSpinner();
+                $button.prop('disabled', false).text('Ошибка загрузки');
+            }
+        });
+    });
+
+    // Pagination linklariga bosilganda
+    $(document).on('click', '.brand_pagination-link:not(.prev, .next)', function(e) {
+        e.preventDefault();
+        console.log('CLIOcdkcvdmvkmbkfkvmfmbfmfmbkmfbmbk')
+
+        var page = $(this).text(); // Bosilgan sahifa raqami
+        var catalogId = $('.catalog-bottom-controls').data('catalog-id');
+
+        // Joriy GET parametrlarni olish
+        var params = new URLSearchParams(window.location.search);
+        params.set('paged', page);
+
+        $.ajax({
+            url: '/wp-admin/admin-ajax.php',
+            type: 'POST',
+            data: {
+                action: 'load_brand_products',
+                paged: page,
+                catalog_id: catalogId,
+                query_params: params.toString()
+            },
+            beforeSend: function() {
+                showSpinner();
+                $('.catalog-products').html('<p>Загрузка...</p>'); // Mahsulotlar o‘rniga loader
+            },
+            success: function(response) {
+                // Mahsulotlarni yangilash
+                $('.catalog-products').html(response.products);
+
+                // Pagination count’ni yangilash
+                $('.pagination-count').html(response.pagination_count);
+
+                // Pagination linklarini yangilash
+                $('.pagination-bottom').html(response.pagination_links);
+
+                // Load More tugmasini yangilash
+                if (response.has_next_page) {
+                    $('.load-more').data('current-page', page).text('Показать еще');
+                } else {
+                    $('.load-more').remove();
+                }
+
+                // Active sinfini yangilash
+                $('.brand_pagination-link').removeClass('active');
+                $('.brand_pagination-link').filter(function() {
+                    return $(this).text() == page;
+                }).addClass('active');
+
+                hideSpinner();
+            },
+            error: function() {
+                hideSpinner();
+                $('.catalog-products').html('<p>Ошибка загрузки</p>');
+            }
+        });
+    });
+
+
+
     // Filter va sort formalariga submit bo‘lganda
     $('form.catalog-filters, form.catalog-sort').on('submit', function(e) {
         e.preventDefault();

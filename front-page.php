@@ -463,6 +463,13 @@ $home = get_field('home');
                 </div>
 
                 <?php echo do_shortcode('[contact-form-7 id="1174d82" title="Поможем с выбором"]'); ?>
+<!--                <div class="confirm">-->
+<!--                    <label class="custom-checkbox">-->
+<!--                        <input type="checkbox" id="confirm">-->
+<!--                        <span class="checkmark"></span>-->
+<!--                    </label>-->
+<!--                    <label for="confirm" class="text">Я даю согласие на <a href="https://loki.ru/policy">правила обработки персональных данных</a></label>-->
+<!--                </div>-->
 
             </div>
             <div class="form-image">

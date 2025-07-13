@@ -267,6 +267,71 @@ if (minInput && maxInput && minPrice && maxPrice) {
   });
 
 
+
+  const hitsSection = document.querySelector('.hits');
+  const isMobile = window.innerWidth <= 770;
+  if (hitsSection) {
+    const hitTitles = hitsSection.querySelectorAll('.filter-title1');
+
+    // Initially close all filters inside .hits
+    hitTitles.forEach(title => {
+      const content = title.nextElementSibling;
+      if (content && content.classList.contains('filter-item')) {
+        content.classList.add('filter-content_close');
+      }
+    });
+// Accordion behavior for .hits only
+    hitTitles.forEach(title => {
+      title.addEventListener('click', function (e) {
+        const content = this.nextElementSibling;
+
+        // Close all other filters inside .hits
+        if (isMobile) {
+          // item.classList.remove('filter-content_close');
+        }else{
+          hitTitles.forEach(otherTitle => {
+            const otherContent = otherTitle.nextElementSibling;
+
+            if (
+                otherTitle !== this &&
+                otherContent &&
+                otherContent.classList.contains('filter-item')
+            ) {
+              otherContent.classList.add('filter-content_close');
+              otherTitle.classList.remove('filter-title_close');
+            }
+          });
+        }
+
+
+        // Toggle only the clicked one
+        if (content && content.classList.contains('filter-item')) {
+          content.classList.toggle('filter-content_close');
+          this.classList.toggle('filter-title_close');
+        }
+      });
+    });
+  }
+
+  function openFiltersOnMobile() {
+    // const isMobile = window.innerWidth <= 770;
+    const filterItems = document.querySelectorAll('.filter-item');
+
+    filterItems.forEach(item => {
+      if (isMobile) {
+        item.classList.remove('filter-content_close');
+      }
+    });
+  }
+
+// // Run on page load
+  openFiltersOnMobile();
+
+// Re-check on window resize
+  window.addEventListener('resize', openFiltersOnMobile);
+
+
+
 });
 
 //   $(".thumbnail").on("click", function () {

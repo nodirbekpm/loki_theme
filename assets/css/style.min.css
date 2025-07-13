@@ -3211,7 +3211,7 @@ h5 {
 
 @media (max-width: 576px) {
     .hits .container{
-        padding: 0;
+        padding: 0 15px;
     }
 
   .hits .hits__blocks{
@@ -3337,6 +3337,63 @@ h5 {
     border-color: green;
     background: #fff
 }
+
+
+
+
+
+/* confirm */
+.confirm {
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+/* Hide the default checkbox */
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+/* Create a custom checkmark */
+.custom-checkbox .checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Show a checkmark when checked */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid #333;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Style for the label text */
+.confirm .text {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Style for the link */
+.confirm .text a {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 
 
 @media (max-width: 1440px) {
@@ -4086,6 +4143,78 @@ h5 {
     flex-shrink: 0
 }
 
+/*  yangi filter kodlar  */
+.catalog-filters .filter_container.brands_filter_container {
+    display: flex;
+    align-items: start;
+    gap:40px;
+}
+
+.hits .filters_row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #D1D2D4;
+    background: #FFF;
+}
+
+.hits .catalog-filters{
+    width: auto;
+}
+.hits.catalog .action_buttons .action_button{
+    display: none;
+}
+
+.hits.catalog .sorting{
+    border-bottom: none;
+    padding: 0;
+}
+
+.catalog-filters .filter-item{
+    /* display: block; */
+    z-index: 5;
+    position: absolute;
+    display: block;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+@media (max-width:992px){
+    .hits.catalog .sorting{
+        display: none;
+    }
+}
+
+@media (max-width: 770px){
+    .catalog-filters .filter_container.brands_filter_container{
+        flex-direction: column;
+        gap:0px ;
+
+    }
+
+    .hits.catalog .sorting{
+        display: block;
+        width: auto;
+    }
+
+    .hits.catalog .action_buttons .action_button{
+        display: flex;
+    }
+
+    .hits .catalog-filters{
+        width: 100%;
+    }
+
+    .catalog-filters .filter-item{
+        position: static;
+        padding: 0;
+        border: none;
+    }
+}
+
+/*= ==== = */
+
 .catalog-filters.show{
     position: fixed;
     top: auto;
@@ -4253,7 +4382,7 @@ h5 {
     user-select: none;
 }
 
-.catalog .filter-title {
+.catalog .filter-title,.catalog .filter-title1 {
     font-family: "GT Eesti Pro Display";
     font-size: 16px;
     margin-bottom: 9px;
@@ -4270,13 +4399,16 @@ h5 {
     align-items: center
 }
 
-.catalog .filter-title:after {
+
+.catalog .filter-title:after, .catalog .filter-title1:after {
     content: '';
     background-image: url(../img/filteropen.svg);
     width: 10px;
     height: 10px;
     display: inline-block
 }
+
+
 
 .catalog .filter-content_close {
     display: none
@@ -4695,7 +4827,7 @@ h5 {
     }
 
     .catalog .filter_mobile{
-        display: block;
+        display: inline-block;
     }
 
     
