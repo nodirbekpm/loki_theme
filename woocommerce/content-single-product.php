@@ -471,11 +471,7 @@ error_log('Gallery IDs: ' . print_r($gallery_ids, true));
                                 </div>
 
                                 <a href="<?= esc_url($permalink) ?>" style="cursor: pointer; color: #000;" class="product-description">
-                                    <?php if($short_desc): ?>
-                                    <?= esc_html($short_desc) ?>
-                                    <?php else: ?>
                                     <?= esc_html($product_title) ?>
-                                    <?php endif; ?>
                                 </a>
 
                                 <?php if (!empty($attributes_str)) : ?>

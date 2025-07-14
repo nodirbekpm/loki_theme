@@ -365,6 +365,7 @@ $total_pages = $products->max_num_pages;
                         <?php while ($products->have_posts()): $products->the_post();
                             global $product;
                             $brand_title = $brand_id ? get_the_title($brand_id) : '';
+                            $product_title = $product->get_title();
                             $main_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
                             $price = $product->get_price();
                             $regular = $product->get_regular_price();
@@ -387,8 +388,11 @@ $total_pages = $products->max_num_pages;
                                         <div class="product-title"><?= esc_html($brand_title) ?></div>
                                         <div class="product-article">Код: <?= esc_html($product->get_sku()) ?></div>
                                     </div>
+<!--                                    <a href="--><?php //= esc_url($link) ?><!--" style="cursor: pointer; color: #000;" class="product-description">-->
+<!--                                        --><?php //= esc_html(wp_trim_words(get_the_content(), 20)) ?>
+<!--                                    </a>-->
                                     <a href="<?= esc_url($link) ?>" style="cursor: pointer; color: #000;" class="product-description">
-                                        <?= esc_html(wp_trim_words(get_the_content(), 20)) ?>
+                                        <?= $product_title ?>
                                     </a>
                                     <div class="product-wrap">
                                         <div class="product-prices">

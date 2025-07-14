@@ -354,6 +354,7 @@ $home = get_field('home');
 
                         $brand_id     = get_field('brand', $product->get_id());
                         $brand_title    = $brand_id    ? get_the_title($brand_id)    : '';
+                        $product_title = $product->get_title();
 
                         $regular_price = (float) $product->get_regular_price();
                         $sale_price    = (float) $product->get_sale_price();
@@ -397,11 +398,7 @@ $home = get_field('home');
                                 </div>
 
                                 <a href="<?= esc_url($permalink) ?>" style="cursor: pointer; color: #000;" class="product-description">
-                                    <?php if($short_desc): ?>
-                                        <?= esc_html($short_desc) ?>
-                                    <?php else: ?>
-                                        <?= esc_html($product_title) ?>
-                                    <?php endif; ?>
+                                    <?= esc_html($product_title) ?>
                                 </a>
 
                                 <?php if (!empty($attributes_str)) : ?>
