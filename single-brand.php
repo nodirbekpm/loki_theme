@@ -371,13 +371,13 @@ $total_pages = $products->max_num_pages;
                             $link = get_permalink($product->ID);
                             ?>
                             <div class="product-card">
-                                <div class="product-image">
+                                <a href="<?= esc_url($link) ?>" class="product-image">
                                     <?php if ($main_image && is_string($main_image)): ?>
                                         <img src="<?= esc_url($main_image) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-img">
                                     <?php else: ?>
                                         <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/placeholder.jpg') ?>" alt="Placeholder Image" class="product-img">
                                     <?php endif; ?>
-                                </div>
+                                </a>
                                 <div class="product-card__top">
                                     <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/addlikes.svg') ?>" alt="Add to Likes">
                                 </div>
