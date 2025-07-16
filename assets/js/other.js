@@ -332,6 +332,18 @@ if (minInput && maxInput && minPrice && maxPrice) {
 
 
 
+  // word limiter in product card
+  const description = document.querySelector(".product-description");
+  const maxLength = 140;
+
+  if (description) {
+    const fullText = description.textContent.trim();
+    if (fullText.length > maxLength) {
+      description.textContent = fullText.slice(0, maxLength - 3) + "...";
+    }
+  }
+
+
 });
 
 //   $(".thumbnail").on("click", function () {

@@ -405,20 +405,20 @@ $total_pages = $products->max_num_pages;
                                 $brand_id = get_field('brand', $product->get_id());
                                 $brand_title = $brand_id ? get_the_title($brand_id) : '';
                                 $product_title = $product->get_title();
-                                $main_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
+                                $main_image = wp_get_attachment_image_url($product->get_image_id(), 'full');
                                 $price = $product->get_price();
                                 $regular = $product->get_regular_price();
                                 $sale = $product->get_sale_price();
                                 $link = get_permalink($product->ID);
                                 ?>
                                 <div class="product-card">
-                                    <div class="product-image">
+                                    <a href="<?= esc_url($link) ?>" class="product-image">
                                         <?php if ($main_image && is_string($main_image)): ?>
                                             <img src="<?= esc_url($main_image) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-img">
                                         <?php else: ?>
                                             <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/placeholder.jpg') ?>" alt="Placeholder Image" class="product-img">
                                         <?php endif; ?>
-                                    </div>
+                                    </a>
                                     <div class="product-card__top">
                                         <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/addlikes.svg') ?>" alt="Add to Likes">
                                     </div>

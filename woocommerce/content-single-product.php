@@ -441,7 +441,7 @@ error_log('Gallery IDs: ' . print_r($gallery_ids, true));
                         $short_desc = $product->get_short_description();
                         $sku        = $product->get_sku();
                         $permalink  = get_permalink($product->get_id());
-                        $image_url  = wp_get_attachment_image_url($product->get_image_id(), 'medium');
+                        $image_url  = wp_get_attachment_image_url($product->get_image_id(), 'full');
 
                         // Atributlar olish (Color, Shape, Installation)
                         $attributes = [];
@@ -455,9 +455,9 @@ error_log('Gallery IDs: ' . print_r($gallery_ids, true));
                         $attributes_str = implode(', ', $attributes);
                         ?>
                         <div class="product-card">
-                            <div class="product-image">
+                            <a href="<?= esc_url($permalink) ?>" class="product-image">
                                 <img src="<?= esc_url($image_url) ?>" alt="<?= esc_attr($product->get_name()) ?>" class="product-img">
-                            </div>
+                            </a>
 
                             <div class="product-card__top">
 <!--                                <img src="--><?php //= get_template_directory_uri() ?><!--/assets/img/checking.svg" alt="">-->
