@@ -180,17 +180,18 @@ $total_pages = $products->max_num_pages;
                 <?php foreach ($brand['texts'] as $text) { ?>
                     <p><?= $text['text'] ?></p>
                 <?php } ?>
-                <a href="">Развернуть полное описание ↓</a>
+<!--                <a href="">Развернуть полное описание ↓</a>-->
             </div>
-            <a href="/?catalog=современные-камины" class="banner-light-show">
-                <span>Перейти в полный каталог продукции Palazzetti</span>
-            </a>
         </div>
     </div>
 
 
     <div class="hits catalog">
         <div class="container">
+            <div class="hits_mini_title">
+                Продукция <?php the_title(); ?>
+            </div>
+
             <div class="filters_row">
                 <div class="filter_mobile" onclick="toggleCatalogFilters()">Фильтры</div>
                 <aside class="catalog-filters" id="catalog-filters">
@@ -330,7 +331,7 @@ $total_pages = $products->max_num_pages;
                 <!-- Sorting -->
                 <div class="sorting">
                     <span class="sorting-label">Сортировать по:</span>
-                    <div class="filter_mobile" onclick="toggleCatalogFilters()">Фильтры</div>
+<!--                    <div class="filter_mobile" onclick="toggleCatalogFilters()">Фильтры</div>-->
                     <form method="get">
                         <?php
                         foreach ($_GET as $key => $val) {
@@ -357,29 +358,26 @@ $total_pages = $products->max_num_pages;
 
 
             <div class="hits-wrap">
-                <div class="hits-title">
-                    <?= $home['sales_hits_title'] ?>
-                </div>
                 <div class="hits__blocks">
                     <?php if ($products->have_posts()): ?>
                         <?php while ($products->have_posts()): $products->the_post();
                             global $product;
                             $brand_title = $brand_id ? get_the_title($brand_id) : '';
                             $product_title = $product->get_title();
-                            $main_image = wp_get_attachment_image_url($product->get_image_id(), 'medium');
+                            $main_image = wp_get_attachment_image_url($product->get_image_id(), 'full');
                             $price = $product->get_price();
                             $regular = $product->get_regular_price();
                             $sale = $product->get_sale_price();
                             $link = get_permalink($product->ID);
                             ?>
                             <div class="product-card">
-                                <div class="product-image">
+                                <a href="<?= esc_url($link) ?>" class="product-image">
                                     <?php if ($main_image && is_string($main_image)): ?>
                                         <img src="<?= esc_url($main_image) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-img">
                                     <?php else: ?>
                                         <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/placeholder.jpg') ?>" alt="Placeholder Image" class="product-img">
                                     <?php endif; ?>
-                                </div>
+                                </a>
                                 <div class="product-card__top">
                                     <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/addlikes.svg') ?>" alt="Add to Likes">
                                 </div>
@@ -469,6 +467,11 @@ $total_pages = $products->max_num_pages;
                     <a href="/catalog/камины/">Перейти в каталог</a>
                 </div>
             </div>
+
+
+            <a href="/?catalog=современные-камины" class="banner-light-show">
+                <span>Перейти в полный каталог продукции Palazzetti</span>
+            </a>
         </div>
     </div>
 

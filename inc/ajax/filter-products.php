@@ -101,11 +101,12 @@ function load_catalog_products_callback() {
         $price = $product->get_price();
         $regular = $product->get_regular_price();
         $sale = $product->get_sale_price();
+        $link = get_permalink($product->ID);
         ?>
         <div class="product-card">
-            <div class="product-image">
+            <a href="<?= esc_url($link) ?>" class="product-image">
                 <img src="<?= esc_url($main_image) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-img">
-            </div>
+            </a>
             <div class="product-card__top">
                 <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
             </div>
@@ -299,11 +300,12 @@ function load_brand_products_callback() {
         $price = $product->get_price();
         $regular = $product->get_regular_price();
         $sale = $product->get_sale_price();
+        $link = get_permalink($product->ID);
         ?>
         <div class="product-card">
-            <div class="product-image">
+            <a href="<?= esc_url($link) ?>" class="product-image">
                 <img src="<?= esc_url($main_image) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-img">
-            </div>
+            </a>
             <div class="product-card__top">
                 <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
             </div>
