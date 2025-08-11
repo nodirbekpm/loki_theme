@@ -460,8 +460,8 @@ error_log('Gallery IDs: ' . print_r($gallery_ids, true));
                             </a>
 
                             <div class="product-card__top">
-<!--                                <img src="--><?php //= get_template_directory_uri() ?><!--/assets/img/checking.svg" alt="">-->
-                                <img src="<?= get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
+                                <img src="img/checking.svg" alt="">
+                                <div data-product-id="<?= $product->get_id(); ?>" class="like_button"></div>
                             </div>
 
                             <div class="product-details">

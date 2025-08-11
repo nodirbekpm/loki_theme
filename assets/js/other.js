@@ -331,18 +331,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener('resize', openFiltersOnMobile);
 
 
-    // word limiter in product card
-    const description = document.querySelector(".product-description");
-    const maxLength = 140;
-
-    if (description) {
-        const fullText = description.textContent.trim();
-        if (fullText.length > maxLength) {
-            description.textContent = fullText.slice(0, maxLength - 3) + "...";
-        }
-    }
-
-
   // word limiter in product card
   const description = document.querySelector(".product-description");
   const maxLength = 140;
@@ -355,6 +343,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
+
+    // // like button toogle
+    // const likeButtons = document.querySelectorAll('.like_button');
+    // likeButtons.forEach(button => {
+    //     button.addEventListener('click', () => {
+    //         button.classList.toggle('active');
+    //     });
+    // });
 });
 
 //   $(".thumbnail").on("click", function () {

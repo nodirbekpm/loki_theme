@@ -173,6 +173,24 @@ $delivery_places = get_field('delivery_places', 'option');
 <script defer src="<?php echo get_template_directory_uri() ?>/assets/js/app.js"></script>
 <script defer src="<?php echo get_template_directory_uri() ?>/assets/js/other.js"></script>
 
+<script>
+    window.toggleNav = function () {
+        const menu = document.getElementById('navbar');
+        const burger = document.querySelector('.burger');
+
+        // Toggle "active" on both burger and menu
+        burger.classList.toggle('active');
+        menu.classList.toggle('active');
+
+        // Toggle scroll lock on body
+        if (menu.classList.contains('active')) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+    };
+</script>
+
 <noscript><link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/assets/css/style.min.css?v=1748246790517"></noscript>
 
 

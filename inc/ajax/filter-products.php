@@ -108,8 +108,10 @@ function load_catalog_products_callback() {
                 <img src="<?= esc_url($main_image) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-img">
             </a>
             <div class="product-card__top">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
+                <img src="img/checking.svg" alt="">
+                <div class="like_button"></div>
             </div>
+
             <div class="product-details">
                 <div class="product-details__cont">
                     <div class="product-title"><?= esc_html($brand_title) ?></div>
@@ -307,8 +309,10 @@ function load_brand_products_callback() {
                 <img src="<?= esc_url($main_image) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-img">
             </a>
             <div class="product-card__top">
-                <img src="<?php echo get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
+                <img src="img/checking.svg" alt="">
+                <div data-product-id="<?= $product->get_id(); ?>" class="like_button"></div>
             </div>
+
             <div class="product-details">
                 <div class="product-details__cont">
                     <div class="product-title"><?= esc_html($brand_title) ?></div>

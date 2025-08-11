@@ -1985,7 +1985,7 @@ h5 {
     color: white;
     font-size: 9px;
     /* padding: 6px 6px; */
-    padding-top: 2px;
+    padding-top: 3px;
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -2971,10 +2971,23 @@ h5 {
 } */
 
 .product-card .product-card__top {
+    display: flex;
     position: absolute;
     right: 30px;
     top: 30px
 }
+
+.product-card .product-card__top .like_button {
+    width: 24px;
+    height: 24px;
+    background: url("../img/addlikes.svg") no-repeat center / contain;
+    cursor: pointer;
+}
+
+.product-card .product-card__top .like_button.active{
+    background-image: url("../img/like_filled.svg");
+}
+
 
 .product-card .product-image {
     background-color: #fff;
@@ -3749,6 +3762,13 @@ h5 {
     font-weight: 400;
 }
 
+@media (max-width:400px){
+    .footer__contact-item.tel div{
+        font-size: 10px;
+    }
+}
+
+
 .footer__contact-item a:hover {
     color: #fff
 }
@@ -3841,7 +3861,7 @@ h5 {
 
 @media (max-width: 770px) {
     .footer__container {
-        padding: 0 20px
+        padding: 0;
     }
 
 
@@ -5171,6 +5191,16 @@ h5 {
     flex-direction: column;
     gap: 10px;
     padding-top: 50px
+
+    transform: translateX(0) !important;
+    max-height: 403px;       /* limit height */
+    overflow-y: auto;        /* scroll if needed */
+    overflow-x: hidden;      /* prevent horizontal movement */
+    scrollbar-width: none;   /* hide scrollbar in Firefox */
+}
+
+.product-card-single .thumbnail-slider .swiper-wrapper::-webkit-scrollbar {
+    display: none;           /* hide scrollbar in Chrome/Safari/Edge */
 }
 
 .product-card-single .thumbnail {

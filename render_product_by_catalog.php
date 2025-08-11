@@ -51,8 +51,8 @@ if ($categories):
         </div>
 
         <div class="product-card__top">
-            <img src="<?= get_template_directory_uri() ?>/assets/img/checking.svg" alt="">
-            <img src="<?= get_template_directory_uri() ?>/assets/img/addlikes.svg" alt="">
+            <img src="img/checking.svg" alt="">
+            <div class="like_button"></div>
         </div>
 
         <div class="product-details">

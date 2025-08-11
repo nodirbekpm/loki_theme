@@ -420,7 +420,8 @@ $total_pages = $products->max_num_pages;
                                         <?php endif; ?>
                                     </a>
                                     <div class="product-card__top">
-                                        <img src="<?= esc_url(get_template_directory_uri() . '/assets/img/addlikes.svg') ?>" alt="Add to Likes">
+                                        <img src="img/checking.svg" alt="">
+                                        <div data-product-id="<?= $product->get_id(); ?>" class="like_button"></div>
                                     </div>
                                     <div class="product-details">
                                         <div class="product-details__cont">
