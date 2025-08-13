@@ -2977,14 +2977,14 @@ h5 {
     top: 30px
 }
 
-.product-card .product-card__top .like_button {
+.product-card .product-card__top .like_button, .action-buttons .like_button {
     width: 24px;
     height: 24px;
     background: url("../img/addlikes.svg") no-repeat center / contain;
     cursor: pointer;
 }
 
-.product-card .product-card__top .like_button.active{
+.product-card .product-card__top .like_button.active, .action-buttons .like_button.active{
     background-image: url("../img/like_filled.svg");
 }
 

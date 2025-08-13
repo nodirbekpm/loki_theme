@@ -43,6 +43,21 @@ get_header();
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const cart = JSON.parse(localStorage.getItem('cart_items')) || [];
+        function productCountShow(){
+            const cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
+            const totalCount = cartItems.reduce((sum, item) => sum + (parseInt(item.qty) || 0), 0);
+
+            counterSpans = document.querySelectorAll(".basket_counter span");
+
+            counterSpans.forEach(span => {
+                if (totalCount > 0) {
+                    span.style.display = 'inline-block'; // yoki block
+                    span.textContent = totalCount;
+                } else {
+                    span.style.display = 'none';
+                }
+            });
+        }
 
         if (cart.length === 0) {
             document.getElementById('products-list').innerHTML = '<p>Корзинка пуста.</p>';

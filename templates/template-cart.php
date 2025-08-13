@@ -71,6 +71,21 @@ get_header();
 </div>
 
 <script>
+    function productCountShow(){
+        const cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
+        const totalCount = cartItems.reduce((sum, item) => sum + (parseInt(item.qty) || 0), 0);
+
+        counterSpans = document.querySelectorAll(".basket_counter span");
+
+        counterSpans.forEach(span => {
+            if (totalCount > 0) {
+                span.style.display = 'inline-block'; // yoki block
+                span.textContent = totalCount;
+            } else {
+                span.style.display = 'none';
+            }
+        });
+    }
 
     function initQuantityControls() {
         const quantityControls = document.querySelectorAll(".quantity-control");
@@ -87,6 +102,7 @@ get_header();
                 if (value > 1) {
                     input.value = value - 1;
                     updateProductTotal(control);
+                    productCountShow();
                 }
             });
 
@@ -94,6 +110,7 @@ get_header();
                 let value = parseInt(input.value) || 1;
                 input.value = value + 1;
                 updateProductTotal(control);
+                productCountShow();
             });
 
             input.addEventListener("input", () => {
@@ -180,22 +197,6 @@ get_header();
                 document.getElementById('products-list').innerHTML = html;
                 initQuantityControls();
             });
-
-        function productCountShow(){
-            const cartItems = JSON.parse(localStorage.getItem('cart_items')) || [];
-            const totalCount = cartItems.reduce((sum, item) => sum + (parseInt(item.qty) || 0), 0);
-
-            counterSpans = document.querySelectorAll(".basket_counter span");
-
-            counterSpans.forEach(span => {
-                if (totalCount > 0) {
-                    span.style.display = 'inline-block'; // yoki block
-                    span.textContent = totalCount;
-                } else {
-                    span.style.display = 'none';
-                }
-            });
-        }
 
         document.addEventListener('click', function (e) {
             if (e.target.classList.contains('clear-cart')) {
