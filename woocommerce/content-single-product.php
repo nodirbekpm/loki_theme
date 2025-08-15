@@ -163,9 +163,9 @@ error_log('Gallery IDs: ' . print_r($gallery_ids, true));
 
                         <div class="action-buttons">
                             <button class="btn-add-card" data-product-id="<?= esc_attr($product->get_id()) ?>">В корзину</button>
-                            <button class="btn-like-secondary" title="Сравнение">
-                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/sravnenie.svg" alt="">
-                            </button>
+<!--                            <button class="btn-like-secondary" title="Сравнение">-->
+<!--                                <img src="--><?php //echo get_template_directory_uri() ?><!--/assets/img/sravnenie.svg" alt="">-->
+<!--                            </button>-->
                             <button data-product-id="<?= $product->get_id(); ?>" class="btn-like-secondary like_button" title="Понравилось">
 <!--                                <img src="--><?php //echo get_template_directory_uri() ?><!--/assets/img/like23.svg" alt="">-->
                             </button>

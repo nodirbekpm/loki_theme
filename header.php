@@ -97,7 +97,7 @@
 
                     <a href="#" class="laptop_icon counter like_counter">
                         <img src="<?php echo get_template_directory_uri() ?>/assets/img/like.svg" alt="" class="header-like">
-                        <span>2</span>
+                        <span></span>
                     </a>
 
                     <a href="/корзина/" class="laptop_icon counter basket_counter">
